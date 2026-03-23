@@ -1,0 +1,13 @@
+/* Minimal custom CSS: keep only tiny overrides; main design via Tailwind CDN */
+/* Ensure feature items and content start hidden for JS-driven reveal using Tailwind utilities */
+.site-nav__list {
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+/* Accessibility: visible focus ring fallback */
+a:focus {
+    outline: 3px solid rgba(59, 130, 246, 0.35);
+    outline-offset: 2px
+}
