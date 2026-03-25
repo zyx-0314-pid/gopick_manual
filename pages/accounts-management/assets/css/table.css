@@ -1,0 +1,68 @@
+/* Table specific styles for RBAC matrix */
+.table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.rbac-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.92rem;
+    min-width: 900px;
+}
+
+.rbac-table th,
+.rbac-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.04);
+    vertical-align: middle;
+}
+
+/* Sticky header */
+.rbac-table thead th {
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    z-index: 3;
+    text-align: left;
+}
+
+/* Zebra striping */
+.rbac-table tbody tr:nth-child(even) {
+    background: #fbfbfb;
+}
+
+/* Slightly reduce font for dense data */
+.rbac-table {
+    font-size: 0.92rem;
+}
+
+/* Center role columns (columns 5 and onward) */
+.rbac-table th:nth-child(n+5),
+.rbac-table td:nth-child(n+5) {
+    text-align: center;
+}
+
+/* Color coding for cell values */
+.rbac-x {
+    color: #117a37;
+    font-weight: 600;
+}
+
+.rbac-c {
+    color: #b25a00;
+    font-weight: 600;
+}
+
+.rbac-n {
+    color: #6b7280;
+}
+
+.rbac-dash {
+    color: #9ca3af;
+}
+
+/* Ensure header labels remain readable when sticky */
+.rbac-table thead th {
+    box-shadow: 0 1px 0 rgba(11, 15, 25, 0.04);
+}

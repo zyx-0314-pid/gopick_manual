@@ -1,0 +1,122 @@
+/* Visual step-by-step cards */
+.steps-visual-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+}
+
+.step-card {
+    display: flex;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    box-shadow: 0 1px 0 rgba(11, 15, 25, 0.03);
+    gap: 1.25rem;
+}
+
+.step-circle {
+    min-width: 2.2rem;
+    height: 2.2rem;
+    background: var(--gopick-accent, #e50914);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.25rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.1rem;
+    box-shadow: 0 1px 2px rgba(229, 9, 20, 0.08);
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-title {
+    font-weight: 600;
+    font-size: 1.08rem;
+    margin-bottom: 0.15rem;
+}
+
+.step-desc {
+    color: #374151;
+    font-size: 0.98rem;
+}
+
+/* Components: sidebar, roles, steps */
+.site-header .brand__logo {
+    color: #111827;
+}
+
+.site-nav__list li a.active {
+    color: var(--gopick-accent);
+    font-weight: 600;
+}
+
+/* Sidebar styles */
+aside nav {
+    padding: 0.75rem;
+}
+
+aside nav a {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    color: #374151;
+}
+
+aside nav a.active {
+    background: rgba(229, 9, 20, 0.06);
+    color: var(--gopick-accent);
+    border-left: 3px solid var(--gopick-accent);
+    padding-left: 0.75rem;
+}
+
+/* Role capability grid */
+.role-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+@media(min-width:720px) {
+    .role-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(min-width:1024px) {
+    .role-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.role-card {
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.04);
+    padding: 0.75rem;
+    border-radius: 6px;
+}
+
+/* Steps card */
+.steps-card {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.04);
+    border-radius: 8px;
+}
+
+.steps-title {
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.steps-list li {
+    margin: 0.5rem 0;
+}
