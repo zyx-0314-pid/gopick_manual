@@ -1,0 +1,35 @@
+{
+    "hero": {
+        "title": "GoPick Assessment Center",
+        "subtitle": "A browser-based platform for building, scheduling, delivering and reporting on online assessments.",
+        "ctaText": "See main features"
+    },
+    "features": [
+        {
+            "title": "Account and user hierarchy",
+            "target": "accounts-management"
+        },
+        {
+            "title": "Online assessment delivery",
+            "target": "online-assessment"
+        },
+        {
+            "title": "Assessment creation and management",
+            "target": "assessment-creation"
+        },
+        {
+            "title": "Candidate management",
+            "target": "candidate-management"
+        },
+        {
+            "title": "Scheduling and assignments",
+            "target": "scheduling-assignments"
+        },
+        {
+            "title": "Reporting and exports",
+            "target": "reporting-exports"
+        }
+    ],
+    "about": "GoPick is a browser-based, multi-tenant assessment platform that supports the full lifecycle of online testing: building item banks, creating assessments, scheduling candidates, running secure test sessions, and producing detailed reports.",
+    "contact": "Admin / Manager portal: http://localhost:82/app/administrator/\nCandidate portal: http://localhost:82/app/\nIf you cannot log in, contact your site administrator."
+}

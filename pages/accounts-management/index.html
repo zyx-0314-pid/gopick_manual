@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Accounts Management — GoPick</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col min-h-screen justify-center items-center accounts-page">
+  <header class="site-header container flex items-center justify-between my-4" role="banner">
+    <div class="brand flex items-center gap-4">
+      <a href="/" class="brand__logo text-xl font-bold text-slate-900">GoPick</a>
+      <button id="navToggle" class="nav-toggle md:hidden p-2 text-slate-700" aria-label="Toggle navigation">☰</button>
+    </div>
+    <nav id="mainNav" class="site-nav" role="navigation" aria-label="Main navigation">
+      <ul class="site-nav__list hidden md:flex space-x-4 text-slate-700">
+        <li class="site-nav__item"><a class="hover:underline" href="/">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="site-main container">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+      <aside class="hidden md:block md:col-span-1">
+        <nav class="sticky top-20 p-4 border rounded-md bg-white shadow-sm">
+          <h4 class="text-sm font-semibold text-slate-700">On this page</h4>
+          <ul class="mt-3 space-y-2 text-sm text-slate-600">
+            <li><a class="hover:underline" href="#rbac-matrix">RBAC Matrix</a></li>
+            <li><a class="hover:underline" href="#roles">Role Capabilities</a></li>
+            <li><a class="hover:underline" href="#access">How to Access & Toggle</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <div class="md:col-span-4">
+        <section class="docs-section">
+          <div id="rbac-matrix" class="mb-6 text-transparent">head here</div>
+          <h2 class="text-2xl font-semibold text-slate-900">RBAC Matrix</h2>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 table-auto text-sm">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-3 py-2 text-left font-medium text-gray-700">Function</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-700">CRUD</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-700">Limitations</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-700">Scope</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-700">Super Admin (IT)</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-700">Administrator (ASD)</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-700">Test Creator</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-700">API Access</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-700">Administrator</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-700">Distributor</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-700">Sub Distributor</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-700">Client Account</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-700">Sub Account</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-700">Self Registration</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-100">
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Create Super Admin (IT)</td>
+                  <td class="px-3 py-2">Create</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Create Administrator (ASD)</td>
+                  <td class="px-3 py-2">Create</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Create Test Creator</td>
+                  <td class="px-3 py-2">Create</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Create API Access</td>
+                  <td class="px-3 py-2">Create</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Create Administrator</td>
+                  <td class="px-3 py-2">Create</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Create Distributor</td>
+                  <td class="px-3 py-2">Create</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Create Sub Distributor</td>
+                  <td class="px-3 py-2">Create</td>
+                  <td class="px-3 py-2">Requires Distributor as Parent</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Create Client Account</td>
+                  <td class="px-3 py-2">Create</td>
+                  <td class="px-3 py-2">Requires Sub Distributor as Parent</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Create Sub Account</td>
+                  <td class="px-3 py-2">Create</td>
+                  <td class="px-3 py-2">Requires Client as Parent</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Create Self Registration</td>
+                  <td class="px-3 py-2">Create</td>
+                  <td class="px-3 py-2">Requires Distributor, Sub Ditributor or Client as Parent</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">-</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Update `Personal Account`: Distributor, Sub-Distributor, Client, Sub Client, Self Registered</td>
+                  <td class="px-3 py-2">Update</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">Allowed Changes: name of organization, contact person, email, number, password, country, business address and billing address</td>
+                  <td class="px-3 py-2">N</td>
+                  <td class="px-3 py-2">N</td>
+                  <td class="px-3 py-2">N</td>
+                  <td class="px-3 py-2">N</td>
+                  <td class="px-3 py-2">N</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Update `Personal User`: Super Admin, Admin, Test Creator, API Access</td>
+                  <td class="px-3 py-2">Update</td>
+                  <td class="px-3 py-2">Exclude: Status, User Type</td>
+                  <td class="px-3 py-2">Allowed Changes: Password, Username, Email</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">N</td>
+                  <td class="px-3 py-2">N</td>
+                  <td class="px-3 py-2">N</td>
+                  <td class="px-3 py-2">N</td>
+                  <td class="px-3 py-2">N</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">(Parent: Account/User) Update Children Accounts</td>
+                  <td class="px-3 py-2">Update</td>
+                  <td class="px-3 py-2">Exclude: Username, Account Type, Parent Account</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">(Parent: Account/User) Archive Children Accounts</td>
+                  <td class="px-3 py-2">Update</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">X</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Content Manager: Privacy Consent</td>
+                  <td class="px-3 py-2">Update</td>
+                  <td class="px-3 py-2">Privacy Consent: modContentManager-actionIndex &gt; List/Search = Privacy Consent</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Content Manager: Demographics</td>
+                  <td class="px-3 py-2">Update</td>
+                  <td class="px-3 py-2">Demographics: modContentManager-actionDemographics &gt; Demographics Page Setup</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Content Manager: Exam Finish Page</td>
+                  <td class="px-3 py-2">Update</td>
+                  <td class="px-3 py-2">Assessment Completion Page: modContentManager-actionFinishPage &gt; Exam Finish Page Setup</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Content Manager: Upload Logo</td>
+                  <td class="px-3 py-2">Update</td>
+                  <td class="px-3 py-2">Assessment Center Logo: modContentManager-actionUploadLogoPage &gt; Upload Logo Page</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50">
+                  <td class="px-3 py-2">Content Manager: Unblock Account</td>
+                  <td class="px-3 py-2">Update</td>
+                  <td class="px-3 py-2">Unblock Account: modUsers-actionUnblock &gt; Unblock Account</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2"></td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">C</td>
+                  <td class="px-3 py-2">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="roles" class="roles-section mt-8">
+          <h2 class="text-2xl font-semibold text-slate-900">Role Capabilities</h2>
+          <div id="roleCapabilities" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4"></div>
+        </section>
+        <section id="access" class="access-section mt-8">
+          <h2 class="text-2xl font-semibold text-slate-900">How to Access & Toggle Features</h2>
+          <p class="mt-2 text-sm text-slate-700">Instructions below assume you are <strong>Logged as Super Admin</strong>.</p>
+
+          <div class="mt-4 bg-white border rounded-md p-4 shadow-sm">
+            <h3 class="text-lg font-medium text-slate-800">Steps</h3>
+            <ol class="list-decimal list-inside mt-3 text-sm text-slate-700 space-y-2">
+              <li>Open the <strong>Roles/Permissions</strong> module in the Admin console.</li>
+              <li>Use <strong>Search Roles</strong> to find the role you want to change (e.g., "Administrator", "Distributor").</li>
+              <li>Select the role row, then click the <strong>Edit</strong> or <strong>Preview</strong> button.</li>
+              <li>In the Edit view locate the <strong>Permissions</strong> list or table.</li>
+              <li>Find the exact permission entry by name and module, then toggle or update it as required. Example permission names used in this matrix:
+              </li>
+              <li>If the permission is marked Conditional, update its condition or configuration so it becomes available; otherwise toggle the direct access flag (grant/revoke).</li>
+              <li>Save your changes and use the <strong>Preview</strong> or impersonation to confirm the role's behavior.</li>
+            </ol>
+          </div>
+        </section>
+        <section id="module-map" class="module-map mt-8">
+          
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer container py-8 text-center text-sm text-slate-500">
+    <small id="footerYear">&copy; <span id="footerYearSpan"></span> GoPick</small>
+  </footer>
+
+  <script>
+    // small footer year touch-up
+    document.addEventListener('DOMContentLoaded', () => {
+      const el = document.getElementById('footerYearSpan'); if (el) el.textContent = new Date().getFullYear();
+      // nav toggle behavior
+      const toggle = document.getElementById('navToggle');
+      if (toggle) toggle.addEventListener('click', () => {
+        const nav = document.querySelector('.site-nav__list'); if (nav) nav.classList.toggle('hidden');
+      });
+      // generate role capability cards from RBAC table
+      try {
+        const table = document.querySelector('#docs table');
+        if (table) generateRoleCapabilitiesFromTable(table);
+      } catch (e) { console.warn('role generation failed', e); }
+    });
+
+    function generateRoleCapabilitiesFromTable(table) {
+      const thead = table.querySelector('thead');
+      const tbody = table.querySelector('tbody');
+      if (!thead || !tbody) return;
+      const headers = Array.from(thead.querySelectorAll('th')).map(h => h.textContent.trim());
+      const roleStart = 4; // roles begin at column index 4
+      const roles = headers.slice(roleStart);
+
+      // Prepare per-role buckets: available (X), conditional (C), unavailable (N or -)
+      const roleBuckets = roles.map(() => ({ available: [], conditional: [], unavailable: [] }));
+
+      Array.from(tbody.querySelectorAll('tr')).forEach(row => {
+        const cells = Array.from(row.querySelectorAll('td'));
+        const func = (cells[0] && cells[0].textContent.trim()) || '';
+        for (let i = roleStart; i < cells.length; i++) {
+          const txt = (cells[i] && cells[i].textContent.trim()) || '';
+          if (!txt) continue;
+          const idx = i - roleStart;
+          const t = txt.toUpperCase();
+          if (t === 'X') roleBuckets[idx].available.push(func);
+          else if (t === 'C') roleBuckets[idx].conditional.push(func);
+          else if (t === 'N' || t === '-') roleBuckets[idx].unavailable.push(func);
+          else {
+            // other tokens (like letters) treat as available
+            roleBuckets[idx].available.push(`${func} (${txt})`);
+          }
+        }
+      });
+
+      const container = document.getElementById('roleCapabilities');
+      if (!container) return;
+      container.innerHTML = '';
+      roles.forEach((role, idx) => {
+        const buckets = roleBuckets[idx];
+        const card = document.createElement('article');
+        card.className = 'p-4 border rounded-md bg-white shadow-sm';
+
+        const h = document.createElement('h3');
+        h.className = 'text-lg font-medium text-slate-800 flex items-center justify-between';
+        const titleSpan = document.createElement('span'); titleSpan.textContent = role; h.appendChild(titleSpan);
+        const countsSpan = document.createElement('span'); countsSpan.className = 'text-sm text-slate-500';
+        countsSpan.textContent = `${buckets.available.length} available · ${buckets.conditional.length} conditional`;
+        h.appendChild(countsSpan);
+        card.appendChild(h);
+
+        function appendGroup(title, items, titleClass) {
+          const groupH = document.createElement('h4'); groupH.className = `mt-3 text-sm font-semibold ${titleClass}`; groupH.textContent = title; card.appendChild(groupH);
+          const ul = document.createElement('ul'); ul.className = 'mt-2 list-disc list-inside text-slate-700 text-sm';
+          if (!items.length) { const li = document.createElement('li'); li.className = 'text-slate-400'; li.textContent = '—'; ul.appendChild(li); }
+          else items.forEach(it => { const li = document.createElement('li'); li.textContent = it; ul.appendChild(li); });
+          card.appendChild(ul);
+        }
+
+        appendGroup('Available', buckets.available, 'text-green-700');
+        appendGroup('Conditional (requires config)', buckets.conditional, 'text-amber-700');
+
+        container.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>
