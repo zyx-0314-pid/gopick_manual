@@ -49,6 +49,49 @@ svg {
     padding: 0
 }
 
+/* Fixed header/footer layout: keep header pinned to top and footer pinned to bottom
+   while main content fills the remaining viewport height. Uses CSS variables
+   so page-level styles can override heights if needed. */
+:root {
+    --header-height: 64px;
+    --footer-height: 64px;
+}
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    background: white;
+    z-index: 40;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.site-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--footer-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    z-index: 30;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Main content should avoid being overlapped by fixed header/footer */
+.site-main,
+main {
+    padding-top: calc(var(--header-height));
+    padding-bottom: calc(var(--footer-height));
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
 /* Accessibility: visible focus ring fallback */
 a:focus {
     outline: 3px solid rgba(59, 130, 246, 0.35);

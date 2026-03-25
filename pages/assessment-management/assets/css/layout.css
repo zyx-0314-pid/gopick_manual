@@ -1,0 +1,244 @@
+/* layout.css — Documentation layout and component styles */
+:root {
+    --bg: #ffffff;
+    --accent: #e50914;
+    --text: #111213;
+    --muted: #6b6f76;
+    --container-width: 900px;
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    color: var(--text);
+    background: var(--bg);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px
+}
+
+/* Topbar */
+.topbar {
+    border-bottom: 1px solid #f1f1f1;
+    background: var(--bg)
+}
+
+.topbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0
+}
+
+.brand {
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 20px
+}
+
+.topbar__nav a {
+    color: var(--muted);
+    text-decoration: none;
+    margin-left: 12px
+}
+
+/* Layout */
+.layout {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 24px 0
+}
+
+.sidebar {
+    width: 260px;
+    flex: 0 0 260px;
+    position: sticky;
+    top: 20px;
+    z-index: 10;
+}
+
+.content {
+    flex: 1;
+    max-width: var(--container-width);
+    margin: 0 auto
+}
+
+/* Sidebar */
+.sidebar__inner {
+    position: sticky;
+    top: 20px;
+    background: transparent
+}
+
+.sidebar__title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 10px
+}
+
+.doc-sidebar {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+
+.doc-sidebar ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 6px 0
+}
+
+.doc-sidebar .section {
+    margin-bottom: 8px
+}
+
+.doc-sidebar a {
+    display: block;
+    padding: 8px 10px;
+    border-radius: 6px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px
+}
+
+.doc-sidebar a:hover {
+    background: #f8f8f8;
+    color: var(--text)
+}
+
+.doc-sidebar a.active {
+    background: rgba(229, 9, 20, 0.06);
+    border-left: 3px solid var(--accent);
+    color: var(--text);
+    padding-left: 8px
+}
+
+.doc-sidebar .sub-list {
+    margin-left: 6px;
+    padding-left: 6px;
+    border-left: 1px solid #f2f2f2
+}
+
+.toggle-btn {
+    background: none;
+    border: 0;
+    color: var(--muted);
+    font-size: 12px;
+    padding: 6px
+}
+
+/* Doc article */
+.doc-hero {
+    margin-bottom: 18px
+}
+
+.doc-title {
+    font-size: 28px;
+    margin: 0 0 8px 0;
+    position: relative;
+    padding-bottom: 8px
+}
+
+.doc-title:after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 120px;
+    background: var(--accent);
+    margin-top: 8px;
+    border-radius: 2px
+}
+
+.docs__content h2 {
+    font-size: 20px;
+    margin: 18px 0 10px 0;
+    color: var(--text)
+}
+
+.docs__content h3 {
+    font-size: 16px;
+    margin: 12px 0;
+    color: var(--text)
+}
+
+/* Step card */
+.step-card {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: #fff;
+    padding: 14px;
+    border-radius: 8px;
+    margin: 10px 0;
+    border: 1px solid #f4f4f5;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02)
+}
+
+.step-count {
+    min-width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700
+}
+
+.step-body {
+    flex: 1
+}
+
+.step-title {
+    font-weight: 700;
+    margin: 0 0 6px 0
+}
+
+.step-desc {
+    color: var(--muted);
+    margin: 0;
+    font-size: 14px
+}
+
+/* Footer */
+.site-footer {
+    padding: 18px 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px
+}
+
+/* Responsive */
+@media (max-width:900px) {
+    .layout {
+        flex-direction: column
+    }
+
+    .sidebar {
+        width: 100%;
+        order: 2
+    }
+
+    .content {
+        order: 1;
+        padding-bottom: 20px
+    }
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth
+}
