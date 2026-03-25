@@ -5,18 +5,21 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Accounts Management — GoPick</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/table.css">
+  <link rel="stylesheet" href="assets/css/components.css">
   <link rel="icon" type="image/x-icon" href="../../favicon.ico">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex flex-col min-h-screen justify-center items-center accounts-page">
   <header class="site-header container flex items-center justify-between my-4" role="banner">
     <div class="brand flex items-center gap-4">
-      <a href="/" class="brand__logo text-xl font-bold text-slate-900">GoPick</a>
+      <a href="/gopick_manual" class="brand__logo text-xl font-bold text-slate-900">GoPick</a>
       <button id="navToggle" class="nav-toggle md:hidden p-2 text-slate-700" aria-label="Toggle navigation">☰</button>
     </div>
     <nav id="mainNav" class="site-nav" role="navigation" aria-label="Main navigation">
       <ul class="site-nav__list hidden md:flex space-x-4 text-slate-700">
-        <li class="site-nav__item"><a class="hover:underline" href="/">Home</a></li>
+        <li class="site-nav__item"><a class="hover:underline" href="/gopick_manual">Home</a></li>
       </ul>
     </nav>
   </header>
@@ -34,11 +37,12 @@
         </nav>
       </aside>
       <div class="md:col-span-4">
-        <section class="docs-section">
+        <div class="page-container">
+        <section class="docs-section card">
           <div id="rbac-matrix" class="mb-6 text-transparent">head here</div>
-          <h2 class="text-2xl font-semibold text-slate-900">RBAC Matrix</h2>
-          <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200 table-auto text-sm">
+          <h2 class="section-title">RBAC Matrix</h2>
+          <div class="table-scroll">
+            <table class="min-w-full divide-y divide-gray-200 table-auto text-sm rbac-table">
               <thead class="bg-gray-50">
                 <tr>
                   <th class="px-3 py-2 text-left font-medium text-gray-700">Function</th>
@@ -366,28 +370,67 @@
             </table>
           </div>
         </section>
-        <section id="roles" class="roles-section mt-8">
-          <h2 class="text-2xl font-semibold text-slate-900">Role Capabilities</h2>
-          <div id="roleCapabilities" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4"></div>
-        </section>
-        <section id="access" class="access-section mt-8">
-          <h2 class="text-2xl font-semibold text-slate-900">How to Access & Toggle Features</h2>
-          <p class="mt-2 text-sm text-slate-700">Instructions below assume you are <strong>Logged as Super Admin</strong>.</p>
 
-          <div class="mt-4 bg-white border rounded-md p-4 shadow-sm">
-            <h3 class="text-lg font-medium text-slate-800">Steps</h3>
-            <ol class="list-decimal list-inside mt-3 text-sm text-slate-700 space-y-2">
-              <li>Open the <strong>Roles/Permissions</strong> module in the Admin console.</li>
-              <li>Use <strong>Search Roles</strong> to find the role you want to change (e.g., "Administrator", "Distributor").</li>
-              <li>Select the role row, then click the <strong>Edit</strong> or <strong>Preview</strong> button.</li>
-              <li>In the Edit view locate the <strong>Permissions</strong> list or table.</li>
-              <li>Find the exact permission entry by name and module, then toggle or update it as required. Example permission names used in this matrix:
-              </li>
-              <li>If the permission is marked Conditional, update its condition or configuration so it becomes available; otherwise toggle the direct access flag (grant/revoke).</li>
-              <li>Save your changes and use the <strong>Preview</strong> or impersonation to confirm the role's behavior.</li>
-            </ol>
+        <section id="roles" class="roles-section mt-6 card">
+          <h2 class="section-title">Role Capabilities</h2>
+          <div id="roleCapabilities" class="role-grid" aria-live="polite"></div>
+        </section>
+
+        <section id="access" class="access-section mt-6 card">
+          <h2 class="section-title">Configuration Steps</h2>
+          <div class="steps-visual-list">
+            <div class="step-card">
+              <div class="step-circle">1</div>
+              <div class="step-content">
+                <div class="step-title">Open "Roles/Permissions"</div>
+                <div class="step-desc">Open the <strong>Roles/Permissions</strong> module in the Admin console.</div>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-circle">2</div>
+              <div class="step-content">
+                <div class="step-title">Search and select a role</div>
+                <div class="step-desc">Use <strong>Search Roles</strong> to find the role you want to change (e.g., "Administrator", "Distributor").</div>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-circle">3</div>
+              <div class="step-content">
+                <div class="step-title">Open configuration</div>
+                <div class="step-desc">Select the role row, then click the <strong>Edit</strong> or <strong>Preview</strong> button.</div>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-circle">4</div>
+              <div class="step-content">
+                <div class="step-title">Locate permissions</div>
+                <div class="step-desc">In the Edit view locate the <strong>Permissions</strong> list or table.</div>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-circle">5</div>
+              <div class="step-content">
+                <div class="step-title">Find and update permission</div>
+                <div class="step-desc">Find the exact permission entry by name and module, then toggle or update it as required.</div>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-circle">6</div>
+              <div class="step-content">
+                <div class="step-title">Conditional permissions</div>
+                <div class="step-desc">If the permission is marked Conditional, update its condition or configuration so it becomes available; otherwise toggle the direct access flag (grant/revoke).</div>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-circle">7</div>
+              <div class="step-content">
+                <div class="step-title">Save and verify</div>
+                <div class="step-desc">Save your changes and use the <strong>Preview</strong> or impersonation to confirm the role's behavior.</div>
+              </div>
+            </div>
           </div>
         </section>
+        </div>
         <section id="module-map" class="module-map mt-8">
           
         </section>
@@ -398,6 +441,7 @@
   <footer class="site-footer container py-8 text-center text-sm text-slate-500">
     <small id="footerYear">&copy; <span id="footerYearSpan"></span> GoPick</small>
   </footer>
+  <script src="assets/js/rbac-enhance.js"></script>
 
   <script>
     // small footer year touch-up

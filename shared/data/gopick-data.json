@@ -18,6 +18,10 @@
             "target": "assessment-creation"
         },
         {
+            "title": "Assessment management",
+            "target": "assessment-management"
+        },
+        {
             "title": "Candidate management",
             "target": "candidate-management"
         },
