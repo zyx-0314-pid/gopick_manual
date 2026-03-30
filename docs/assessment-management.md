@@ -7,7 +7,7 @@
 
 from there you can set `Timer` and also `Randomization`
 
-### Upload Images
+### Upload Images (Super Admin Exclusive - ASD & IT)
 1. select `View Assessments` side panel 
 2. select assessment from the gallery
 3. select settings icon (quadrant 2 - top left - 4 icon from group of button left to right)
