@@ -25,7 +25,7 @@
             },
             {
                 id: 'upload-images',
-                title: 'Upload Images',
+                title: 'Upload Images (Super Admin Exclusive - ASD & IT)',
                 children: [
                     {
                         id: 'upload-steps',
