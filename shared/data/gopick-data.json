@@ -10,28 +10,8 @@
             "target": "accounts-management"
         },
         {
-            "title": "Online assessment delivery",
-            "target": "online-assessment"
-        },
-        {
-            "title": "Assessment creation and management",
-            "target": "assessment-creation"
-        },
-        {
             "title": "Assessment management",
             "target": "assessment-management"
-        },
-        {
-            "title": "Candidate management",
-            "target": "candidate-management"
-        },
-        {
-            "title": "Scheduling and assignments",
-            "target": "scheduling-assignments"
-        },
-        {
-            "title": "Reporting and exports",
-            "target": "reporting-exports"
         }
     ],
     "about": "GoPick is a browser-based, multi-tenant assessment platform that supports the full lifecycle of online testing: building item banks, creating assessments, scheduling candidates, running secure test sessions, and producing detailed reports.",
