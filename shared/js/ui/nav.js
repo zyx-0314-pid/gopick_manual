@@ -1,47 +1,67 @@
 (function (global) {
     'use strict';
 
-    function setAria(toggle, expanded) {
-        if (!toggle) return;
-        toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    function setAriaExpanded(toggleButton, isExpanded) {
+        if (!toggleButton) return;
+        toggleButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
     }
 
-    function toggleNav() {
-        var toggle = document.getElementById('navToggle');
-        var nav = document.getElementById('mainNav');
-        if (!toggle || !nav) return;
-        var list = nav.querySelector('.site-nav__list');
-        if (!list) return;
+    function toggleMobileNav() {
+        var toggleButton = document.getElementById('navToggle');
+        var navContainer = document.getElementById('mainNav');
+        if (!toggleButton || !navContainer) return;
+        var navList = navContainer.querySelector('.site-nav__list');
+        if (!navList) return;
 
-        var isHidden = list.classList.contains('hidden');
-        if (isHidden) {
-            list.classList.remove('hidden');
-            setAria(toggle, true);
-            // move focus into first link
-            var first = list.querySelector('a, button');
-            if (first) first.focus();
+        var isCurrentlyHidden = navList.classList.contains('hidden') && !navList.classList.contains('mobile-open');
+
+        if (isCurrentlyHidden) {
+            navList.classList.remove('hidden');
+            navList.classList.add('mobile-open');
+            setAriaExpanded(toggleButton, true);
+            var firstLink = navList.querySelector('a, button');
+            if (firstLink) firstLink.focus();
         } else {
-            list.classList.add('hidden');
-            setAria(toggle, false);
-            toggle.focus();
+            navList.classList.add('hidden');
+            navList.classList.remove('mobile-open');
+            setAriaExpanded(toggleButton, false);
+            toggleButton.focus();
         }
     }
 
-    function bind() {
-        var toggle = document.getElementById('navToggle');
-        if (!toggle) return;
-        // ensure initial aria-expanded
-        if (!toggle.hasAttribute('aria-expanded')) toggle.setAttribute('aria-expanded', 'false');
-        toggle.addEventListener('click', toggleNav);
+    function closeMobileNavOnLinkClick() {
+        var navContainer = document.getElementById('mainNav');
+        if (!navContainer) return;
+        navContainer.addEventListener('click', function (clickEvent) {
+            if (clickEvent.target.tagName === 'A') {
+                var navList = navContainer.querySelector('.site-nav__list');
+                if (navList && navList.classList.contains('mobile-open')) {
+                    navList.classList.add('hidden');
+                    navList.classList.remove('mobile-open');
+                    var toggleButton = document.getElementById('navToggle');
+                    setAriaExpanded(toggleButton, false);
+                }
+            }
+        });
+    }
+
+    function bindNavToggle() {
+        var toggleButton = document.getElementById('navToggle');
+        if (!toggleButton) return;
+        if (!toggleButton.hasAttribute('aria-expanded')) {
+            toggleButton.setAttribute('aria-expanded', 'false');
+        }
+        toggleButton.addEventListener('click', toggleMobileNav);
     }
 
     function init() {
-        bind();
+        bindNavToggle();
+        closeMobileNavOnLinkClick();
     }
 
     global.sharedNav = {
         init: init,
-        toggleNav: toggleNav
+        toggleNav: toggleMobileNav
     };
 
 })(window);

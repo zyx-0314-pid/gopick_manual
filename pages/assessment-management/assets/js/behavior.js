@@ -1,53 +1,37 @@
-// assessmentBehavior: Behavior and animations for Assessment Management page
-(function (global) {
-    const assessmentBehavior = {
-        initBehavior: function () {
-            attachNavToggle();
-            runIntroReveal();
-            observeSectionReveals();
-            touchupFooterYear();
-        }
-    };
+(function () {
+    'use strict';
 
-    function attachNavToggle() {
-        const toggle = document.querySelector('.nav-toggle');
-        if (!toggle) return;
-        toggle.addEventListener('click', () => {
-            const navList = document.querySelector('.site-nav__list');
-            if (!navList) return;
-            navList.classList.toggle('is-open');
-        });
+    function setFooterYear() {
+        var yearSpan = document.getElementById('footerYearSpan');
+        if (yearSpan) yearSpan.textContent = new Date().getFullYear();
     }
 
-    function runIntroReveal() {
-        const hero = document.querySelector('.hero__content');
-        if (!hero) return;
-        hero.classList.add('is-intro');
-        setTimeout(() => hero.classList.remove('is-intro'), 900);
-    }
+    function highlightActiveSidebarLink() {
+        var sidebarLinks = document.querySelectorAll('#docSidebar a');
+        if (!sidebarLinks.length) return;
 
-    function observeSectionReveals() {
-        const revealTargets = document.querySelectorAll('[data-reveal]');
-        if (!revealTargets.length || !('IntersectionObserver' in window)) return;
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
+        function updateActiveLink() {
+            var currentHash = location.hash || '#randomization';
+            sidebarLinks.forEach(function (link) {
+                link.classList.remove('text-brand', 'font-semibold');
+                if (link.getAttribute('href') === currentHash) {
+                    link.classList.add('text-brand', 'font-semibold');
                 }
             });
-        }, { threshold: 0.15 });
+        }
 
-        revealTargets.forEach(t => observer.observe(t));
+        updateActiveLink();
+        window.addEventListener('hashchange', updateActiveLink);
     }
 
-    function touchupFooterYear() {
-        const el = document.getElementById('footerYearSpan');
-        if (!el) return;
-        const year = new Date().getFullYear();
-        el.textContent = `© GoPick ${year}`;
+    function initAssessmentPage() {
+        setFooterYear();
+        highlightActiveSidebarLink();
     }
 
-    global.assessmentBehavior = assessmentBehavior;
-})(window);
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAssessmentPage);
+    } else {
+        initAssessmentPage();
+    }
+})();

@@ -7,41 +7,153 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { DEFAULT: '#e50914', light: '#ff2d38', dark: '#b3060f' }
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="doc-body">
-  <header class="topbar" role="banner">
-    <div class="topbar__inner container">
-      <a href="/gopick_manual" class="brand">GoPick</a>
-      <nav class="topbar__nav" aria-label="Main navigation">
-        <a href="/gopick_manual">Home</a>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+  <!-- ==================== Header ==================== -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100" role="banner">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="../../index.html" class="text-xl font-extrabold tracking-tight text-slate-900">Go<span class="text-brand">Pick</span></a>
+      <nav aria-label="Main navigation">
+        <ul class="flex items-center gap-6 text-sm font-medium text-slate-600">
+          <li><a class="hover:text-brand transition-colors" href="../../index.html">Home</a></li>
+          <li><a class="text-brand font-semibold" href="#" aria-current="page">Assessments</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
-  <div class="layout container">
-    <aside class="sidebar" aria-label="Documentation navigation">
-      <div class="sidebar__inner">
-        <div class="sidebar__title">On this page</div>
-        <nav id="docSidebar" class="doc-sidebar"></nav>
+  <main class="pt-20 pb-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+
+      <!-- ==================== Page Hero ==================== -->
+      <div class="mb-10">
+        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900">Assessment Management</h1>
+        <p class="mt-3 text-lg text-slate-500 max-w-3xl">Configuration guides for assessment randomization, timers, and image uploads in the GoPick platform.</p>
       </div>
-    </aside>
 
-    <main id="main" class="content" role="main">
-      <article class="doc-article">
-        <header class="doc-hero">
-          <h1 id="heroTitle" class="doc-title">Assessment Management</h1>
-        </header>
-        <section id="docsContent" class="docs__content"></section>
-      </article>
-    </main>
-  </div>
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
 
-  <footer class="site-footer">
-    <small id="footerYearSpan"></small>
+        <!-- ==================== Sidebar ==================== -->
+        <aside class="hidden lg:block lg:col-span-1">
+          <nav id="docSidebar" class="sticky top-24 bg-white rounded-xl border border-slate-100 p-5 shadow-sm">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">On this page</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a class="block text-slate-600 hover:text-brand transition-colors py-1" href="#randomization">Randomization & Timer</a></li>
+              <li><a class="block text-slate-600 hover:text-brand transition-colors py-1" href="#upload-images">Upload Images</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- ==================== Content ==================== -->
+        <div class="lg:col-span-4 space-y-8">
+
+          <!-- Randomization & Timer Section -->
+          <section id="randomization" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Assessment Randomization and Timer</h2>
+            <p class="text-sm text-slate-500 mb-5">Configure question randomization and timer settings for any assessment.</p>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
+                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">1</div>
+                <div>
+                  <div class="font-semibold text-slate-900">Open "View Assessments"</div>
+                  <div class="text-sm text-slate-500 mt-1">Locate it in the side panel of the admin portal.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
+                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">2</div>
+                <div>
+                  <div class="font-semibold text-slate-900">Select an assessment</div>
+                  <div class="text-sm text-slate-500 mt-1">Choose the assessment from the gallery view.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
+                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">3</div>
+                <div>
+                  <div class="font-semibold text-slate-900">Open configuration</div>
+                  <div class="text-sm text-slate-500 mt-1">Click the <strong>configuration icon</strong> — the 3rd button in the top-left button group.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
+                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">4</div>
+                <div>
+                  <div class="font-semibold text-slate-900">Select "Page Setup"</div>
+                  <div class="text-sm text-slate-500 mt-1">From the dropdown, select <strong>Page Setup</strong> where you can configure <strong>Timer</strong> and <strong>Randomization</strong> settings.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Upload Images Section -->
+          <section id="upload-images" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
+            <div class="flex items-center gap-3 mb-2">
+              <h2 class="text-xl font-bold text-slate-900">Upload Images</h2>
+              <span class="inline-flex px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700">Super Admin Only</span>
+            </div>
+            <p class="text-sm text-slate-500 mb-5">Upload or update assessment images. Restricted to ASD and IT Super Admin roles.</p>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
+                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">1</div>
+                <div>
+                  <div class="font-semibold text-slate-900">Open "View Assessments"</div>
+                  <div class="text-sm text-slate-500 mt-1">Locate it in the side panel of the admin portal.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
+                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">2</div>
+                <div>
+                  <div class="font-semibold text-slate-900">Select an assessment</div>
+                  <div class="text-sm text-slate-500 mt-1">Choose the assessment from the gallery view.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
+                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">3</div>
+                <div>
+                  <div class="font-semibold text-slate-900">Open settings</div>
+                  <div class="text-sm text-slate-500 mt-1">Click the <strong>settings icon</strong> — the 4th button in the top-left button group.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
+                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">4</div>
+                <div>
+                  <div class="font-semibold text-slate-900">Select "Update"</div>
+                  <div class="text-sm text-slate-500 mt-1">From the dropdown, select <strong>Update</strong>.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
+                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">5</div>
+                <div>
+                  <div class="font-semibold text-slate-900">Upload under Assessment Development</div>
+                  <div class="text-sm text-slate-500 mt-1">Below the <strong>ASSESSMENT DEVELOPMENT</strong> heading, click the upload icon to add or update images.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==================== Footer ==================== -->
+  <footer class="bg-slate-900 py-6">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+      <p class="text-slate-400 text-sm">&copy; <span id="footerYearSpan"></span> GoPick — Assessment Center</p>
+    </div>
   </footer>
 
-  <script src="assets/js/renderer.js" defer></script>
-  <script src="assets/js/sidebar.js" defer></script>
-  <script src="assets/js/dataFiller.js" defer></script>
+  <script src="assets/js/behavior.js" defer></script>
 </body>
 </html>
