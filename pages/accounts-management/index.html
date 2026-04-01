@@ -52,13 +52,7 @@
         <aside class="hidden lg:block lg:col-span-1">
           <nav class="sticky top-24 bg-white rounded-xl border border-slate-100 p-5 shadow-sm">
             <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">On this page</h4>
-            <ul class="space-y-2 text-sm">
-              <li><a class="block text-slate-600 hover:text-brand transition-colors py-1" href="#rbac-matrix">RBAC Matrix</a></li>
-              <li><a class="block text-slate-600 hover:text-brand transition-colors py-1" href="#hierarchy">Account Hierarchy</a></li>
-              <li><a class="block text-slate-600 hover:text-brand transition-colors py-1" href="#legend">Legend</a></li>
-              <li><a class="block text-slate-600 hover:text-brand transition-colors py-1" href="#roles">Role Capabilities</a></li>
-              <li><a class="block text-slate-600 hover:text-brand transition-colors py-1" href="#access">Configuration Steps</a></li>
-            </ul>
+            <ul id="docSidebarList" class="space-y-2 text-sm"></ul>
           </nav>
         </aside>
 
@@ -99,38 +93,13 @@
           <section id="hierarchy" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
             <h2 class="text-xl font-bold text-slate-900 mb-4">Account Hierarchy</h2>
             <p class="text-sm text-slate-500 mb-5">GoPick uses a nested account structure. Each level inherits access downward.</p>
-            <div class="bg-slate-50 rounded-lg p-6 font-mono text-sm text-slate-700 leading-relaxed">
-              <div>Super Admin (IT)</div>
-              <div class="ml-6 border-l-2 border-slate-200 pl-4 mt-1">
-                <div>Administrator (ASD)</div>
-                <div class="ml-6 border-l-2 border-slate-200 pl-4 mt-1">
-                  <div>Distributor</div>
-                  <div class="ml-6 border-l-2 border-slate-200 pl-4 mt-1">
-                    <div class="text-slate-400">Self Registration</div>
-                    <div>Sub Distributor</div>
-                    <div class="ml-6 border-l-2 border-slate-200 pl-4 mt-1">
-                      <div class="text-slate-400">Self Registration</div>
-                      <div>Client Account</div>
-                      <div class="ml-6 border-l-2 border-slate-200 pl-4 mt-1">
-                        <div>Sub Account</div>
-                        <div class="text-slate-400">Self Registration</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div id="hierarchyContent" class="bg-slate-50 rounded-lg p-6 font-mono text-sm text-slate-700 leading-relaxed"></div>
           </section>
 
           <!-- Legend -->
           <section id="legend" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
             <h2 class="text-xl font-bold text-slate-900 mb-4">Legend</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-              <div class="flex items-center gap-2"><span class="rbac-x text-base">X</span> <span class="text-slate-600">Hard-coded available</span></div>
-              <div class="flex items-center gap-2"><span class="rbac-c text-base">C</span> <span class="text-slate-600">Conditional (Super Admin config)</span></div>
-              <div class="flex items-center gap-2"><span class="rbac-n text-base">N</span> <span class="text-slate-600">Not applicable</span></div>
-              <div class="flex items-center gap-2"><span class="rbac-dash text-base">—</span> <span class="text-slate-600">Hard-coded unavailable</span></div>
-            </div>
+            <div id="legendContent" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm"></div>
           </section>
 
           <!-- Role Capabilities -->
@@ -144,32 +113,7 @@
           <section id="access" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
             <h2 class="text-xl font-bold text-slate-900 mb-4">Configuration Steps</h2>
             <p class="text-sm text-slate-500 mb-5">How to view and update role permissions in the Admin portal.</p>
-            <div class="space-y-4">
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">1</div>
-                <div><div class="font-semibold text-slate-900">Open Roles/Permissions</div><div class="text-sm text-slate-500 mt-1">Open the <strong>Roles/Permissions</strong> module in the Admin console.</div></div>
-              </div>
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">2</div>
-                <div><div class="font-semibold text-slate-900">Search and select a role</div><div class="text-sm text-slate-500 mt-1">Use <strong>Search Roles</strong> to find the role you want to change.</div></div>
-              </div>
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">3</div>
-                <div><div class="font-semibold text-slate-900">Open configuration</div><div class="text-sm text-slate-500 mt-1">Select the role row, then click <strong>Edit</strong> or <strong>Preview</strong>.</div></div>
-              </div>
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">4</div>
-                <div><div class="font-semibold text-slate-900">Locate permissions</div><div class="text-sm text-slate-500 mt-1">In the Edit view, locate the <strong>Permissions</strong> list or table.</div></div>
-              </div>
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">5</div>
-                <div><div class="font-semibold text-slate-900">Update permission</div><div class="text-sm text-slate-500 mt-1">Find the entry by name/module and toggle access. For conditional permissions, update the condition.</div></div>
-              </div>
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">6</div>
-                <div><div class="font-semibold text-slate-900">Save and verify</div><div class="text-sm text-slate-500 mt-1">Save changes and use <strong>Preview</strong> or impersonation to confirm the role behavior.</div></div>
-              </div>
-            </div>
+            <div id="accessSteps" class="space-y-4"></div>
           </section>
 
         </div>
