@@ -50,98 +50,16 @@
         <aside class="hidden lg:block lg:col-span-1">
           <nav id="docSidebar" class="sticky top-24 bg-white rounded-xl border border-slate-100 p-5 shadow-sm">
             <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">On this page</h4>
-            <ul class="space-y-2 text-sm">
-              <li><a class="block text-slate-600 hover:text-brand transition-colors py-1" href="#randomization">Randomization & Timer</a></li>
-              <li><a class="block text-slate-600 hover:text-brand transition-colors py-1" href="#upload-images">Upload Images</a></li>
-            </ul>
+            <ul id="docSidebarList" class="space-y-2 text-sm"></ul>
           </nav>
         </aside>
 
         <!-- ==================== Content ==================== -->
         <div class="lg:col-span-4 space-y-8">
-
-          <!-- Randomization & Timer Section -->
-          <section id="randomization" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
-            <h2 class="text-xl font-bold text-slate-900 mb-2">Assessment Randomization and Timer</h2>
-            <p class="text-sm text-slate-500 mb-5">Configure question randomization and timer settings for any assessment.</p>
-            <div class="space-y-4">
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">1</div>
-                <div>
-                  <div class="font-semibold text-slate-900">Open "View Assessments"</div>
-                  <div class="text-sm text-slate-500 mt-1">Locate it in the side panel of the admin portal.</div>
-                </div>
-              </div>
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">2</div>
-                <div>
-                  <div class="font-semibold text-slate-900">Select an assessment</div>
-                  <div class="text-sm text-slate-500 mt-1">Choose the assessment from the gallery view.</div>
-                </div>
-              </div>
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">3</div>
-                <div>
-                  <div class="font-semibold text-slate-900">Open configuration</div>
-                  <div class="text-sm text-slate-500 mt-1">Click the <strong>configuration icon</strong> — the 3rd button in the top-left button group.</div>
-                </div>
-              </div>
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">4</div>
-                <div>
-                  <div class="font-semibold text-slate-900">Select "Page Setup"</div>
-                  <div class="text-sm text-slate-500 mt-1">From the dropdown, select <strong>Page Setup</strong> where you can configure <strong>Timer</strong> and <strong>Randomization</strong> settings.</div>
-                </div>
-              </div>
-            </div>
+          <!-- Single render target: JS will render the selected section here -->
+          <section id="docsContent" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
+            <div id="section-render-root"></div>
           </section>
-
-          <!-- Upload Images Section -->
-          <section id="upload-images" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
-            <div class="flex items-center gap-3 mb-2">
-              <h2 class="text-xl font-bold text-slate-900">Upload Images</h2>
-              <span class="inline-flex px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700">Super Admin Only</span>
-            </div>
-            <p class="text-sm text-slate-500 mb-5">Upload or update assessment images. Restricted to ASD and IT Super Admin roles.</p>
-            <div class="space-y-4">
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">1</div>
-                <div>
-                  <div class="font-semibold text-slate-900">Open "View Assessments"</div>
-                  <div class="text-sm text-slate-500 mt-1">Locate it in the side panel of the admin portal.</div>
-                </div>
-              </div>
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">2</div>
-                <div>
-                  <div class="font-semibold text-slate-900">Select an assessment</div>
-                  <div class="text-sm text-slate-500 mt-1">Choose the assessment from the gallery view.</div>
-                </div>
-              </div>
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">3</div>
-                <div>
-                  <div class="font-semibold text-slate-900">Open settings</div>
-                  <div class="text-sm text-slate-500 mt-1">Click the <strong>settings icon</strong> — the 4th button in the top-left button group.</div>
-                </div>
-              </div>
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">4</div>
-                <div>
-                  <div class="font-semibold text-slate-900">Select "Update"</div>
-                  <div class="text-sm text-slate-500 mt-1">From the dropdown, select <strong>Update</strong>.</div>
-                </div>
-              </div>
-              <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
-                <div class="w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0">5</div>
-                <div>
-                  <div class="font-semibold text-slate-900">Upload under Assessment Development</div>
-                  <div class="text-sm text-slate-500 mt-1">Below the <strong>ASSESSMENT DEVELOPMENT</strong> heading, click the upload icon to add or update images.</div>
-                </div>
-              </div>
-            </div>
-          </section>
-
         </div>
       </div>
     </div>
@@ -154,6 +72,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/dataFiller.js" defer></script>
   <script src="assets/js/behavior.js" defer></script>
 </body>
 </html>
