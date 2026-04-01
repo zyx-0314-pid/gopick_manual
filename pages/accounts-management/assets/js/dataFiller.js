@@ -1,163 +1,135 @@
-// accountsDataLayer: structured converter for account-management.md
+// accounts data filler — hold page content in JS and render non-table content into the page
 (function (global) {
-    const accountsDataLayer = {
-        init: function () {
-            return new Promise((resolve) => {
-                const pathCandidates = ['../../docs/account-management.md', '/docs/account-management.md'];
-                fetchSequential(pathCandidates, (md) => {
-                    if (!md) {
-                        fillFallback();
-                        resolve();
-                        return;
-                    }
-                    const doc = parseAccountManagementMd(md);
-                    renderDocument(doc);
-                    resolve();
-                });
-            });
-        }
+    'use strict';
+
+    const accountsContent = {
+        title: 'Accounts Management',
+        sections: [
+            { id: 'rbac-matrix', title: 'RBAC Matrix' },
+            { id: 'hierarchy', title: 'Account Hierarchy' },
+            { id: 'legend', title: 'Legend' },
+            { id: 'roles', title: 'Role Capabilities' },
+            { id: 'access', title: 'Configuration Steps' }
+        ],
+        hierarchyLines: [
+            'Super Admin (IT)',
+            '  Administrator (ASD)',
+            '    Distributor',
+            '      Self Registration',
+            '      Sub Distributor',
+            '        Self Registration',
+            '        Client Account',
+            '          Sub Account',
+            '            Self Registration'
+        ],
+        legends: [
+            { sym: 'X', label: 'Hard-coded available', cls: 'rbac-x' },
+            { sym: 'C', label: 'Conditional (Super Admin config)', cls: 'rbac-c' },
+            { sym: 'N', label: 'Not applicable', cls: 'rbac-n' },
+            { sym: '—', label: 'Hard-coded unavailable', cls: 'rbac-dash' }
+        ],
+        accessSteps: [
+            { title: 'Open Roles/Permissions', detail: 'Open the Roles/Permissions module in the Admin console.' },
+            { title: 'Search and select a role', detail: 'Use Search Roles to find the role you want to change.' },
+            { title: 'Open configuration', detail: 'Select the role row, then click Edit or Preview.' },
+            { title: 'Locate permissions', detail: 'In the Edit view, locate the Permissions list or table.' },
+            { title: 'Update permission', detail: 'Find the entry by name/module and toggle access. For conditional permissions, update the condition.' },
+            { title: 'Save and verify', detail: 'Save changes and use Preview or impersonation to confirm the role behavior.' }
+        ]
     };
 
-    // Try fetching from candidate paths in order
-    function fetchSequential(paths, cb) {
-        let i = 0;
-        function next() {
-            if (i >= paths.length) return cb(null);
-            fetch(paths[i]).then(r => { if (!r.ok) throw new Error('bad'); return r.text(); }).then(t => cb(t)).catch(() => { i++; next(); });
-        }
-        next();
+    function createStepCard(index, step) {
+        const wrap = document.createElement('div');
+        wrap.className = 'flex items-start gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100';
+
+        const badge = document.createElement('div');
+        badge.className = 'w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0';
+        badge.textContent = index;
+
+        const content = document.createElement('div');
+        const title = document.createElement('div');
+        title.className = 'font-semibold text-slate-900';
+        title.textContent = step.title;
+
+        const detail = document.createElement('div');
+        detail.className = 'text-sm text-slate-500 mt-1';
+        detail.textContent = step.detail;
+
+        content.appendChild(title);
+        content.appendChild(detail);
+        wrap.appendChild(badge);
+        wrap.appendChild(content);
+        return wrap;
     }
 
-    // Parse the specific markdown into structured object
-    function parseAccountManagementMd(md) {
-        const lines = md.split(/\r?\n/);
-        const doc = { title: '', tables: [], legends: [], hierarchy: '' };
-
-        // Capture first H1 as title
-        for (let i = 0; i < lines.length; i++) {
-            const l = lines[i].trim();
-            if (l.startsWith('# ')) { doc.title = l.replace(/^#\s+/, '').trim(); break; }
-        }
-
-        // Find first contiguous table block (lines that contain | and --- separator)
-        let inTable = false; let tableLines = [];
-        for (let i = 0; i < lines.length; i++) {
-            const l = lines[i];
-            if (/^\|/.test(l) && /\|/.test(l)) {
-                inTable = true; tableLines.push(l);
-                continue;
-            }
-            if (inTable) break;
-        }
-        if (tableLines.length) doc.tables.push(parseMarkdownTable(tableLines));
-
-        // Extract Legends section
-        const legendsIdx = lines.findIndex(r => /^Legends/i.test(r.trim()));
-        if (legendsIdx >= 0) {
-            // collect following non-empty lines until a blank or '---'
-            let j = legendsIdx + 1;
-            while (j < lines.length) {
-                const l = lines[j].trim();
-                if (!l || /^---/.test(l)) break;
-                if (/^-/.test(l) || /^[A-Za-z].*:/.test(l) || /^[A-Z] - /.test(l)) {
-                    doc.legends.push(l);
-                } else if (/^[A-Z] - /.test(l)) {
-                    doc.legends.push(l);
-                } else {
-                    // also accept lines with 'X -' or 'C -'
-                    if (/^[XCN\-\s]/.test(l)) doc.legends.push(l);
-                }
-                j++;
-            }
-        }
-
-        // Extract Hierarchy block: code fence or a paragraph that starts with 'Hierarchy:'
-        const hierIdx = lines.findIndex(r => /^```/.test(r) || /^Hierarchy:/i.test(r));
-        if (hierIdx >= 0) {
-            // If it's a code fence, grab until closing fence
-            if (/^```/.test(lines[hierIdx])) {
-                let j = hierIdx + 1; let h = [];
-                while (j < lines.length && !/^```/.test(lines[j])) { h.push(lines[j]); j++; }
-                doc.hierarchy = h.join('\n').trim();
-            } else {
-                // find the paragraph starting with 'Hierarchy:' and grab subsequent indented lines
-                let h = lines.slice(hierIdx).join('\n');
-                // take up to 200 chars for summary
-                doc.hierarchy = h.split('\n').slice(0, 20).join('\n').trim();
-            }
-        } else {
-            // fallback: look for the block that looks like the tree (lines with └─ or ├─)
-            const treeLines = lines.filter(l => /[└└─├]/.test(l));
-            if (treeLines.length) doc.hierarchy = treeLines.join('\n');
-        }
-
-        return doc;
-    }
-
-    function parseMarkdownTable(lines) {
-        // Normalize and split rows by |, ignoring leading/trailing |
-        const rows = lines.map(r => r.replace(/^\||\|$/g, '').split('|').map(c => c.trim()));
-        // Remove separator row if present (---)
-        if (rows.length >= 2 && rows[1].every(c => /^-+$/i.test(c) || c === '')) rows.splice(1, 1);
-        return { header: rows[0], rows: rows.slice(1) };
-    }
-
-    // Render structured doc into the page
-    function renderDocument(doc) {
-        if (doc.title) setText('heroTitle', doc.title);
-        setText('heroCta', 'View matrix');
-        if (doc.tables && doc.tables.length) {
-            const container = document.getElementById('docsContent');
-            container.innerHTML = '';
-            doc.tables.forEach(t => {
-                const tbl = buildTableElement(t);
-                container.appendChild(tbl);
-            });
-        }
-        if (doc.legends && doc.legends.length) {
-            const container = document.getElementById('extrasContent');
-            const h = document.createElement('h3'); h.textContent = 'Legends'; container.appendChild(h);
-            const ul = document.createElement('ul');
-            doc.legends.forEach(item => {
-                const li = document.createElement('li'); li.textContent = item; ul.appendChild(li);
-            });
-            container.appendChild(ul);
-        }
-        if (doc.hierarchy) {
-            const container = document.getElementById('extrasContent');
-            const h = document.createElement('h3'); h.textContent = 'Hierarchy'; container.appendChild(h);
-            const pre = document.createElement('pre'); pre.textContent = doc.hierarchy; container.appendChild(pre);
-        }
-    }
-
-    function buildTableElement(tbl) {
-        const table = document.createElement('table');
-        table.className = 'rbac-table';
-        const thead = document.createElement('thead');
-        const trh = document.createElement('tr');
-        tbl.header.forEach(h => { const th = document.createElement('th'); th.textContent = h; trh.appendChild(th); });
-        thead.appendChild(trh);
-        table.appendChild(thead);
-        const tbody = document.createElement('tbody');
-        tbl.rows.forEach(r => {
-            const tr = document.createElement('tr');
-            r.forEach(c => { const td = document.createElement('td'); td.textContent = c; tr.appendChild(td); });
-            tbody.appendChild(tr);
+    function renderSidebar() {
+        var list = document.getElementById('docSidebarList');
+        if (!list) return;
+        list.innerHTML = '';
+        accountsContent.sections.forEach(function (section) {
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.className = 'block text-slate-600 hover:text-brand transition-colors py-1';
+            a.href = '#' + section.id;
+            a.textContent = section.title;
+            li.appendChild(a);
+            list.appendChild(li);
         });
-        table.appendChild(tbody);
-        return table;
+        // Trigger a hashchange to allow other scripts to pick up the active link
+        setTimeout(function () { window.dispatchEvent(new Event('hashchange')); }, 10);
     }
 
-    function setText(id, text) {
-        const el = document.getElementById(id); if (!el) return; el.textContent = text;
+    function renderHierarchy() {
+        var container = document.getElementById('hierarchyContent');
+        if (!container) return;
+        container.innerHTML = '';
+        var pre = document.createElement('pre');
+        pre.className = 'whitespace-pre-wrap';
+        pre.textContent = accountsContent.hierarchyLines.join('\n');
+        container.appendChild(pre);
     }
 
-    function fillFallback() {
-        setText('heroTitle', 'Accounts Management');
-        setText('heroSubtitle', 'Role & account controls');
-        const container = document.getElementById('docsContent'); if (container) container.innerHTML = '<p>Account documentation unavailable.</p>';
+    function renderLegend() {
+        var container = document.getElementById('legendContent');
+        if (!container) return;
+        container.innerHTML = '';
+        accountsContent.legends.forEach(function (item) {
+            var d = document.createElement('div');
+            d.className = 'flex items-center gap-2';
+            var s = document.createElement('span');
+            s.className = item.cls + ' text-base';
+            s.textContent = item.sym;
+            var lbl = document.createElement('span');
+            lbl.className = 'text-slate-600';
+            lbl.textContent = item.label;
+            d.appendChild(s);
+            d.appendChild(lbl);
+            container.appendChild(d);
+        });
     }
 
-    // Expose global
-    global.accountsDataLayer = accountsDataLayer;
+    function renderAccessSteps() {
+        var container = document.getElementById('accessSteps');
+        if (!container) return;
+        container.innerHTML = '';
+        accountsContent.accessSteps.forEach(function (s, i) {
+            container.appendChild(createStepCard(i + 1, s));
+        });
+    }
+
+    function renderAll() {
+        renderSidebar();
+        renderHierarchy();
+        renderLegend();
+        renderAccessSteps();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () { renderAll(); });
+    } else {
+        renderAll();
+    }
+
+    // expose for debugging
+    global.__accountsContent = accountsContent;
 })(window);
