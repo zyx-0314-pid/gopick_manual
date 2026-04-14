@@ -487,12 +487,23 @@
         }
     }
 
-    function createHeading(text, id) {
+    function createHeading(text, id, eyebrowText) {
+        var fragment = document.createDocumentFragment();
+
+        if (eyebrowText) {
+            var eyebrow = document.createElement('div');
+            eyebrow.className = 'text-xs font-bold uppercase tracking-wider text-brand mb-2 mt-6';
+            eyebrow.textContent = eyebrowText;
+            fragment.appendChild(eyebrow);
+        }
+
         var heading = document.createElement('h3');
-        heading.className = 'text-base font-bold text-slate-900 mb-4 mt-6';
+        heading.className = 'text-base font-bold text-slate-900 mb-4';
         if (id) heading.id = id;
         heading.textContent = text;
-        return heading;
+        fragment.appendChild(heading);
+
+        return fragment;
     }
 
     function createInfoCard(section) {
@@ -578,7 +589,7 @@
         var container = document.getElementById('viewAccountConfigSections');
         if (!container) return;
         container.innerHTML = '';
-        container.appendChild(createHeading('Config: Drop Down', 'config-drop-down'));
+        container.appendChild(createHeading('Config: Drop Down', 'config-drop-down', 'View Accounts'));
         accountsContent.viewAccountConfigSections.forEach(function (section) {
             container.appendChild(createInfoCard(section));
         });
@@ -588,7 +599,7 @@
         var container = document.getElementById('updateAccountSections');
         if (!container) return;
         container.innerHTML = '';
-        container.appendChild(createHeading('Update: Sections', 'update-sections'));
+        container.appendChild(createHeading('Update: Sections', 'update-sections', 'View Accounts'));
         accountsContent.updateAccountSections.forEach(function (section, index) {
             container.appendChild(createInfoStepCard(index + 1, section));
         });
