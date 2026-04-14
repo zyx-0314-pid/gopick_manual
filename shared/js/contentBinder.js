@@ -189,12 +189,7 @@
             period.className = 'inline-flex rounded-md bg-brand px-3 py-1 text-xs font-bold uppercase tracking-wider text-white';
             period.textContent = contributor.period || '';
 
-            var typeBadge = document.createElement('span');
-            typeBadge.className = 'rounded-md border border-red-100 bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand';
-            typeBadge.textContent = 'Manual Team';
-
             topRow.appendChild(period);
-            topRow.appendChild(typeBadge);
             frame.appendChild(topRow);
 
             var avatarPanel = document.createElement('div');

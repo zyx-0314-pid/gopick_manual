@@ -1,4 +1,9 @@
 # Candidate Module
+
+> Legends:
+> (Admin) - Super Admin IT or Super Admin ASD
+> (Accounts) - Distributor, Sub Distributor, Client, Sub-Client 
+
 ## Schedule Candidate
 ### Schedule Type: 
 - Candidate Schedule
@@ -28,9 +33,9 @@ Link Validity
   - **Reminder Frequency**: Every (S, M, T, W, Th, F, S) - Check box
     or
   - **Every # of days interval**: (2, 3, 4, 5, 6) - Check box
-- Set **Reminder Time** (required and autofill)
+- **Reminder Time** (required and autofill)
 - *Assessment Report Recipient* (required)
-  - Set **Candidate Email as Report Recipient**
+  - **Candidate Email as Report Recipient**
     or
   - **Report Recipient Email**
     - Can have multiple recipient using `,` as separator
@@ -63,7 +68,9 @@ Review Information of candidate entry before saving
 View the assessments for candidate
 
 1. Canidates Section > View Canidate Page
-2. Select Company > Select Candidate to View
+2. Selecting Candidate
+  - (Admins) Select Distributor Account > Select Candidate to View
+  - (Accounts) Select Candidate to View
 3. Actions > View Assessment
 
 > Rules: 
@@ -74,7 +81,9 @@ View the assessments for candidate
 Able to add more Assessment to candidate
 
 1. Canidates Section > View Canidate Page
-2. Select Company > Select Candidate to View
+2. Selecting Candidate
+  - (Admins) Select Distributor Account > Select Candidate to View
+  - (Accounts) Select Candidate to View
 3. Actions > View Assessment
 4. Click `Add Assessment`
 5. Select checkbox/Radio boxes of assessments with their norms, types, etc.

@@ -6,6 +6,22 @@
         title: 'Candidate Management',
         sections: [
             {
+                id: 'legends',
+                title: 'Legends',
+                eyebrow: 'Candidate Module',
+                description: 'Role labels used throughout this guide.',
+                groups: [
+                    {
+                        title: '(Admin)',
+                        items: ['Super Admin IT or Super Admin ASD']
+                    },
+                    {
+                        title: '(Accounts)',
+                        items: ['Distributor, Sub Distributor, Client, or Sub-Client']
+                    }
+                ]
+            },
+            {
                 id: 'schedule-type',
                 title: 'Schedule Type',
                 eyebrow: 'Schedule Candidate',
@@ -44,7 +60,7 @@
                             'Set Camera and Mic Requirements. This is required.',
                             'Set Link Validity: Start Date, Time Start, Expiration Date, and Time Expiration. These fields are required; time fields are autofilled.',
                             'Set Assessment Reminder using either reminder frequency by weekday checkbox or every number of days interval checkbox.',
-                            'Set Reminder Time. This is required and autofilled.',
+                            'Reminder Time is required and autofilled.',
                             'Set Assessment Report Recipient using Candidate Email or Report Recipient Email.',
                             'Use commas to add multiple report recipient emails.',
                             'Set Assessment Invitation Email. This is required and autofilled; options include Candidate Email, Report Recipient, and Custom Email.',
@@ -70,7 +86,7 @@
                 description: 'View the assessments assigned to a candidate.',
                 steps: [
                     'Go to Candidates Section, then open the View Candidate page.',
-                    'Select Company, then select the candidate to view.',
+                    'Select the candidate: Admins select Distributor Account, then select the candidate to view. Accounts select the candidate to view directly.',
                     'Open Actions, then select View Assessment.'
                 ],
                 rules: [
@@ -85,7 +101,7 @@
                 description: 'Add more assessments to a candidate.',
                 steps: [
                     'Go to Candidates Section, then open the View Candidate page.',
-                    'Select Company, then select the candidate to view.',
+                    'Select the candidate: Admins select Distributor Account, then select the candidate to view. Accounts select the candidate to view directly.',
                     'Open Actions, then select View Assessment.',
                     'Click Add Assessment.',
                     'Select the checkbox or radio boxes of assessments with their norms, types, and related options.',

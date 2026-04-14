@@ -11,7 +11,7 @@
         if (!sidebarLinks.length) return;
 
         function updateActiveLink() {
-            var currentHash = location.hash || '#schedule-type';
+            var currentHash = location.hash || '#legends';
             sidebarLinks.forEach(function (link) {
                 link.classList.remove('text-brand', 'font-semibold');
                 if (link.getAttribute('href') === currentHash) {

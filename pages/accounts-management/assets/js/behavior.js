@@ -16,11 +16,12 @@
         { func: 'Update Personal User', crud: 'Update', limit: 'Exclude: Status, User Type', scope: 'Password, Username, Email', perms: ['X', '', '', '', '', 'N', 'N', 'N', 'N', 'N'] },
         { func: 'Update Children Accounts', crud: 'Update', limit: 'Exclude: Username, Account Type, Parent', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
         { func: 'Archive Children Accounts', crud: 'Update', limit: '', scope: '', perms: ['X', '', '', '', '', 'X', 'X', 'X', 'X', '-'] },
-        { func: 'Content: Privacy Consent', crud: 'Update', limit: 'modContentManager-actionIndex', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
-        { func: 'Content: Demographics', crud: 'Update', limit: 'modContentManager-actionDemographics', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
-        { func: 'Content: Exam Finish Page', crud: 'Update', limit: 'modContentManager-actionFinishPage', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
-        { func: 'Content: Upload Logo', crud: 'Update', limit: 'modContentManager-actionUploadLogoPage', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
-        { func: 'Content: Unblock Account', crud: 'Update', limit: 'modUsers-actionUnblock', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] }
+        { func: 'Content Manager Module: Privacy Consent', crud: 'Update', limit: 'modContentManager-actionIndex', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
+        { func: 'Content Manager Module: Demographics', crud: 'Update', limit: 'modContentManager-actionDemographics', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
+        { func: 'Content Manager Module: Exam Finish Page', crud: 'Update', limit: 'modContentManager-actionFinishPage', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
+        { func: 'Content Manager Module: Upload Logo', crud: 'Update', limit: 'modContentManager-actionUploadLogoPage', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
+        { func: 'Content Manager Module: Unblock Account', crud: 'Update', limit: 'modUsers-actionUnblock', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
+        { func: 'Assessment-Schedule Module: Update Assessment of Child Users', crud: 'Update', limit: 'modAssessmentSchedule-actionCreate', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] }
     ];
 
     var ROLE_NAMES = ['Super Admin', 'Admin (ASD)', 'Test Creator', 'API Access', 'Administrator', 'Distributor', 'Sub Distrib.', 'Client', 'Sub Account', 'Self Reg.'];
