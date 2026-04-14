@@ -3,7 +3,7 @@
 
     var RBAC_DATA = [
         { func: 'Create Super Admin (IT)', crud: 'Create', limit: '', scope: '', perms: ['X', '-', '-', '-', '-', '-', '-', '-', '-', '-'] },
-        { func: 'Create Administrator (ASD)', crud: 'Create', limit: '', scope: '', perms: ['X', '-', '-', '-', '-', '-', '-', '-', '-', '-'] },
+        { func: 'Create Super Admin (ASD)', crud: 'Create', limit: '', scope: '', perms: ['X', '-', '-', '-', '-', '-', '-', '-', '-', '-'] },
         { func: 'Create Test Creator', crud: 'Create', limit: '', scope: '', perms: ['X', '-', '-', '-', '-', '-', '-', '-', '-', '-'] },
         { func: 'Create API Access', crud: 'Create', limit: '', scope: '', perms: ['X', '-', '-', '-', '-', '-', '-', '-', '-', '-'] },
         { func: 'Create Administrator', crud: 'Create', limit: '', scope: '', perms: ['-', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '-'] },
@@ -24,7 +24,7 @@
         { func: 'Assessment-Schedule Module: Update Assessment of Child Users', crud: 'Update', limit: 'modAssessmentSchedule-actionCreate', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] }
     ];
 
-    var ROLE_NAMES = ['Super Admin', 'Admin (ASD)', 'Test Creator', 'API Access', 'Administrator', 'Distributor', 'Sub Distrib.', 'Client', 'Sub Account', 'Self Reg.'];
+    var ROLE_NAMES = ['Super Admin (IT)', 'Super Admin (ASD)', 'Test Creator', 'API Access', 'Administrator', 'Distributor', 'Sub Distrib.', 'Client', 'Sub Account', 'Self Reg.'];
 
     function getPermClass(permValue) {
         var upperVal = (permValue || '').toUpperCase().trim();

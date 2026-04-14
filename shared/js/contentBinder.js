@@ -120,10 +120,12 @@
         if (!treeNode || !data.hierarchy.levels) return;
 
         var treeHtml = '';
-        data.hierarchy.levels.forEach(function (levelName, levelIndex) {
-            var indentRem = levelIndex * 1.5;
-            var isFirst = levelIndex === 0;
-            var dotColor = levelIndex === 0 ? 'bg-brand' : (levelIndex < 3 ? 'bg-indigo-400' : 'bg-slate-300');
+        data.hierarchy.levels.forEach(function (levelItem, levelIndex) {
+            var levelName = typeof levelItem === 'string' ? levelItem : levelItem.name;
+            var levelDepth = typeof levelItem === 'string' ? levelIndex : (levelItem.level || 0);
+            var indentRem = levelDepth * 1.5;
+            var isFirst = levelDepth === 0;
+            var dotColor = levelDepth === 0 ? 'bg-brand' : (levelDepth < 3 ? 'bg-indigo-400' : 'bg-slate-300');
 
             treeHtml +=
                 '<div class="flex items-center gap-3 py-2" style="padding-left: ' + indentRem + 'rem">' +

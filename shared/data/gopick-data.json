@@ -90,13 +90,19 @@
         "title": "Account Hierarchy",
         "description": "GoPick uses a nested account structure. Each level inherits access from its parent and manages the resources below it.",
         "levels": [
-            "Super Admin (IT)",
-            "Administrator (ASD)",
-            "Distributor",
-            "Sub Distributor",
-            "Client Account",
-            "Sub Account",
-            "Self Registration"
+            { "name": "Super Admin (IT)", "level": 0 },
+            { "name": "Super Admin (ASD)", "level": 0 },
+            { "name": "Distributor", "level": 1 },
+            { "name": "Administrator", "level": 2 },
+            { "name": "Self Registration", "level": 2 },
+            { "name": "Sub Distributor", "level": 2 },
+            { "name": "Administrator", "level": 3 },
+            { "name": "Self Registration", "level": 3 },
+            { "name": "Client", "level": 3 },
+            { "name": "Administrator", "level": 4 },
+            { "name": "Sub Client", "level": 4 },
+            { "name": "Administrator", "level": 5 },
+            { "name": "Self Registration", "level": 5 }
         ]
     },
     "contributors": [
