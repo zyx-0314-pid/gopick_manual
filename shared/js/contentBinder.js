@@ -158,6 +158,98 @@
         if (helpNode) helpNode.textContent = data.access.help || '';
     }
 
+    var PLATFORM_ICON_SVG_MAP = {
+        github: '<svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.59 2 12.25c0 4.52 2.87 8.35 6.84 9.7.5.09.68-.22.68-.49v-1.9c-2.78.62-3.37-1.22-3.37-1.22-.45-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.92c.85 0 1.7.12 2.5.35 1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.95.68 1.91v2.81c0 .27.18.59.69.49A10.18 10.18 0 0 0 22 12.25C22 6.59 17.52 2 12 2Z"/></svg>',
+        linkedin: '<svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.94 8.98H3.7v10.36h3.24V8.98ZM5.32 4a1.88 1.88 0 1 0 0 3.76 1.88 1.88 0 0 0 0-3.76Zm13.9 5.37c-.68-.38-1.47-.57-2.37-.57-1.47 0-2.54.63-3.17 1.5V8.98h-3.1v10.36h3.24v-5.13c0-1.35.25-2.66 1.93-2.66 1.65 0 1.67 1.55 1.67 2.74v5.05h3.24v-5.7c0-2.8-.6-3.8-1.44-4.27Z"/></svg>',
+        credly: '<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 5 6v5.4c0 4.18 2.84 8.08 7 9.6 4.16-1.52 7-5.42 7-9.6V6l-7-3Z" fill="currentColor"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    };
+
+    function getPlatformIconSvg(label) {
+        var key = (label || '').toLowerCase();
+        return PLATFORM_ICON_SVG_MAP[key] || '<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 0 0-7.07-7.07L11 4.93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 11a5 5 0 0 0-7.07 0L4.81 13.12a5 5 0 0 0 7.07 7.07L13 19.07" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+
+    function fillContributors(data) {
+        if (!data || !data.contributors) return;
+        var listNode = document.getElementById('contributorsList');
+        if (!listNode) return;
+        listNode.innerHTML = '';
+
+        data.contributors.forEach(function (contributor) {
+            var card = document.createElement('article');
+            card.className = 'relative overflow-hidden rounded-lg border-2 border-red-100 bg-white p-3 shadow-lg shadow-slate-200/60';
+
+            var frame = document.createElement('div');
+            frame.className = 'rounded-md border border-slate-100 bg-slate-50 p-4';
+
+            var topRow = document.createElement('div');
+            topRow.className = 'mb-3 flex items-center justify-between gap-3';
+
+            var period = document.createElement('p');
+            period.className = 'inline-flex rounded-md bg-brand px-3 py-1 text-xs font-bold uppercase tracking-wider text-white';
+            period.textContent = contributor.period || '';
+
+            var typeBadge = document.createElement('span');
+            typeBadge.className = 'rounded-md border border-red-100 bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand';
+            typeBadge.textContent = 'Manual Team';
+
+            topRow.appendChild(period);
+            topRow.appendChild(typeBadge);
+            frame.appendChild(topRow);
+
+            var avatarPanel = document.createElement('div');
+            avatarPanel.className = 'mb-5 flex h-44 items-center justify-center overflow-hidden rounded-md border border-red-100 bg-gradient-to-br from-white via-red-50 to-slate-100';
+
+            var avatar = document.createElement('img');
+            avatar.className = 'h-full w-full object-contain p-3';
+            avatar.src = contributor.avatarUrl || 'https://api.dicebear.com/9.x/notionists/svg?seed=GoPick';
+            avatar.alt = contributor.name ? contributor.name + ' avatar' : 'Contributor avatar';
+            avatar.loading = 'lazy';
+            avatarPanel.appendChild(avatar);
+            frame.appendChild(avatarPanel);
+
+            var name = document.createElement('h3');
+            name.className = 'text-2xl font-extrabold text-slate-900';
+            name.textContent = contributor.name || '';
+
+            var role = document.createElement('p');
+            role.className = 'mt-2 rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-600 ring-1 ring-slate-100';
+            role.textContent = contributor.role || '';
+
+            frame.appendChild(name);
+            frame.appendChild(role);
+
+            if (contributor.links && contributor.links.length) {
+                var links = document.createElement('div');
+                links.className = 'mt-5 grid gap-3 sm:grid-cols-3';
+
+                contributor.links.forEach(function (item) {
+                    var link = document.createElement('a');
+                    link.className = 'inline-flex items-center justify-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-3 text-sm font-bold text-slate-700 transition-colors hover:border-brand hover:bg-red-50 hover:text-brand';
+                    link.href = item.url || '#';
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+
+                    var icon = document.createElement('span');
+                    icon.className = 'inline-flex text-brand';
+                    icon.innerHTML = getPlatformIconSvg(item.label);
+
+                    var label = document.createElement('span');
+                    label.textContent = item.label || 'Link';
+
+                    link.appendChild(icon);
+                    link.appendChild(label);
+                    links.appendChild(link);
+                });
+
+                frame.appendChild(links);
+            }
+
+            card.appendChild(frame);
+            listNode.appendChild(card);
+        });
+    }
+
     function fillFooter() {
         var yearNode = document.getElementById('footerYear');
         if (!yearNode) return;
@@ -172,6 +264,7 @@
         fillModules(data);
         fillHierarchy(data);
         fillAccess(data);
+        fillContributors(data);
         fillFooter();
     }
 

@@ -21,25 +21,7 @@
             "title": "Candidate Management",
             "description": "Register candidates individually or in bulk, manage profiles, assign credentials, and track assignment history.",
             "icon": "user-check",
-            "target": ""
-        },
-        {
-            "title": "Scheduling & Delivery",
-            "description": "Assign assessments to individuals or groups with optional date windows, and deliver tests securely through the candidate portal.",
-            "icon": "calendar",
-            "target": ""
-        },
-        {
-            "title": "Results & Reporting",
-            "description": "View individual and group-level results, download PDF/Excel reports, and compare scores against configurable test norms.",
-            "icon": "bar-chart",
-            "target": ""
-        },
-        {
-            "title": "Video Interviews",
-            "description": "Create video interview question sets, collect recorded candidate responses, and review them with built-in scoring tools.",
-            "icon": "video",
-            "target": ""
+            "target": "candidate-management"
         }
     ],
     "roles": [
@@ -116,5 +98,33 @@
             "Sub Account",
             "Self Registration"
         ]
-    }
+    },
+    "contributors": [
+        {
+            "period": "2025 - 2026",
+            "name": "Ian Cedric Ramirez",
+            "role": "Full Stack Developer",
+            "avatarUrl": "https://api.dicebear.com/9.x/notionists/svg?seed=Ian",
+            "links": [
+                {
+                    "label": "GitHub",
+                    "url": "https://github.com/nyebe"
+                },
+                {
+                    "label": "LinkedIn",
+                    "url": "https://linkedin.com/in/ian-cedric-ramirez/"
+                },
+                {
+                    "label": "Credly",
+                    "url": "https://www.credly.com/users/ian-cedric-ramirez/badges#credly"
+                }
+            ]
+        },
+        {
+            "period": "2025 - 2026",
+            "name": "Ana Katrine Sison",
+            "role": "QA Developer",
+            "avatarUrl": "https://api.dicebear.com/9.x/notionists/svg?seed=Ana"
+        }
+    ]
 }
