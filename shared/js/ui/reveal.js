@@ -20,7 +20,8 @@
             '#roles',
             '#modules',
             '#hierarchy',
-            '#access'
+            '#access',
+            '#contributors'
         ];
         introSelectors.forEach(function (selector, selectorIndex) {
             var matchedElement = document.querySelector(selector);
@@ -33,7 +34,7 @@
 
     function setupScrollReveal() {
         if (!('IntersectionObserver' in window)) return;
-        var revealTargets = document.querySelectorAll('#featuresList > li, #about, #roles, #modules, #hierarchy, #access, #modulesList > div');
+        var revealTargets = document.querySelectorAll('#featuresList > li, #about, #roles, #modules, #hierarchy, #access, #contributors, #modulesList > div');
         var scrollObserver = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {

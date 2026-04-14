@@ -18,7 +18,25 @@
                             { action: 'Open "View Assessments"', desc: 'Locate it in the side panel' },
                             { action: 'Select an assessment', desc: 'Choose the assessment from the gallery' },
                             { action: 'Open configuration', desc: 'Click the configuration icon (3rd button in the group)' },
-                            { action: 'Choose "Page Setup"', desc: 'From the dropdown, select Page Setup to set Timer and Randomization' }
+                            { action: 'Choose "Page Setup"', desc: 'From the dropdown, select Page Setup' },
+                            { action: 'Set timer and randomization', desc: 'Choose which part of the exam will be randomized, enable Timer, and set the specified time limit' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'updating-instructions',
+                title: 'Updating Instructions on Assessments',
+                children: [
+                    {
+                        id: 'instructions-steps',
+                        title: 'Instruction Update Steps',
+                        steps: [
+                            { action: 'Open "View Assessments"', desc: 'Locate it in the side panel' },
+                            { action: 'Select an assessment', desc: 'Choose the assessment from the gallery' },
+                            { action: 'Open configuration', desc: 'Click the configuration icon (3rd button in the group)' },
+                            { action: 'Choose "Set Questions"', desc: 'From the dropdown, select Set Questions' },
+                            { action: 'Update the Question field', desc: 'Under Question, fill in the instructions and configurations you want' }
                         ]
                     }
                 ]
