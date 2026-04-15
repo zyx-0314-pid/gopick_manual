@@ -77,7 +77,7 @@ View the assessments for candidate
 > - Each single assessment is rendered as a standalone row.
 > - Test batteries are represented by listing their associated single assessments, each labeled with a corresponding tag.
 
-### Update Assessment
+#### Update Assessment
 Able to add more Assessment to candidate
 
 1. Canidates Section > View Canidate Page
@@ -93,3 +93,18 @@ Able to add more Assessment to candidate
 > - When a `single assessment` is selected, `all test batteries` containing that assessment are locked.
 > - When a `test battery` is selected, `all single assessments` included in that battery are locked.
 > - When a `test battery` is selected, `all other test batteries` that share at least one common `single assessment` are also locked.
+
+#### Download/View Reports of Assessments
+Able to download/view Assessments Reports
+
+1. Canidates Section > View Canidate Page
+2. Selecting Candidate
+  - (Admins) Select Distributor Account > Select Candidate to View
+  - (Accounts) Select Candidate to View
+3. Actions > View Assessment
+4. Select an Assessment from the table
+5. Select the `Eye/View` icon from Actions column
+6. Dropdown of Download or View will appear
+7. For Multiple types of report another layer of drop down may appear while for the single type report it will be shown or downloaded immediately
+
+> Rules: If the `Eye/View` is grayed out it means assessment is still not completed to make a report
