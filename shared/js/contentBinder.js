@@ -153,7 +153,8 @@
                 card.innerHTML =
                     '<h3 class="text-lg font-bold text-white mb-2">' + portal.label + '</h3>' +
                     '<p class="text-slate-300 text-sm mb-4">' + portal.description + '</p>' +
-                    '<code class="text-xs bg-white/10 text-slate-200 px-3 py-1.5 rounded font-mono">' + portal.url + '</code>';
+                    '<a class="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-red-50 hover:text-brand" href="' + portal.url + '" target="_blank" rel="noopener noreferrer">Open Link' +
+                    '<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M9 7h8v8"/></svg></a>';
                 cardsNode.appendChild(card);
             });
         }
