@@ -60,14 +60,18 @@
         ],
         hierarchyLines: [
             'Super Admin (IT)',
-            '  Administrator (ASD)',
-            '    Distributor',
+            'Super Admin (ASD)',
+            '  Distributor',
+            '    Administrator',
+            '    Self Registration',
+            '    Sub Distributor',
+            '      Administrator',
             '      Self Registration',
-            '      Sub Distributor',
-            '        Self Registration',
-            '        Client Account',
-            '          Sub Account',
-            '            Self Registration'
+            '      Client',
+            '        Administrator',
+            '        Sub Client',
+            '          Administrator',
+            '          Self Registration'
         ],
         legends: [
             { sym: 'X', label: 'Hard-coded available', cls: 'rbac-x' },
@@ -191,6 +195,7 @@
         updateAccountSections: [
             {
                 id: 'update-account-information',
+                stepTitle: 'Account Information',
                 title: 'Account Information',
                 detail: 'Allows updating account information.',
                 items: [
@@ -212,6 +217,7 @@
             },
             {
                 id: 'assign-products',
+                stepTitle: 'Assign Products',
                 title: 'Assign Products',
                 detail: 'Allows updating assessment meters for each assessment.',
                 actions: ['Manage', 'Change Log', 'Update Assessment'],
@@ -219,6 +225,7 @@
             },
             {
                 id: 'update-meter-management',
+                stepTitle: 'Meter Management',
                 title: 'Meter Management',
                 detail: 'Allows updating assessment Meter Points for each account and changing Metering Management Type: Deduct from Self or Parent.',
                 actions: ['View Meter Log'],
@@ -226,12 +233,14 @@
             },
             {
                 id: 'update-other-account-settings',
+                stepTitle: 'Other Account Settings',
                 title: 'Other Account Settings',
                 detail: 'Allows updating additional account-related configurations, including but not limited to:',
                 items: ['Account limits', 'Account expiration', 'Usage settings', 'Contract settings']
             },
             {
                 id: 'review-account-details',
+                stepTitle: 'Review Account Details',
                 title: 'Review Account Details',
                 detail: 'Allows reviewing account information before saving.'
             }
@@ -482,12 +491,23 @@
         }
     }
 
-    function createHeading(text, id) {
+    function createHeading(text, id, eyebrowText) {
+        var fragment = document.createDocumentFragment();
+
+        if (eyebrowText) {
+            var eyebrow = document.createElement('div');
+            eyebrow.className = 'text-xs font-bold uppercase tracking-wider text-brand mb-2 mt-6';
+            eyebrow.textContent = eyebrowText;
+            fragment.appendChild(eyebrow);
+        }
+
         var heading = document.createElement('h3');
-        heading.className = 'text-base font-bold text-slate-900 mb-4 mt-6';
+        heading.className = 'text-base font-bold text-slate-900 mb-4';
         if (id) heading.id = id;
         heading.textContent = text;
-        return heading;
+        fragment.appendChild(heading);
+
+        return fragment;
     }
 
     function createInfoCard(section) {
@@ -525,11 +545,55 @@
         return card;
     }
 
+    function createInfoStepCard(index, section) {
+        var wrap = document.createElement('article');
+        wrap.className = 'flex items-start gap-4 rounded-lg border border-slate-100 bg-slate-50 p-5';
+        wrap.id = section.id;
+
+        var badge = document.createElement('div');
+        badge.className = 'w-9 h-9 rounded-full bg-brand text-white font-bold flex items-center justify-center flex-shrink-0';
+        badge.textContent = index;
+
+        var content = document.createElement('div');
+        content.className = 'min-w-0 flex-1';
+
+        var title = document.createElement('h4');
+        title.className = 'font-semibold text-slate-900 mb-2';
+        title.textContent = section.stepTitle || section.title;
+
+        var detail = document.createElement('p');
+        detail.className = 'text-sm text-slate-600 leading-relaxed';
+        detail.textContent = section.detail;
+
+        content.appendChild(title);
+        content.appendChild(detail);
+
+        if (section.actions && section.actions.length) {
+            var actionsLabel = document.createElement('p');
+            actionsLabel.className = 'mt-4 text-xs font-bold uppercase tracking-wider text-slate-400';
+            actionsLabel.textContent = 'Provides access to';
+            content.appendChild(actionsLabel);
+            content.appendChild(createPillList(section.actions));
+        }
+
+        if (section.items && section.items.length) {
+            content.appendChild(createBulletList(section.items));
+        }
+
+        if (section.rules && section.rules.length) {
+            content.appendChild(createRuleBox(section.rules));
+        }
+
+        wrap.appendChild(badge);
+        wrap.appendChild(content);
+        return wrap;
+    }
+
     function renderViewAccountConfigSections() {
         var container = document.getElementById('viewAccountConfigSections');
         if (!container) return;
         container.innerHTML = '';
-        container.appendChild(createHeading('Config: Drop Down', 'config-drop-down'));
+        container.appendChild(createHeading('Config: Drop Down', 'config-drop-down', 'View Accounts'));
         accountsContent.viewAccountConfigSections.forEach(function (section) {
             container.appendChild(createInfoCard(section));
         });
@@ -539,9 +603,9 @@
         var container = document.getElementById('updateAccountSections');
         if (!container) return;
         container.innerHTML = '';
-        container.appendChild(createHeading('Update: Sections', 'update-sections'));
-        accountsContent.updateAccountSections.forEach(function (section) {
-            container.appendChild(createInfoCard(section));
+        container.appendChild(createHeading('Update: Sections', 'update-sections', 'View Accounts'));
+        accountsContent.updateAccountSections.forEach(function (section, index) {
+            container.appendChild(createInfoStepCard(index + 1, section));
         });
     }
 

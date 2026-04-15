@@ -1,10 +1,10 @@
 # RBAC Matrix
 | -   | -   | -   | -   | User | - | - | - | - | Accounts | - | - | - | - |
-| --- | --- | --- | --- |Super Admin (IT) | Administrator (ASD) | Test Creator | API Access | Administrator | Distributor | Sub Distributor | Client Account | Sub Account | Self Registration |
+| --- | --- | --- | --- |Super Admin (IT) | Super Admin (ASD) | Test Creator | API Access | Administrator | Distributor | Sub Distributor | Client Account | Sub Account | Self Registration |
 | Function                                                                                     | CRUD   | Limitations                                                                                 | Scope                                                                                                                         | -                | -                   | -            | -          | -             | -           | -               | -              | -           | -                 |
 | -------------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------------- | ------------ | ---------- | ------------- | ----------- | --------------- | -------------- | ----------- |
 | Create Super Admin (IT)                                                                      | Create |                                                                                             |                                                                                                                               | X                | -                   | -            | -          | -             | -           | -               | -              | -           | -                 |
-| Create Administrator (ASD)                                                                   | Create |                                                                                             |                                                                                                                               | X                | -                   | -            | -          | -             | -           | -               | -              | -           | -                 |
+| Create Super Admin (ASD)                                                                     | Create |                                                                                             |                                                                                                                               | X                | -                   | -            | -          | -             | -           | -               | -              | -           | -                 |
 | Create Test Creator                                                                          | Create |                                                                                             |                                                                                                                               | X                | -                   | -            | -          | -             | -           | -               | -              | -           | -                 |
 | Create API Access                                                                            | Create |                                                                                             |                                                                                                                               | X                | -                   | -            | -          | -             | -           | -               | -              | -           | -                 |
 | Create Administrator                                                                         | Create |                                                                                             |                                                                                                                               | -                | X                   | X            | X          | X             | X           | X               | X              | X           | -                 |
@@ -20,13 +20,13 @@
 | -                                                                                            | -      | -                                                                                           | -                                                                                                                             | -                | -                   | -            | -          | -             | -           | -               | -              | -           | -                 |
 | (Parent: Account/User) Update Children Accounts                                              | Update | Exclude: Username, Account Type, Parent Account                                             |                                                                                                                               | C                |                     |              |            |               | C           | C               | C              | C           | -                 |
 | (Parent: Account/User) Archive Children Accounts                                             | Update |                                                                                             |                                                                                                                               | X                |                     |              |            |               | X           | X               | X              | X           | -                 |
-| -                                                                                            | -      | -                                                                                           | -                                                                                                                             | Super Admin (IT) | Administrator (ASD) | Test Creator | API Access | Administrator | Distributor | Sub Distributor | Client Account | Sub Account | Self Registration |
+| -                                                                                            | -      | -                                                                                           | -                                                                                                                             | Super Admin (IT) | Super Admin (ASD) | Test Creator | API Access | Administrator | Distributor | Sub Distributor | Client Account | Sub Account | Self Registration |
 | Content Manager Module                                                                             | Update | Privacy Consent: `modContentManager-actionIndex ` > `List/Search` = `Privacy Consent`       |                                                                                                                               | C                |                     |              |            |               | C           | C               | C              | C           | -                 |
 | Content Manager Module                                                                             | Update | Demographics: `modContentManager-actionDemographics` > `Demographics Page Setup`            |                                                                                                                               | C                |                     |              |            |               | C           | C               | C              | C           | -                 |
 | Content Manager Module                                                                             | Update | Assessment Completion Page: `modContentManager-actionFinishPage` > `Exam Finish Page Setup` |                                                                                                                               | C                |                     |              |            |               | C           | C               | C              | C           | -                 |
 | Content Manager Module                                                                             | Update | Assessment Center Logo: `modContentManager-actionUploadLogoPage` > `Upload Logo Page`       |                                                                                                                               | C                |                     |              |            |               | C           | C               | C              | C           | -                 |
 | Content Manager Module                                                                             | Update | Unblock Account: `modUsers-actionUnblock` > `Unblock Account`                               |                                                                                                                               | C                |                     |              |            |               | C           | C               | C              | C           | -                 |
-| ---                                                                                          | ---    | ---                                                                                         | ---                                                                                                                           | Super Admin (IT) | Administrator (ASD) | Test Creator | API Access | Administrator | Distributor | Sub Distributor | Client Account | Sub Account | Self Registration |
+| ---                                                                                          | ---    | ---                                                                                         | ---                                                                                                                           | Super Admin (IT) | Super Admin (ASD) | Test Creator | API Access | Administrator | Distributor | Sub Distributor | Client Account | Sub Account | Self Registration |
 | Assessment-Schedule Module                                                                              | Update | Update Assessment of Child Users: `modAssessmentSchedule-actionCreate` > `Unblock Account`                               |                                                                                                                               | C                |                     |              |            |               | C           | C               | C              | C           | -                 |
 
 # Edit
@@ -46,15 +46,19 @@ N - Not Applicable
 
 ```
 Hierarchy:
-Super Admin
-└─ Admin
-   └─ Distributor
-        ├─ Self Reg
-        └─ Sub Distributor
-            ├─ Self Reg
-            └─ Client
-                ├─ Sub Client
-                └─ Self Reg
+Super Admin (IT)
+Super Admin (ASD)
+└─ Distributor
+   ├─ Administrator
+   ├─ Self Registration
+   └─ Sub Distributor
+      ├─ Administrator
+      ├─ Self Registration
+      └─ Client
+         ├─ Administrator
+         └─ Sub Client
+            ├─ Administrator
+            └─ Self Registration
 ```
 
 > Rules
