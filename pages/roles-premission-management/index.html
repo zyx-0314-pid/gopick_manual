@@ -55,6 +55,11 @@
         </aside>
 
         <div class="lg:col-span-4 space-y-8">
+          <section id="legend" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 mb-4">Legend</h2>
+            <div id="legendContent" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm"></div>
+          </section>
+
           <section id="rbac-matrix" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
             <h2 class="text-xl font-bold text-slate-900 mb-4">RBAC Matrix</h2>
             <p class="text-sm text-slate-500 mb-4">Permissions for each role across account and user functions. Scroll horizontally on smaller screens.</p>
@@ -81,11 +86,6 @@
                 <tbody class="divide-y divide-slate-50" id="rbacTableBody"></tbody>
               </table>
             </div>
-          </section>
-
-          <section id="legend" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
-            <h2 class="text-xl font-bold text-slate-900 mb-4">Legend</h2>
-            <div id="legendContent" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm"></div>
           </section>
 
           <section id="hierarchy" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">

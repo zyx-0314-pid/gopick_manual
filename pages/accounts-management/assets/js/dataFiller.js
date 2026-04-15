@@ -5,9 +5,9 @@
     const accountsContent = {
         title: 'Accounts Management',
         sections: [
+            { id: 'legend', title: 'Legend' },
             { id: 'rbac-matrix', title: 'RBAC Matrix' },
             { id: 'hierarchy', title: 'Account Hierarchy' },
-            { id: 'legend', title: 'Legend' },
             { id: 'account-rules', title: 'Account Rules' },
             {
                 id: 'view-accounts',

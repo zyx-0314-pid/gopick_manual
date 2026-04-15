@@ -4,8 +4,8 @@
 
     var rolesPermissionContent = {
         sections: [
-            { id: 'rbac-matrix', title: 'RBAC Matrix' },
             { id: 'legend', title: 'Legend' },
+            { id: 'rbac-matrix', title: 'RBAC Matrix' },
             { id: 'hierarchy', title: 'Account Hierarchy' },
             { id: 'roles', title: 'Role Capabilities' }
         ],
