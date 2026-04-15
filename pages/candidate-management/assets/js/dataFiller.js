@@ -86,7 +86,7 @@
             {
                 id: 'view-candidates',
                 title: 'View Candidates',
-                description: 'View candidate assessments and add more assessments when needed.',
+                description: 'View candidate assessments, add more assessments when needed, and download or view reports.',
                 children: [
                     {
                         id: 'view-assessments',
@@ -118,6 +118,23 @@
                             'When a single assessment is selected, all test batteries containing that assessment are locked.',
                             'When a test battery is selected, all single assessments included in that battery are locked.',
                             'When a test battery is selected, all other test batteries that share at least one common single assessment are also locked.'
+                        ]
+                    },
+                    {
+                        id: 'download-view-reports-of-assessments',
+                        title: 'Download/View Reports of Assessments',
+                        description: 'Download or view assessment reports for a candidate.',
+                        steps: [
+                            'Go to Candidates Section, then open the View Candidate page.',
+                            'Select the candidate: Admins select Distributor Account, then select the candidate to view. Accounts select the candidate to view directly.',
+                            'Open Actions, then select View Assessment.',
+                            'Select an assessment from the table.',
+                            'Select the Eye/View icon from the Actions column.',
+                            'Use the dropdown to choose Download or View.',
+                            'For multiple report types, another dropdown layer may appear. For a single report type, the report is shown or downloaded immediately.'
+                        ],
+                        rules: [
+                            'If the Eye/View icon is grayed out, the assessment is not completed yet and the report is not available.'
                         ]
                     }
                 ]
