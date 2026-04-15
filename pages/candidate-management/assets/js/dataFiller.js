@@ -100,41 +100,99 @@
                         rules: [
                             'Each single assessment is rendered as a standalone row.',
                             'Test batteries are represented by listing their associated single assessments, each labeled with a corresponding tag.'
-                        ]
-                    },
-                    {
-                        id: 'update-assessment',
-                        title: 'Update Assessment',
-                        description: 'Add more assessments to a candidate.',
-                        steps: [
-                            'Go to Candidates Section, then open the View Candidate page.',
-                            'Select the candidate: Admins select Distributor Account, then select the candidate to view. Accounts select the candidate to view directly.',
-                            'Open Actions, then select View Assessment.',
-                            'Click Add Assessment.',
-                            'Select the checkbox or radio boxes of assessments with their norms, types, and related options.',
-                            'Click the Save button below.'
                         ],
-                        rules: [
-                            'When a single assessment is selected, all test batteries containing that assessment are locked.',
-                            'When a test battery is selected, all single assessments included in that battery are locked.',
-                            'When a test battery is selected, all other test batteries that share at least one common single assessment are also locked.'
-                        ]
-                    },
-                    {
-                        id: 'download-view-reports-of-assessments',
-                        title: 'Download/View Reports of Assessments',
-                        description: 'Download or view assessment reports for a candidate.',
-                        steps: [
-                            'Go to Candidates Section, then open the View Candidate page.',
-                            'Select the candidate: Admins select Distributor Account, then select the candidate to view. Accounts select the candidate to view directly.',
-                            'Open Actions, then select View Assessment.',
-                            'Select an assessment from the table.',
-                            'Select the Eye/View icon from the Actions column.',
-                            'Use the dropdown to choose Download or View.',
-                            'For multiple report types, another dropdown layer may appear. For a single report type, the report is shown or downloaded immediately.'
-                        ],
-                        rules: [
-                            'If the Eye/View icon is grayed out, the assessment is not completed yet and the report is not available.'
+                        children: [
+                            {
+                                id: 'update-assessment',
+                                title: 'Update Assessment',
+                                description: 'Add more assessments to a candidate.',
+                                steps: [
+                                    'Go to Candidates Section, then open the View Candidate page.',
+                                    'Select the candidate: Admins select Distributor Account, then select the candidate to view. Accounts select the candidate to view directly.',
+                                    'Open Actions, then select View Assessment.',
+                                    'Click Add Assessment.',
+                                    'Select the checkbox or radio boxes of assessments with their norms, types, and related options.',
+                                    'Click the Save button below.'
+                                ],
+                                rules: [
+                                    'When a single assessment is selected, all test batteries containing that assessment are locked.',
+                                    'When a test battery is selected, all single assessments included in that battery are locked.',
+                                    'When a test battery is selected, all other test batteries that share at least one common single assessment are also locked.'
+                                ]
+                            },
+                            {
+                                id: 'download-view-reports-of-assessments',
+                                title: 'Download/View Reports of Assessments',
+                                description: 'Download or view assessment reports for a candidate.',
+                                steps: [
+                                    'Go to Candidates Section, then open the View Candidate page.',
+                                    'Select the candidate: Admins select Distributor Account, then select the candidate to view. Accounts select the candidate to view directly.',
+                                    'Open Actions, then select View Assessment.',
+                                    'Select an assessment from the table.',
+                                    'Select the Eye/View icon from the Actions column.',
+                                    'Use the dropdown to choose Download or View.',
+                                    'For multiple report types, another dropdown layer may appear. For a single report type, the report is shown or downloaded immediately.'
+                                ],
+                                rules: [
+                                    'If the Eye/View icon is grayed out, the assessment is not completed yet and the report is not available.'
+                                ]
+                            },
+                            {
+                                id: 'email-report-of-assessments',
+                                title: 'Email Report of Assessments',
+                                description: 'Email assessment reports to specific users.',
+                                steps: [
+                                    'Go to Candidates Section, then open the View Candidate page.',
+                                    'Select the candidate: Admins select Distributor Account, then select the candidate to view. Accounts select the candidate to view directly.',
+                                    'Open Actions, then select View Assessment.',
+                                    'Select an assessment from the table.',
+                                    'Select the Mail icon from the Actions column.',
+                                    'Enter the target recipient email in the modal form.',
+                                    'Click Send.'
+                                ]
+                            },
+                            {
+                                id: 'other-assessment-functions',
+                                title: 'Other Assessment Functions',
+                                description: 'Other functionalities available for candidate assessments.',
+                                children: [
+                                    {
+                                        id: 'view-response',
+                                        title: 'View Response',
+                                        description: 'View the responses of the candidate.'
+                                    },
+                                    {
+                                        id: 'change-norm',
+                                        title: 'Change Norm',
+                                        description: 'Update the norm used to create the assessment report.',
+                                        steps: [
+                                            'Go to Candidates Section, then open the View Candidate page.',
+                                            'Select the candidate: Admins select Distributor Account, then select the candidate to view. Accounts select the candidate to view directly.',
+                                            'Open Actions, then select View Assessment.',
+                                            'Select an assessment from the table.',
+                                            'Select the Cog/Settings icon from the Actions column.',
+                                            'Select Change Norm.',
+                                            'Select New Norm.',
+                                            'Click Save.'
+                                        ]
+                                    },
+                                    {
+                                        id: 'extract-response',
+                                        title: 'Extract Response',
+                                        description: 'Download the candidate responses.'
+                                    },
+                                    {
+                                        id: 'reset-assessment',
+                                        title: 'Reset Assessment',
+                                        description: 'Reset the entire assessment for the candidate, including responses, scores, and related report artifacts.'
+                                    },
+                                    {
+                                        id: 'reset-by-page',
+                                        title: 'Reset by Page',
+                                        description: 'Reset answers or scores for one or more pages of the assessment.'
+                                    }
+                                ]
+                            }
                         ]
                     }
                 ]
@@ -280,9 +338,10 @@
             fragment.appendChild(eyebrow);
         }
 
-        const heading = document.createElement(headingLevel === 3 ? 'h3' : 'h2');
+        const headingTag = headingLevel === 2 ? 'h2' : (headingLevel === 3 ? 'h3' : 'h4');
+        const heading = document.createElement(headingTag);
         heading.id = section.id;
-        heading.className = headingLevel === 3 ? 'text-lg font-bold text-slate-900' : 'text-xl font-bold text-slate-900';
+        heading.className = headingLevel === 2 ? 'text-xl font-bold text-slate-900' : (headingLevel === 3 ? 'text-lg font-bold text-slate-900' : 'text-base font-bold text-slate-900');
         heading.textContent = section.title;
         heading.setAttribute('tabindex', '-1');
         fragment.appendChild(heading);
@@ -297,28 +356,28 @@
         return fragment;
     }
 
+    function renderSectionTree(section, headingLevel, eyebrowText, isTopLevel) {
+        const sectionEl = document.createElement('section');
+        sectionEl.className = isTopLevel ? 'mb-10' : 'mt-8 border-t border-slate-100 pt-6';
+        sectionEl.appendChild(renderSectionHeader(section, headingLevel, eyebrowText));
+        renderSectionBody(section, sectionEl);
+
+        if (section.children) {
+            section.children.forEach(function (child) {
+                sectionEl.appendChild(renderSectionTree(child, Math.min(headingLevel + 1, 4), section.title, false));
+            });
+        }
+
+        return sectionEl;
+    }
+
     function renderAllSections() {
         const root = document.getElementById('section-render-root');
         if (!root) return;
         root.innerHTML = '';
 
         candidateContent.sections.forEach(function (section) {
-            const sectionEl = document.createElement('section');
-            sectionEl.className = 'mb-10';
-            sectionEl.appendChild(renderSectionHeader(section, 2));
-            renderSectionBody(section, sectionEl);
-
-            if (section.children) {
-                section.children.forEach(function (child) {
-                    const childEl = document.createElement('section');
-                    childEl.className = 'mt-8 border-t border-slate-100 pt-6';
-                    childEl.appendChild(renderSectionHeader(child, 3, section.title));
-                    renderSectionBody(child, childEl);
-                    sectionEl.appendChild(childEl);
-                });
-            }
-
-            root.appendChild(sectionEl);
+            root.appendChild(renderSectionTree(section, 2, null, true));
         });
     }
 
@@ -327,7 +386,7 @@
         li.className = 'sidebar-item';
 
         var a = document.createElement('a');
-        var indentClass = level === 0 ? '' : ' pl-3 border-l border-slate-100';
+        var indentClass = level === 0 ? '' : (level === 1 ? ' pl-3 border-l border-slate-100' : ' pl-6 border-l border-slate-100');
         a.className = 'block text-slate-600 hover:text-brand transition-colors py-1' + indentClass;
         a.href = '#' + section.id;
         a.dataset.target = section.id;
