@@ -22,6 +22,12 @@
             "description": "Register candidates individually or in bulk, manage profiles, assign credentials, and track assignment history.",
             "icon": "user-check",
             "target": "candidate-management"
+        },
+        {
+            "title": "Roles/Permissions Management",
+            "description": "Review RBAC permissions, account hierarchy, and role capabilities for GoPick users and account types.",
+            "icon": "shield",
+            "target": "roles-premission-management"
         }
     ],
     "roles": [
@@ -76,12 +82,12 @@
     "access": {
         "admin": {
             "label": "Admin & Manager Portal",
-            "url": "/app/administrator/",
+            "url": "https://stg-gopick.assessmentcenter.ph/app/administrator/site/login",
             "description": "Where Administrators, Distributors, and Client Managers log in to manage accounts, assessments, candidates, and reports."
         },
         "candidate": {
             "label": "Candidate Portal",
-            "url": "/app/",
+            "url": "https://stg-gopick.assessmentcenter.ph/app/site/login",
             "description": "Where candidates log in to take assigned assessments. Supports self-registration when enabled."
         },
         "help": "If you cannot log in, contact your site administrator. Accounts are created by Administrators or Client Managers."
@@ -90,19 +96,58 @@
         "title": "Account Hierarchy",
         "description": "GoPick uses a nested account structure. Each level inherits access from its parent and manages the resources below it.",
         "levels": [
-            { "name": "Super Admin (IT)", "level": 0 },
-            { "name": "Super Admin (ASD)", "level": 0 },
-            { "name": "Distributor", "level": 1 },
-            { "name": "Administrator", "level": 2 },
-            { "name": "Self Registration", "level": 2 },
-            { "name": "Sub Distributor", "level": 2 },
-            { "name": "Administrator", "level": 3 },
-            { "name": "Self Registration", "level": 3 },
-            { "name": "Client", "level": 3 },
-            { "name": "Administrator", "level": 4 },
-            { "name": "Sub Client", "level": 4 },
-            { "name": "Administrator", "level": 5 },
-            { "name": "Self Registration", "level": 5 }
+            {
+                "name": "Super Admin (IT)",
+                "level": 0
+            },
+            {
+                "name": "Super Admin (ASD)",
+                "level": 0
+            },
+            {
+                "name": "Distributor",
+                "level": 1
+            },
+            {
+                "name": "Administrator",
+                "level": 2
+            },
+            {
+                "name": "Self Registration",
+                "level": 2
+            },
+            {
+                "name": "Sub Distributor",
+                "level": 2
+            },
+            {
+                "name": "Administrator",
+                "level": 3
+            },
+            {
+                "name": "Self Registration",
+                "level": 3
+            },
+            {
+                "name": "Client",
+                "level": 3
+            },
+            {
+                "name": "Administrator",
+                "level": 4
+            },
+            {
+                "name": "Sub Client",
+                "level": 4
+            },
+            {
+                "name": "Administrator",
+                "level": 5
+            },
+            {
+                "name": "Self Registration",
+                "level": 5
+            }
         ]
     },
     "contributors": [

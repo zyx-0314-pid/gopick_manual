@@ -1,0 +1,35 @@
+/* Table styles for RBAC matrix */
+.table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.rbac-table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 1000px;
+}
+
+.rbac-table th,
+.rbac-table td {
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.rbac-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+/* Center role columns (5+) */
+.rbac-table th:nth-child(n+5),
+.rbac-table td:nth-child(n+5) {
+    text-align: center;
+}
+
+/* Color coding for permission values */
+.rbac-x { color: #059669; font-weight: 700; }
+.rbac-c { color: #d97706; font-weight: 700; }
+.rbac-n { color: #94a3b8; }
+.rbac-dash { color: #cbd5e1; }

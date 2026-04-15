@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Accounts Management — GoPick</title>
+  <title>Roles/Permissions Management - GoPick</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/table.css">
@@ -24,7 +24,6 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased">
 
-  <!-- ==================== Header ==================== -->
   <header class="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100" role="banner">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       <a href="../../index.html" class="inline-flex items-center" aria-label="GoPick home">
@@ -33,7 +32,7 @@
       <nav aria-label="Main navigation">
         <ul class="flex items-center gap-6 text-sm font-medium text-slate-600">
           <li><a class="hover:text-brand transition-colors" href="../../index.html">Home</a></li>
-          <li><a class="text-brand font-semibold" href="#" aria-current="page">Accounts</a></li>
+          <li><a class="text-brand font-semibold" href="#" aria-current="page">Roles/Permissions</a></li>
         </ul>
       </nav>
     </div>
@@ -42,15 +41,12 @@
   <main class="pt-20 pb-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
-      <!-- ==================== Page Hero ==================== -->
       <div class="mb-10">
-        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900">Accounts Management</h1>
-        <p class="mt-3 text-lg text-slate-500 max-w-3xl">Role-Based Access Control (RBAC) matrix, account hierarchy, and configuration steps for managing the GoPick user and account system.</p>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900">Roles/Permissions Module</h1>
+        <p class="mt-3 text-lg text-slate-500 max-w-3xl">RBAC matrix, permission legend, and account hierarchy for GoPick roles and account types.</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
-
-        <!-- ==================== Sidebar ==================== -->
         <aside class="hidden lg:block lg:col-span-1">
           <nav class="sticky top-24 bg-white rounded-xl border border-slate-100 p-5 shadow-sm">
             <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">On this page</h4>
@@ -58,19 +54,15 @@
           </nav>
         </aside>
 
-        <!-- ==================== Content ==================== -->
         <div class="lg:col-span-4 space-y-8">
-
-          <!-- Legend -->
           <section id="legend" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
             <h2 class="text-xl font-bold text-slate-900 mb-4">Legend</h2>
             <div id="legendContent" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm"></div>
           </section>
 
-          <!-- RBAC Matrix -->
           <section id="rbac-matrix" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
             <h2 class="text-xl font-bold text-slate-900 mb-4">RBAC Matrix</h2>
-            <p class="text-sm text-slate-500 mb-4">Permissions for each role across all account functions. Scroll horizontally on smaller screens.</p>
+            <p class="text-sm text-slate-500 mb-4">Permissions for each role across account and user functions. Scroll horizontally on smaller screens.</p>
             <div class="table-scroll rounded-lg border border-slate-100">
               <table class="rbac-table min-w-full divide-y divide-slate-100 text-sm">
                 <thead class="bg-slate-50">
@@ -91,60 +83,30 @@
                     <th class="px-3 py-3 text-center font-semibold text-slate-700">Self Reg.</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-50" id="rbacTableBody">
-                </tbody>
+                <tbody class="divide-y divide-slate-50" id="rbacTableBody"></tbody>
               </table>
             </div>
           </section>
 
-          <!-- Hierarchy -->
           <section id="hierarchy" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
             <h2 class="text-xl font-bold text-slate-900 mb-4">Account Hierarchy</h2>
             <p class="text-sm text-slate-500 mb-5">GoPick uses a nested account structure. Each level inherits access downward.</p>
             <div id="hierarchyContent" class="bg-slate-50 rounded-lg p-6 font-mono text-sm text-slate-700 leading-relaxed"></div>
           </section>
 
-          <!-- Account Rules -->
-          <section id="account-rules" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
-            <h2 class="text-xl font-bold text-slate-900 mb-4">Account Rules</h2>
-            <div id="accountRules"></div>
-          </section>
-
-          <!-- View Accounts -->
-          <section id="view-accounts" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
-            <h2 class="text-xl font-bold text-slate-900 mb-4">View Accounts</h2>
-            <p class="text-sm text-slate-500 mb-5">From the View Account page, you can navigate to account information, assigned assessments, meter management, other account settings, and users.</p>
-            <div id="viewAccountSteps" class="space-y-4 mb-6"></div>
-            <div class="text-xs font-bold uppercase tracking-wider text-brand mb-2">View Accounts</div>
-            <h3 id="view-sections" class="text-base font-bold text-slate-900 mb-4">View: Sections</h3>
-            <div id="viewAccountSections" class="grid gap-4 grid-cols-1"></div>
-            <div id="viewAccountConfigSections" class="grid gap-4 grid-cols-1"></div>
-            <div id="updateAccountSections" class="grid gap-4 grid-cols-1"></div>
-          </section>
-
-          <!-- Role Capabilities -->
           <section id="roles" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
             <h2 class="text-xl font-bold text-slate-900 mb-4">Role Capabilities</h2>
-            <p class="text-sm text-slate-500 mb-4">Auto-generated summary of what each role can and cannot do.</p>
+            <p class="text-sm text-slate-500 mb-4">Auto-generated summary of available and conditional permissions per role.</p>
             <div id="roleCapabilities" class="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3"></div>
           </section>
-
-          <!-- Configuration Steps -->
-          <section id="access" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
-            <h2 class="text-xl font-bold text-slate-900 mb-4">Configuration Steps</h2>
-            <p class="text-sm text-slate-500 mb-5">How to view and update role permissions in the Admin portal.</p>
-            <div id="accessSteps" class="space-y-4"></div>
-          </section>
-
         </div>
       </div>
     </div>
   </main>
 
-  <!-- ==================== Footer ==================== -->
   <footer class="bg-slate-900 py-6">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-      <p class="text-slate-400 text-sm">&copy; <span id="footerYearSpan"></span> GoPick — Assessment Center</p>
+      <p class="text-slate-400 text-sm">&copy; <span id="footerYearSpan"></span> GoPick - Assessment Center</p>
     </div>
   </footer>
 
