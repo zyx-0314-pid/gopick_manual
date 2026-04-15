@@ -22,6 +22,12 @@
             "description": "Register candidates individually or in bulk, manage profiles, assign credentials, and track assignment history.",
             "icon": "user-check",
             "target": "candidate-management"
+        },
+        {
+            "title": "Roles/Permissions Management",
+            "description": "Review RBAC permissions, account hierarchy, and role capabilities for GoPick users and account types.",
+            "icon": "shield",
+            "target": "roles-premission-management"
         }
     ],
     "roles": [

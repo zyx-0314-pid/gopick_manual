@@ -29,14 +29,14 @@
 | ---                                                                                          | ---    | ---                                                                                         | ---                                                                                                                           | Super Admin (IT) | Super Admin (ASD) | Test Creator | API Access | Administrator | Distributor | Sub Distributor | Client Account | Sub Account | Self Registration |
 | Assessment-Schedule Module                                                                              | Update | Update Assessment of Child Users: `modAssessmentSchedule-actionCreate` > `Unblock Account`                               |                                                                                                                               | C                |                     |              |            |               | C           | C               | C              | C           | -                 |
 
-# Edit
+## Edit
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | -   | -   | -   | -   | -   | -   | -   | -   | -   | -   | -   | -   | -   | -   |
 
 ---
 
-Legends
+## Legends
 X - Hard Coded Available
 C - Conditional Controlled by Super Admin
 N - Not Applicable
@@ -44,8 +44,8 @@ N - Not Applicable
 
 ---
 
+## Hierarchy:
 ```
-Hierarchy:
 Super Admin (IT)
 Super Admin (ASD)
 └─ Distributor
