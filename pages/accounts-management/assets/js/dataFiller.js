@@ -10,6 +10,17 @@
             { id: 'hierarchy', title: 'Account Hierarchy' },
             { id: 'account-rules', title: 'Account Rules' },
             {
+                id: 'create-account',
+                title: 'Create Account',
+                children: [
+                    { id: 'create-account-information', title: 'Account Information' },
+                    { id: 'create-assign-products', title: 'Assign Products' },
+                    { id: 'create-meter-management', title: 'Meter Management' },
+                    { id: 'create-other-account-settings', title: 'Other Account Settings' },
+                    { id: 'create-review-account-details', title: 'Review Account Details' }
+                ]
+            },
+            {
                 id: 'view-accounts',
                 title: 'View Accounts',
                 children: [
@@ -32,8 +43,8 @@
                         ]
                     },
                     {
-                        id: 'config-drop-down',
-                        title: 'Config: Drop Down',
+                        id: 'view-config',
+                        title: 'View: Config',
                         children: [
                             { id: 'privacy-consent', title: 'Privacy Consent' },
                             { id: 'demographics', title: 'Demographics' },
@@ -93,6 +104,102 @@
         viewAccountSteps: [
             { title: 'Open View Accounts', detail: 'Go to Accounts Section, then open View Accounts.' },
             { title: 'Select and view an account', detail: 'Select Account, then choose View Account.' }
+        ],
+        createAccountSections: [
+            {
+                id: 'create-account-information',
+                stepTitle: 'Account Information',
+                title: 'Account Information',
+                detail: 'Fill in the required account details.',
+                items: [
+                    'Account Type',
+                    'Parent Account',
+                    'Account Name: Company or organization account name',
+                    'Username',
+                    'Password',
+                    'Confirm Password',
+                    'Primary Contact Name',
+                    'Primary Contact Email',
+                    'Country',
+                    'Business Phone Number',
+                    'Business Address',
+                    'Expiry Date and Time',
+                    'Actual Account Expiration: required and autofilled',
+                    'Status: autofilled'
+                ],
+                rules: [
+                    'Account Type can only be lower than your account type.',
+                    'Password and Confirm Password should match.'
+                ]
+            },
+            {
+                id: 'create-assign-products',
+                stepTitle: 'Assign Products',
+                title: 'Assign Products',
+                detail: 'Select assessments that the company or organization can use.',
+                items: [
+                    'Cognitive or knowledge-based assessment',
+                    'Competency-based assessment',
+                    'Survey',
+                    'Behavioral or personality-based assessment',
+                    'Test Battery: a group of assessments bundled together'
+                ],
+                rules: [
+                    'When a single assessment is selected, all test batteries containing that assessment are locked.',
+                    'When a test battery is selected, all single assessments included in that battery are locked.',
+                    'When a test battery is selected, all other test batteries that share at least one common single assessment are also locked.'
+                ]
+            },
+            {
+                id: 'create-meter-management',
+                stepTitle: 'Meter Management',
+                title: 'Meter Management',
+                detail: 'Set Meter Management Type and Meter Balance.',
+                items: [
+                    'Self: deduct usage from this account.',
+                    'Parent: deduct usage from Distributor, Sub-Distributor, or Client.'
+                ],
+                rules: [
+                    'Distributor has only one Meter Management Type.',
+                    'Self: Meter cannot be 0.',
+                    'Parent: parent meter cannot be 0.'
+                ]
+            },
+            {
+                id: 'create-other-account-settings',
+                stepTitle: 'Other Account Settings',
+                title: 'Other Account Settings',
+                detail: 'Set additional account-related configurations.',
+                items: [
+                    'User Account Limit: autofilled as 99',
+                    'Sub-Distributor Limit: autofilled as 0',
+                    'Client Limit: autofilled as 0',
+                    'Sub-Account Limit: autofilled as 0',
+                    'Self Registration Limit: autofilled as 0',
+                    'API Access Username',
+                    'HRSC Name',
+                    'HRSC Email',
+                    'Assessment Specialist Name',
+                    'Assessment Special Email',
+                    'Client Contact Person Name',
+                    'Client Usage Recipient Email',
+                    'Site Billing Amount (PHP)',
+                    'Contact Type: Volume-based with Contracted Meters disabled and Addendum autofilled as 0',
+                    'Contact Type: Per Usage with Base Meter autofilled as 0'
+                ],
+                rules: [
+                    'Sub-Distributor Limit appears only for Distributor.',
+                    'Client Limit appears only for Distributor and Sub-Distributor.',
+                    'Sub-Account Limit appears only for Distributor, Sub-Distributor, and Client.',
+                    'Contracted Meters values are prefilled from the Meter Management meter balance part of the form.'
+                ]
+            },
+            {
+                id: 'create-review-account-details',
+                stepTitle: 'Review Account Details',
+                title: 'Review Account Details',
+                detail: 'Review account information before saving.'
+            }
         ],
         viewAccountSections: [
             {
@@ -221,7 +328,10 @@
                 title: 'Assign Products',
                 detail: 'Allows updating assessment meters for each assessment.',
                 actions: ['Manage', 'Change Log', 'Update Assessment'],
-                rules: ['Access is controlled via Admin RBAC policies of Update Assessment.']
+                rules: [
+                    'Access is controlled via Admin RBAC policies of Update Assessment.',
+                    'Manage and Change Log are only for Admin, Distributor, and Sub-Distributor.'
+                ]
             },
             {
                 id: 'update-meter-management',
@@ -229,7 +339,15 @@
                 title: 'Meter Management',
                 detail: 'Allows updating assessment Meter Points for each account and changing Metering Management Type: Deduct from Self or Parent.',
                 actions: ['View Meter Log'],
-                rules: ['Self: Meter cannot be 0.', 'Parent: parent meter cannot be 0.']
+                rules: [
+                    'Self: Meter cannot be 0.',
+                    'Parent: parent meter cannot be 0.',
+                    'Updating a child account meter balance must not exceed the parent account maximum or available meter balance.',
+                    'Super Admin accounts are exempt because their meter balance is treated as infinite.',
+                    'Adding meter balance to a child account deducts the same amount from the parent account.',
+                    'Changing a child account metering type from Self to Parent returns the child account balance to the parent account.',
+                    'Changing a child account metering type from Parent to Self deducts the balance from the parent account and adds it to the child account.'
+                ]
             },
             {
                 id: 'update-other-account-settings',
@@ -271,6 +389,13 @@
         return wrap;
     }
 
+    function getSidebarLinkClass(level) {
+        var depth = Math.min(level, 5);
+        var indentClasses = ['', ' pl-3 border-l border-slate-100', ' pl-6 border-l border-slate-100', ' pl-9 border-l border-slate-100', ' pl-12 border-l border-slate-100', ' pl-16 border-l border-slate-100'];
+        var sizeClass = level === 0 ? ' text-sm' : (level < 3 ? ' text-[13px]' : ' text-xs');
+        return 'block text-slate-600 hover:text-brand transition-colors py-1' + sizeClass + indentClasses[depth];
+    }
+
     function createSidebarItem(section, level) {
         var li = document.createElement('li');
         li.className = 'sidebar-item';
@@ -278,8 +403,7 @@
         li.dataset.level = String(level);
 
         var a = document.createElement('a');
-        var indentClass = level === 0 ? '' : (level === 1 ? ' pl-3 border-l border-slate-100' : ' pl-6 border-l border-slate-100');
-        a.className = 'block text-slate-600 hover:text-brand transition-colors py-1' + indentClass;
+        a.className = getSidebarLinkClass(level);
         a.href = '#' + section.id;
         a.dataset.target = section.id;
         a.textContent = section.title;
@@ -491,6 +615,15 @@
         }
     }
 
+    function renderCreateAccountSections() {
+        var container = document.getElementById('createAccountSections');
+        if (!container) return;
+        container.innerHTML = '';
+        accountsContent.createAccountSections.forEach(function (section, index) {
+            container.appendChild(createInfoStepCard(index + 1, section));
+        });
+    }
+
     function createHeading(text, id, eyebrowText) {
         var fragment = document.createDocumentFragment();
 
@@ -593,7 +726,7 @@
         var container = document.getElementById('viewAccountConfigSections');
         if (!container) return;
         container.innerHTML = '';
-        container.appendChild(createHeading('Config: Drop Down', 'config-drop-down', 'View Accounts'));
+        container.appendChild(createHeading('View: Config', 'view-config', 'View Accounts'));
         accountsContent.viewAccountConfigSections.forEach(function (section) {
             container.appendChild(createInfoCard(section));
         });
@@ -692,6 +825,7 @@
         renderHierarchy();
         renderLegend();
         renderAccountRules();
+        renderCreateAccountSections();
         renderViewAccounts();
         renderViewAccountConfigSections();
         renderUpdateAccountSections();

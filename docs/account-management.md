@@ -13,7 +13,7 @@
 | Create Sub Distributor                                                                       | Create | Requires Distributor as Parent                                                              |                                                                                                                               | X                | X                   | X            | X          | X             | X           | -               | -              | -           | -                 |
 | Create Client Account                                                                        | Create | Requires Sub Distributor as Parent                                                          |                                                                                                                               | X                | X                   | X            | X          | X             | X           | X               | -              | -           | -                 |
 | Create Sub Account                                                                           | Create | Requires Client as Parent                                                                   |                                                                                                                               | X                | X                   | X            | X          | X             | X           | X               | X              | -           | -                 |
-| Create Self Registration                                                                     | Create | Requires Distributor, Sub Ditributor or Client as Parent                                    |                                                                                                                               | X                | X                   | X            | X          | X             | X           | X               | X              | -           | -                 |
+| Create Self Registration                                                                     | Create | Requires Distributor, Sub Distributor or Client as Parent                                    |                                                                                                                               | X                | X                   | X            | X          | X             | X           | X               | X              | -           | -                 |
 | -                                                                                            | -      | -                                                                                           | -                                                                                                                             | -                | -                   | -            | -          | -             | -           | -               | -              | -           | -                 |
 | Update `Personal Account`: Distributor, Sub-Distributor, Client, Sub Client, Self Registered | Update |                                                                                             | Allowed Changes: name of organization, contact person, email, number, password, country, business address and billing address | N                | N                   | N            | N          | N             | X           | X               | X              | X           | -                 |
 | Update `Personal User`: Super Admin, Admin, Test Creator, API Access                         | Update | Exclude: Status, User Type                                                                  | Allowed Changes: Password, Username, Email                                                                                    | X                |                     |              |            |               | N           | N               | N              | N           | N                 |
@@ -63,6 +63,96 @@ Super Admin (ASD)
 
 > Rules
 > - Account Related Updates can only be modified by `Super Admin (IT/ASD)`, `Distributor` and `Sub-Distributor`
+
+# Create Account
+1. Account Information
+- Account Type (required)
+- Parent Account (required)
+- Account Name (required) - Company/Organization Account Name
+- Username (required)
+- Password (required)
+- Confirm Password (required)
+- Primary Contact Name (required)
+- Primary Contact Email (required)
+- Country (required)
+- Business Phone Number (required)
+- Business Address (required)
+- Expiry date & TIme (required)
+- Actual Account Expiration (required and autofill)
+- Status (autofill)
+
+> Rules: 
+> - Account Type: You can only select lower than your account type
+> - `Password` and `Confirm Password` should match'
+
+---
+
+2. Assign Products
+Select Assessments that Company/Organization can use.
+
+Assessment have the following category:
+- Cognitive/Knowledge-based Assessment
+- Competency-based Assessment
+- Survey
+- Behavioral/Personality-Based Assessment
+- Test Battery, A group of Assessments bundled together
+
+> Rules:
+> - When a `single assessment` is selected, `all test batteries` containing that assessment are locked.
+> - When a `test battery` is selected, `all single assessments` included in that battery are locked.
+> - When a `test battery` is selected, `all other test batteries` that share at least one common `single assessment` are also locked.
+
+---
+
+3. Meter Management
+Set Meter Management Type and Meter Balance
+
+Meter Management Type: Self and Parent Based
+Self = Deduct usage from this account
+Parent = Deduct usage from Distributor/Sub-Distributor/Client
+
+> Rules:
+> - Distributor has only 1 Meter Management Type
+>
+> - Meter Type Rule:
+>   - `Self`: Meter Can't be 0
+>   - `Parent`: Meter Can't be 0 for the parent
+
+---
+
+4. Other Account Settings
+Set additional account-related configurations:
+
+- Set User Account limit (autofill, 99)
+- Set Sub-Distributor Limit (autofill, 0)
+- Set Client Limit (autofill, 0)
+- Set Sub-Account Limit (autofill, 0)
+- Set Self Registration Limit (autofill, 0)
+- Set API Access Username
+- Set HRSC Name 
+- Set HRSC Email 
+- Set Assessment Specialist Name
+- Set Assessment Special Email
+- Set Client Contact Person Name
+- Set Client Usage Recipient Email
+- Set Site Billing Amount (PHP)
+- Contact Type:
+  - Volume-based
+    - Contracted Meters (Disabled)
+    - Addendum (autofill, 0)
+  - Per Usage
+    - Base Meter (autofill, 0)
+
+> Rules:
+> - `Sub-Distributor Limit` appears only for `Distributor`
+> - `Client Limit` appears only for `Distributor`, `Sub-Distributor`
+> - `Sub-Account Limit` appears only for `Distributor`, `Sub-Distributor`, `Client`
+> - `Contracted Meters` value are prefilled from `Meter Management` > `Meter balance` part of the form
+
+---
+
+5. Review Account Details
+Able to review Account Information before saving
 
 # View Accounts
 
@@ -125,27 +215,27 @@ Provides access to:
 - Update
 - Archive
 
-### Config: Drop Down
+### View: Config
 #### Privacy Consent
 Allows updating of displayed `consent data`, including optional checkboxes for `data collection` and `photo capture`.
 
 > Rule: 
 > - Access is controlled via `Admin` `RBAC policies`.
-> - For `Distributor` own account they are not able to acccess this.
+> - For `Distributor` own account they are not able to access this.
 
 #### Demographics
 Allows configuration of the demographic form, including setting fields as optional or required.
 
 > Rule: 
 > - Access is controlled via `Admin` `RBAC policies`.
-> - For `Distributor` own account they are not able to acccess this.
+> - For `Distributor` own account they are not able to access this.
 
 #### Assessment Completion Page
 Allows updating of displayed `completion` of the assessment.
 
 > Rule: 
 > - Access is controlled via `Admin` `RBAC policies`.
-> - For `Distributor` own account they are not able to acccess this.
+> - For `Distributor` own account they are not able to access this.
 
 #### Assessment Center Logo
 Allows updating of displayed `Logo` of the account.
@@ -157,11 +247,11 @@ Allows to unblock account
 
 > Rule: 
 > - Access is controlled via `Admin` `RBAC policies`.
-> - For their own account they are not able to acccess this.
+> - For their own account they are not able to access this.
 
 ## Update: Sections
-### Accout Information
-Allows updating of the following informations:
+1. Account Information
+Allows updating of the following information:
 - Account Name
 - Password
 - Primary Contact Name
@@ -176,23 +266,39 @@ Allows updating of the following informations:
 - Actual Account Expiration
 - Status
 
-### Assign Products
+---
+
+2. Assign Products
 Allows updating assessments Meter for each of assessments.
 - Provides access to `Manage` and `Change Log` to be able to Update Specific Account Assessment.
 - Provides access to `Update Assessment` to be able to update assessments
 
-> Rules: Access is controlled via `Admin` `RBAC policies` of `Update Assessment` 
+> Rules: 
+> - Access is controlled via `Admin` `RBAC policies` of `Update Assessment` 
+> - `Manage` and `Change Log` are ony for `Admin`, `Distributor` and `Sub-Distributor` 
 
-### Meter Management
+---
+
+3. Meter Management
 Allows updating assessments `Meter Points` for each account and/or change `Metering Management Type`: Deduct from `Self` or `Parent`
 
 - Provides access to `View Meter Log` to see history of meter logs
 
 > Rule: 
-> `Self`: Meter Can't be 0
-> `Parent`: Meter Can't be 0 for the parent
+> Meter Type Rule:
+> - `Self`: Meter Can't be 0
+> - `Parent`: Meter Can't be 0 for the parent
+> 
+> Updating a child account meter balance must not exceed the parent account's maximum or available meter balance.
+> - Super Admin accounts are exempt because their meter balance is treated as infinite.
+>
+> Adding meter balance to a child account deducts the same amount from the parent account.
+>
+> Changing a child account metering type from `Self` to `Parent` returns the child account balance to the parent account.
+>
+> Changing a child account metering type from `Parent` to `Self` deducts the balance from the parent account and adds it to the child account.
 
-### Other Account Settings
+4. Other Account Settings
 Allows updating additional account-related configurations, including but not limited to:
 
 - Account limits
@@ -200,5 +306,5 @@ Allows updating additional account-related configurations, including but not lim
 - Usage settings
 - Contract settings
 
-### Review Account Details
-Able to review Account Informations before saving
+5. Review Account Details
+Able to review Account Information before saving
