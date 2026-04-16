@@ -23,39 +23,68 @@ Schedule multiple candidates who took assessment via paper and pen
 ---
 
 2. Test Requirements
-- **Camera** and **Mic** Requirements (required)
-Link Validity
-- **Start Date** (required)
-- **Time Start** (required and autofill)
-- **Expiration Date** (required and autofill)
-- **Time Expiration** (required and autofill)
-- *Assessment Reminder* (required)
-  - **Reminder Frequency**: Every (S, M, T, W, Th, F, S) - Check box
-    or
-  - **Every # of days interval**: (2, 3, 4, 5, 6) - Check box
-- **Reminder Time** (required and autofill)
-- *Assessment Report Recipient* (required)
-  - **Candidate Email as Report Recipient**
-    or
-  - **Report Recipient Email**
-    - Can have multiple recipient using `,` as separator
-- *Assessment Invitation*
-  - *Assessment Invitation Email*: Checkbox (required and autofill)
-    - **Candidate Email** (default)
-    - **Report Recipient**
-    - **Custom Email**
-      - Custom Assessment Invitation Email (if *Custom Email* is ticked)
-        - Email Entry
-- *Backup Email*
-  - Email Entry (required and autofill)
+- Candidate Schedule
+  - *Test Requirements*
+    - **Camera** Requirements (required)
+    - **Mic** Requirements (required)
+  - *Link Validity*
+    - **Start Date** (required)
+    - **Time Start** (required and autofill)
+    - **Expiration Date** (required and autofill)
+    - **Time Expiration** (required and autofill)
+  - *Assessment Reminder* (required)
+      - **Reminder Frequency**: Every (S, M, T, W, Th, F, S) - Check box
+        or
+      - **Every # of days interval**: (2, 3, 4, 5, 6) - Check box
+    - **Reminder Time** (required and autofill)
+  - *Assessment Report Recipient* (required)
+    - **Candidate Email as Report Recipient**
+      or
+    - **Report Recipient Email**
+      - Can have multiple recipient using `,` as separator
+  - *Assessment Invitation*
+    - *Assessment Invitation Email*: Checkbox (required and autofill)
+      - **Candidate Email** (default)
+      - **Report Recipient**
+      - **Custom Email**
+        - Custom Assessment Invitation Email (if *Custom Email* is ticked)
+          - Email Entry
+  - *Backup Email*
+      - Email Entry (required and autofill)
+
+- Data Encoding
+  - *Link Validity*
+    - **Start Date** (required)
+    - **Time Start** (required and autofill)
+  - *Assessment Report Recipient* (required)
+    - **Candidate Email as Report Recipient**
+      or
+    - **Report Recipient Email**
+      - Can have multiple recipient using `,` as separator
+  - *Backup Email*
+    - Email Entry (required and autofill)
+
+> Rules:
+> `Assessment Report Recipient` - uses email checking on server side
+> `Assessment Report Recipient` - can enter multiple emails using `,` as separator
 
 ---
 
 3. Assign Products
-- Select Assessment
+Select Assessments that Company/Organization can use.
 
-> Rules: 
+Assessment have the following category:
+- Cognitive/Knowledge-based Assessment
+- Competency-based Assessment
+- Survey
+- Behavioral/Personality-Based Assessment
+- Test Battery, A group of Assessments bundled together
+
+> Rules:
 > - At least 1 assessment
+> - When a `single assessment` is selected, `all test batteries` containing that assessment are locked.
+> - When a `test battery` is selected, `all single assessments` included in that battery are locked.
+> - When a `test battery` is selected, `all other test batteries` that share at least one common `single assessment` are also locked.
 
 ---
 

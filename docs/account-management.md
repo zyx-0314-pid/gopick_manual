@@ -98,6 +98,7 @@ Assessment have the following category:
 - Test Battery, A group of Assessments bundled together
 
 > Rules:
+> - At least 1 assessment
 > - When a `single assessment` is selected, `all test batteries` containing that assessment are locked.
 > - When a `test battery` is selected, `all single assessments` included in that battery are locked.
 > - When a `test battery` is selected, `all other test batteries` that share at least one common `single assessment` are also locked.
