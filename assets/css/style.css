@@ -31,6 +31,58 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+.site-header {
+    height: 4rem;
+    background: #fff !important;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.site-header > div {
+    height: 4rem;
+}
+
+.site-header img {
+    display: block;
+    height: 2rem !important;
+    width: auto;
+}
+
+#navToggle {
+    flex: 0 0 auto;
+}
+
+#mainNav {
+    flex: 0 0 auto;
+}
+
+#main {
+    padding-top: 4rem;
+}
+
+@media (max-width: 767px) {
+    #mainNav {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: visible;
+    }
+}
+
+@media (min-width: 640px) {
+    .site-header img {
+        height: 2.5rem !important;
+    }
+}
+
+@media (min-width: 768px) {
+    #mainNav {
+        position: static;
+        width: auto;
+        height: auto;
+    }
+}
+
 img,
 video,
 svg {
@@ -53,17 +105,46 @@ svg {
 }
 
 /* ------------------ Mobile Nav Overlay ------------------ */
+.site-nav__backdrop {
+    display: none;
+}
+
+.site-nav__backdrop.mobile-open {
+    display: block;
+    position: fixed;
+    inset: 4rem 0 0 0;
+    z-index: 44;
+    background: rgba(15, 23, 42, 0.42);
+    backdrop-filter: blur(4px);
+}
+
 .site-nav__list.mobile-open {
     display: flex;
     flex-direction: column;
     position: fixed;
-    inset: 4rem 0 0 0;
+    top: 4rem;
+    right: 0;
+    bottom: 0;
+    width: 20rem;
+    max-width: 86vw;
     background: white;
-    padding: 2rem 1.5rem;
-    gap: 1.5rem;
+    padding: 1.25rem;
+    gap: 0.5rem;
     z-index: 45;
-    border-top: 1px solid #e2e8f0;
+    border-left: 1px solid #e2e8f0;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.28);
     font-size: 1rem;
+    overflow-y: auto;
+}
+
+.site-nav__list.mobile-open a {
+    display: block;
+    border-radius: 8px;
+    padding: 0.75rem 0.875rem;
+}
+
+.site-nav__list.mobile-open a:hover {
+    background: #fef2f2;
 }
 
 /* ------------------ Feature Icon Colors ------------------ */
