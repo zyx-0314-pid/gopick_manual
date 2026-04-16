@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>GoPick — Assessment Center Manual</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=20260416-nav-flow">
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -23,14 +23,11 @@
   <body class="bg-white text-slate-800 antialiased">
 
     <!-- ==================== Header ==================== -->
-    <header class="site-header fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100" role="banner">
+    <header class="site-header fixed top-0 inset-x-0 z-50 bg-white border-b border-slate-100 shadow-sm" role="banner">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <a href="#" class="inline-flex items-center" aria-label="GoPick home">
-          <img src="shared/img/gopick-logo.svg" alt="GoPick Solutions" class="h-10 w-auto">
+          <img src="shared/img/gopick-logo.svg" alt="GoPick Solutions" class="h-8 w-auto sm:h-10">
         </a>
-        <button id="navToggle" class="md:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100" aria-label="Toggle navigation" aria-expanded="false">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
         <nav id="mainNav" class="site-nav" role="navigation" aria-label="Main navigation">
           <ul class="site-nav__list hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
             <li><a class="hover:text-brand transition-colors" href="#features">Features</a></li>
@@ -41,6 +38,9 @@
             <li><a class="hover:text-brand transition-colors" href="#contributors">Contributors</a></li>
           </ul>
         </nav>
+        <button id="navToggle" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700 shadow-sm transition-colors hover:border-brand hover:bg-red-50 hover:text-brand" aria-label="Toggle navigation" aria-expanded="false">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
       </div>
     </header>
 
@@ -158,7 +158,7 @@
 
     <script src="shared/js/dataLoader.js" defer></script>
     <script src="shared/js/contentBinder.js" defer></script>
-    <script src="shared/js/ui/nav.js" defer></script>
+    <script src="shared/js/ui/nav.js?v=20260416-nav-flow" defer></script>
     <script src="shared/js/ui/reveal.js" defer></script>
     <script src="shared/js/ui/hero.js" defer></script>
     <script src="shared/js/main.js" defer></script>

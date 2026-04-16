@@ -6,6 +6,56 @@
         toggleButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
     }
 
+    function getBackdrop() {
+        var backdrop = document.getElementById('mainNavBackdrop');
+        if (backdrop) return backdrop;
+
+        backdrop = document.createElement('button');
+        backdrop.type = 'button';
+        backdrop.id = 'mainNavBackdrop';
+        backdrop.className = 'site-nav__backdrop';
+        backdrop.setAttribute('aria-label', 'Close navigation');
+        document.body.appendChild(backdrop);
+        return backdrop;
+    }
+
+    function setBodyLocked(isLocked) {
+        document.body.classList.toggle('overflow-hidden', isLocked);
+    }
+
+    function closeMobileNav() {
+        var toggleButton = document.getElementById('navToggle');
+        var navContainer = document.getElementById('mainNav');
+        if (!navContainer) return;
+        var navList = navContainer.querySelector('.site-nav__list');
+        var backdrop = getBackdrop();
+        if (!navList) return;
+
+        navList.classList.add('hidden');
+        navList.classList.remove('mobile-open');
+        backdrop.classList.remove('mobile-open');
+        setAriaExpanded(toggleButton, false);
+        setBodyLocked(false);
+    }
+
+    function openMobileNav() {
+        var toggleButton = document.getElementById('navToggle');
+        var navContainer = document.getElementById('mainNav');
+        if (!navContainer) return;
+        var navList = navContainer.querySelector('.site-nav__list');
+        var backdrop = getBackdrop();
+        if (!navList) return;
+
+        navList.classList.remove('hidden');
+        navList.classList.add('mobile-open');
+        backdrop.classList.add('mobile-open');
+        setAriaExpanded(toggleButton, true);
+        setBodyLocked(true);
+
+        var firstLink = navList.querySelector('a, button');
+        if (firstLink) firstLink.focus();
+    }
+
     function toggleMobileNav() {
         var toggleButton = document.getElementById('navToggle');
         var navContainer = document.getElementById('mainNav');
@@ -16,15 +66,9 @@
         var isCurrentlyHidden = navList.classList.contains('hidden') && !navList.classList.contains('mobile-open');
 
         if (isCurrentlyHidden) {
-            navList.classList.remove('hidden');
-            navList.classList.add('mobile-open');
-            setAriaExpanded(toggleButton, true);
-            var firstLink = navList.querySelector('a, button');
-            if (firstLink) firstLink.focus();
+            openMobileNav();
         } else {
-            navList.classList.add('hidden');
-            navList.classList.remove('mobile-open');
-            setAriaExpanded(toggleButton, false);
+            closeMobileNav();
             toggleButton.focus();
         }
     }
@@ -36,10 +80,7 @@
             if (clickEvent.target.tagName === 'A') {
                 var navList = navContainer.querySelector('.site-nav__list');
                 if (navList && navList.classList.contains('mobile-open')) {
-                    navList.classList.add('hidden');
-                    navList.classList.remove('mobile-open');
-                    var toggleButton = document.getElementById('navToggle');
-                    setAriaExpanded(toggleButton, false);
+                    closeMobileNav();
                 }
             }
         });
@@ -52,6 +93,13 @@
             toggleButton.setAttribute('aria-expanded', 'false');
         }
         toggleButton.addEventListener('click', toggleMobileNav);
+        getBackdrop().addEventListener('click', closeMobileNav);
+        window.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') closeMobileNav();
+        });
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 768) closeMobileNav();
+        });
     }
 
     function init() {
