@@ -381,13 +381,19 @@
         });
     }
 
+    function getSidebarLinkClass(level) {
+        var depth = Math.min(level, 5);
+        var indentClasses = ['', ' pl-3 border-l border-slate-100', ' pl-6 border-l border-slate-100', ' pl-9 border-l border-slate-100', ' pl-12 border-l border-slate-100', ' pl-16 border-l border-slate-100'];
+        var sizeClass = level === 0 ? ' text-sm' : (level < 3 ? ' text-[13px]' : ' text-xs');
+        return 'block text-slate-600 hover:text-brand transition-colors py-1' + sizeClass + indentClasses[depth];
+    }
+
     function createSidebarItem(section, level) {
         var li = document.createElement('li');
         li.className = 'sidebar-item';
 
         var a = document.createElement('a');
-        var indentClass = level === 0 ? '' : (level === 1 ? ' pl-3 border-l border-slate-100' : ' pl-6 border-l border-slate-100');
-        a.className = 'block text-slate-600 hover:text-brand transition-colors py-1' + indentClass;
+        a.className = getSidebarLinkClass(level);
         a.href = '#' + section.id;
         a.dataset.target = section.id;
         a.textContent = section.title;
