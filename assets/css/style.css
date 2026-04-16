@@ -178,6 +178,11 @@ svg {
     background: #fff1f2;
 }
 
+.feature-icon--meter {
+    color: #0f766e;
+    background: #ccfbf1;
+}
+
 .feature-icon--default {
     color: #64748b;
     background: #f1f5f9;
