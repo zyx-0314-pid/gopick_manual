@@ -28,6 +28,12 @@
             "description": "Review RBAC permissions, account hierarchy, and role capabilities for GoPick users and account types.",
             "icon": "shield",
             "target": "roles-premission-management"
+        },
+        {
+            "title": "Meters Management",
+            "description": "Manage meter requests, orders, transfers, balances, and meter logs across account hierarchies.",
+            "icon": "meter",
+            "target": "meters-management"
         }
     ],
     "roles": [
