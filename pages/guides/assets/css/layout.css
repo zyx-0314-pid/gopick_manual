@@ -1,0 +1,12 @@
+html {
+    scroll-behavior: smooth;
+}
+
+[tabindex="-1"]:focus {
+    outline: none;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
