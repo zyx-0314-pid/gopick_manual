@@ -42,6 +42,23 @@
             "target": "reports-management"
         }
     ],
+    "guides": [
+        {
+            "title": "Manual Authoring Guide",
+            "description": "How to create and update manual pages in Markdown while keeping content, UI, and code uniform.",
+            "url": "pages/guides/index.html#manual-authoring-guide"
+        },
+        {
+            "title": "Documentation Standard",
+            "description": "The source-of-truth structure for steps, rules, expected results, notes, and technical references.",
+            "url": "pages/guides/index.html#documentation-standard"
+        },
+        {
+            "title": "Non-Technical Template",
+            "description": "A simpler copy template for readers who need clear instructions, important rules, and what to expect.",
+            "url": "pages/guides/index.html#non-technical-template"
+        }
+    ],
     "roles": [
         {
             "name": "Administrator",
@@ -191,3 +208,4 @@
         }
     ]
 }
+

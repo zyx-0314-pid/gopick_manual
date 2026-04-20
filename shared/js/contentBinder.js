@@ -42,6 +42,34 @@
         return li;
     }
 
+
+    function createGuideCard(guide) {
+        var article = document.createElement('article');
+        article.className = 'bg-white rounded-xl border border-slate-100 p-5 shadow-sm';
+
+        var title = document.createElement('h3');
+        title.className = 'text-base font-bold text-slate-900 mb-2';
+        title.textContent = guide.title || 'Guide';
+
+        var description = document.createElement('p');
+        description.className = 'text-sm text-slate-500 leading-relaxed';
+        description.textContent = guide.description || '';
+
+        var link = document.createElement('a');
+        link.className = 'mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand hover:text-brand-dark transition-colors';
+        link.href = guide.url || '#';
+        link.textContent = 'Open guide';
+
+        var icon = document.createElement('span');
+        icon.setAttribute('aria-hidden', 'true');
+        icon.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>';
+        link.appendChild(icon);
+
+        article.appendChild(title);
+        article.appendChild(description);
+        article.appendChild(link);
+        return article;
+    }
     function createRoleCard(role) {
         var div = document.createElement('div');
         var badgeClass = 'role-badge--' + role.name.toLowerCase().replace(/\s+/g, '-');
@@ -88,6 +116,16 @@
         });
     }
 
+
+    function fillGuides(data) {
+        if (!data || !data.guides) return;
+        var listNode = document.getElementById('guidesList');
+        if (!listNode) return;
+        listNode.innerHTML = '';
+        data.guides.forEach(function (guideData) {
+            listNode.appendChild(createGuideCard(guideData));
+        });
+    }
     function fillAbout(data) {
         var contentNode = document.getElementById('aboutContent');
         if (!contentNode || !data) return;
@@ -259,6 +297,7 @@
     function init(data) {
         fillHero(data);
         fillFeatures(data);
+        fillGuides(data);
         fillAbout(data);
         fillRoles(data);
         fillModules(data);

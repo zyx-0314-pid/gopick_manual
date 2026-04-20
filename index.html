@@ -31,6 +31,7 @@
         <nav id="mainNav" class="site-nav" role="navigation" aria-label="Main navigation">
           <ul class="site-nav__list hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
             <li><a class="hover:text-brand transition-colors" href="#features">Features</a></li>
+            <li><a class="hover:text-brand transition-colors" href="#guides">Guides</a></li>
             <li><a class="hover:text-brand transition-colors" href="#roles">User Roles</a></li>
             <li><a class="hover:text-brand transition-colors" href="#modules">Modules</a></li>
             <li><a class="hover:text-brand transition-colors" href="#hierarchy">Hierarchy</a></li>
@@ -79,6 +80,17 @@
         </div>
       </section>
 
+
+      <!-- ==================== Guides ==================== -->
+      <section id="guides" class="bg-surface-muted py-16 md:py-24 opacity-0 translate-y-4" aria-labelledby="guidesTitle">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+          <div class="text-center max-w-2xl mx-auto mb-12">
+            <h2 id="guidesTitle" class="text-3xl md:text-4xl font-extrabold text-slate-900">Manual Guides</h2>
+            <p class="mt-3 text-slate-500">Standards and templates for creating and updating GoPick manual pages.</p>
+          </div>
+          <div id="guidesList" class="grid gap-5 grid-cols-1 md:grid-cols-3"></div>
+        </div>
+      </section>
       <!-- ==================== About ==================== -->
       <section id="about" class="bg-surface-muted py-16 md:py-24 opacity-0 translate-y-4" aria-labelledby="aboutTitle">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
@@ -157,9 +169,9 @@
     </footer>
 
     <script src="shared/js/dataLoader.js?v=20260416-meters" defer></script>
-    <script src="shared/js/contentBinder.js?v=20260416-meters" defer></script>
+    <script src="shared/js/contentBinder.js?v=20260420-guides" defer></script>
     <script src="shared/js/ui/nav.js?v=20260416-nav-flow" defer></script>
-    <script src="shared/js/ui/reveal.js" defer></script>
+    <script src="shared/js/ui/reveal.js?v=20260420-guides" defer></script>
     <script src="shared/js/ui/hero.js" defer></script>
     <script src="shared/js/main.js" defer></script>
   </body>

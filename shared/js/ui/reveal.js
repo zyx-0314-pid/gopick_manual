@@ -16,6 +16,7 @@
         var introSelectors = [
             '#hero .hero__content',
             '#features > div > .opacity-0',
+            '#guides',
             '#about',
             '#roles',
             '#modules',
@@ -34,7 +35,7 @@
 
     function setupScrollReveal() {
         if (!('IntersectionObserver' in window)) return;
-        var revealTargets = document.querySelectorAll('#featuresList > li, #about, #roles, #modules, #hierarchy, #access, #contributors, #modulesList > div');
+        var revealTargets = document.querySelectorAll('#featuresList > li, #guides, #guidesList > article, #about, #roles, #modules, #hierarchy, #access, #contributors, #modulesList > div');
         var scrollObserver = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
