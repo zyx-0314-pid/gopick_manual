@@ -34,6 +34,12 @@
             "description": "Manage meter requests, orders, transfers, balances, and meter logs across account hierarchies.",
             "icon": "meter",
             "target": "meters-management"
+        },
+        {
+            "title": "Reports Management",
+            "description": "Search usage records, download available reports, send generated reports, and export assessment data.",
+            "icon": "bar-chart",
+            "target": "reports-management"
         }
     ],
     "roles": [
