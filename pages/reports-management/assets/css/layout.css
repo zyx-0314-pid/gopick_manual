@@ -1,0 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
+[tabindex="-1"]:focus {
+    outline: none;
+}
