@@ -27,7 +27,7 @@
             'Activity logging and audit trails',
             'Test security settings and norms management'
         ],
-        about: `GoPick is a browser-based, multi-tenant assessment platform that supports the full lifecycle of online testing: building item banks, creating assessments, scheduling candidates, running secure test sessions, and producing detailed reports. Roles include Administrators, Distributors, Client Managers, and Candidates; each role has scoped access to features and data.`,
+        about: `GoPick is a browser-based, multi-tenant assessment platform that supports the full lifecycle of online testing: creating assessments, scheduling candidates, running secure test sessions, and producing detailed reports. Roles include Administrators, Distributors, Client Managers, and Candidates; each role has scoped access to features and data.`,
         contact: `Admin / Manager portal: http://localhost:82/app/administrator/\nCandidate portal: http://localhost:82/app/\nDatabase admin (admins only): http://localhost:8080/\nIf you cannot log in or need account setup, contact your site administrator.`
     };
 
