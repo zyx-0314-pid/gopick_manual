@@ -165,7 +165,7 @@
             var levelDepth = typeof levelItem === 'string' ? levelIndex : (levelItem.level || 0);
             var indentRem = levelDepth * 1.5;
             var isFirst = levelDepth === 0;
-            var dotColor = levelDepth === 0 ? 'bg-brand' : (levelDepth < 3 ? 'bg-indigo-400' : 'bg-slate-300');
+            var dotColor = (typeof levelItem === 'string' ? '' : levelItem.dotColor) || (levelDepth === 0 ? 'bg-brand' : (levelDepth < 3 ? 'bg-indigo-400' : 'bg-slate-300'));
 
             treeHtml +=
                 '<div class="flex items-center gap-3 py-2" style="padding-left: ' + indentRem + 'rem">' +

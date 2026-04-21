@@ -1,7 +1,7 @@
 {
     "hero": {
         "title": "GoPick Assessment Center",
-        "subtitle": "The complete browser-based platform for building, scheduling, delivering, and reporting on online assessments — from item banks to detailed candidate reports.",
+        "subtitle": "The complete browser-based platform for building, scheduling, delivering, and reporting on online assessments — with a focus on clear, detailed candidate reports.",
         "ctaText": "Explore the Platform"
     },
     "features": [
@@ -13,13 +13,13 @@
         },
         {
             "title": "Assessment Management",
-            "description": "Build tests from scratch, import via spreadsheet, configure timers & randomization, and organize assessments by category.",
+            "description": "Easily navigate your assessment roster and quickly organize assessments by category.​",
             "icon": "clipboard",
             "target": "assessment-management"
         },
         {
             "title": "Candidate Management",
-            "description": "Register candidates individually or in bulk, manage profiles, assign credentials, and track assignment history.",
+            "description": "Register candidates individually or in bulk, manage profiles, assign credentials, and track login history.​",
             "icon": "user-check",
             "target": "candidate-management"
         },
@@ -74,7 +74,7 @@
         {
             "name": "Distributor",
             "scope": "Multi-client oversight",
-            "description": "Manages multiple client accounts, oversees their assessments and candidates, and views aggregated results across their client base."
+            "description": "Manages multiple client accounts, oversees their assessments, and monitor meters.​"
         },
         {
             "name": "Client Manager",
@@ -84,13 +84,13 @@
         {
             "name": "Candidate",
             "scope": "Self-service testing",
-            "description": "Logs in through the candidate portal, completes assigned assessments, and views results when permitted."
+            "description": "Logs in through the candidate portal and completes assigned assessments.​"
         }
     ],
     "modules": [
         {
             "name": "Dashboard",
-            "description": "Real-time overview of active candidates, in-progress assessments, scheduled sessions, and result summaries with date filters."
+            "description": "Real-time overview of candidate summary, announcements, and current meters.​"
         },
         {
             "name": "Content Manager",
@@ -110,7 +110,7 @@
         },
         {
             "name": "Test Security",
-            "description": "Anti-cheating controls including navigation restrictions, session monitoring, and suspicious behavior flagging."
+            "description": "Ensures that assessment integrity measures include navigation limits, session oversight, and alerts for restricted or suspicious activity."
         }
     ],
     "about": "GoPick is a browser-based, multi-tenant assessment platform purpose-built for organizations that need to create, administer, and manage online assessments at scale. It supports the full assessment lifecycle — from building item banks, to scheduling and delivering tests, to producing detailed candidate reports. A single installation can serve multiple independent client organizations, each managing their own candidates and results through a role-based hierarchy.",
@@ -133,55 +133,63 @@
         "levels": [
             {
                 "name": "Super Admin (IT)",
-                "level": 0
+                "level": 0,
+                "dotColor": "bg-brand"
             },
             {
                 "name": "Super Admin (ASD)",
-                "level": 0
+                "level": 0,
+                "dotColor": "bg-brand"
             },
             {
                 "name": "Distributor",
-                "level": 1
+                "level": 1,
+                "dotColor": "bg-violet-500"
             },
             {
                 "name": "Administrator",
-                "level": 2
-            },
-            {
-                "name": "Self Registration",
-                "level": 2
+                "level": 2,
+                "dotColor": "bg-violet-500"
             },
             {
                 "name": "Sub Distributor",
-                "level": 2
+                "level": 2,
+                "dotColor": "bg-orange-500"
             },
             {
                 "name": "Administrator",
-                "level": 3
+                "level": 3,
+                "dotColor": "bg-orange-500"
             },
             {
-                "name": "Self Registration",
-                "level": 3
-            },
-            {
-                "name": "Client",
-                "level": 3
-            },
-            {
-                "name": "Administrator",
-                "level": 4
-            },
-            {
-                "name": "Sub Client",
-                "level": 4
+                "name": "Client Account",
+                "level": 3,
+                "dotColor": "bg-lime-500"
             },
             {
                 "name": "Administrator",
-                "level": 5
+                "level": 4,
+                "dotColor": "bg-lime-500"
             },
             {
-                "name": "Self Registration",
-                "level": 5
+                "name": "Self Registered",
+                "level": 4,
+                "dotColor": "bg-lime-500"
+            },
+            {
+                "name": "Sub-Account",
+                "level": 4,
+                "dotColor": "bg-sky-300"
+            },
+            {
+                "name": "Administrator",
+                "level": 5,
+                "dotColor": "bg-sky-300"
+            },
+            {
+                "name": "Self Registered",
+                "level": 5,
+                "dotColor": "bg-sky-300"
             }
         ]
     },
@@ -214,5 +222,3 @@
         }
     ]
 }
-
-
