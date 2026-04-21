@@ -220,26 +220,26 @@
 
         data.contributors.forEach(function (contributor) {
             var card = document.createElement('article');
-            card.className = 'relative overflow-hidden rounded-lg border-2 border-red-100 bg-white p-3 shadow-lg shadow-slate-200/60';
+            card.className = 'relative min-w-0 overflow-hidden rounded-lg border-2 border-red-100 bg-white p-1.5 sm:p-2 md:p-2.5 xl:p-3 shadow-lg shadow-slate-200/60';
 
             var frame = document.createElement('div');
-            frame.className = 'rounded-md border border-slate-100 bg-slate-50 p-4';
+            frame.className = 'rounded-md border border-slate-100 bg-slate-50 p-2 sm:p-2.5 md:p-3 xl:p-4';
 
             var topRow = document.createElement('div');
-            topRow.className = 'mb-3 flex items-center justify-between gap-3';
+            topRow.className = 'mb-2 flex items-center justify-between gap-1.5 sm:gap-2';
 
             var period = document.createElement('p');
-            period.className = 'inline-flex rounded-md bg-brand px-3 py-1 text-xs font-bold uppercase tracking-wider text-white';
+            period.className = 'inline-flex max-w-full rounded-md bg-brand px-1.5 py-0.5 sm:px-2 md:px-2.5 text-[9px] sm:text-[10px] md:text-[10px] xl:text-xs font-bold uppercase tracking-wide text-white';
             period.textContent = contributor.period || '';
 
             topRow.appendChild(period);
             frame.appendChild(topRow);
 
             var avatarPanel = document.createElement('div');
-            avatarPanel.className = 'mb-5 flex h-44 items-center justify-center overflow-hidden rounded-md border border-red-100 bg-gradient-to-br from-white via-red-50 to-slate-100';
+            avatarPanel.className = 'mb-2 sm:mb-3 md:mb-3 xl:mb-5 flex h-20 sm:h-24 md:h-24 lg:h-28 xl:h-44 items-center justify-center overflow-hidden rounded-md border border-red-100 bg-gradient-to-br from-white via-red-50 to-slate-100';
 
             var avatar = document.createElement('img');
-            avatar.className = 'h-full w-full object-contain p-3';
+            avatar.className = 'h-full w-full object-contain p-1 sm:p-1.5 md:p-1.5 xl:p-3';
             avatar.src = contributor.avatarUrl || 'https://api.dicebear.com/9.x/notionists/svg?seed=GoPick';
             avatar.alt = contributor.name ? contributor.name + ' avatar' : 'Contributor avatar';
             avatar.loading = 'lazy';
@@ -247,11 +247,11 @@
             frame.appendChild(avatarPanel);
 
             var name = document.createElement('h3');
-            name.className = 'text-2xl font-extrabold text-slate-900';
+            name.className = 'text-[11px] sm:text-sm md:text-base lg:text-lg xl:text-2xl font-extrabold text-slate-900 leading-tight break-words';
             name.textContent = contributor.name || '';
 
             var role = document.createElement('p');
-            role.className = 'mt-2 rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-600 ring-1 ring-slate-100';
+            role.className = 'mt-1.5 sm:mt-2 rounded-md bg-white px-1.5 sm:px-2 md:px-2.5 py-1.5 sm:py-2 text-[10px] sm:text-[11px] md:text-[11px] lg:text-xs xl:text-sm font-semibold text-slate-600 ring-1 ring-slate-100 break-words';
             role.textContent = contributor.role || '';
 
             frame.appendChild(name);
@@ -259,20 +259,22 @@
 
             if (contributor.links && contributor.links.length) {
                 var links = document.createElement('div');
-                links.className = 'mt-5 grid gap-3 sm:grid-cols-3';
+                links.className = 'mt-2 sm:mt-3 md:mt-3 xl:mt-5 grid grid-cols-3 gap-1 sm:gap-1.5 xl:gap-3';
 
                 contributor.links.forEach(function (item) {
                     var link = document.createElement('a');
-                    link.className = 'inline-flex items-center justify-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-3 text-sm font-bold text-slate-700 transition-colors hover:border-brand hover:bg-red-50 hover:text-brand';
+                    link.className = 'inline-flex min-w-0 items-center justify-center gap-1 rounded-md border border-slate-200 bg-white px-1 py-1.5 sm:px-1.5 sm:py-2 xl:px-2 xl:py-2 text-[10px] xl:text-sm font-bold text-slate-700 transition-colors hover:border-brand hover:bg-red-50 hover:text-brand';
                     link.href = item.url || '#';
                     link.target = '_blank';
                     link.rel = 'noopener noreferrer';
+                    link.setAttribute('aria-label', item.label || 'Link');
 
                     var icon = document.createElement('span');
                     icon.className = 'inline-flex text-brand';
                     icon.innerHTML = getPlatformIconSvg(item.label);
 
                     var label = document.createElement('span');
+                    label.className = 'hidden xl:inline truncate';
                     label.textContent = item.label || 'Link';
 
                     link.appendChild(icon);

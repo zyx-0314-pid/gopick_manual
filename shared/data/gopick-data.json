@@ -219,6 +219,12 @@
             "name": "Ana Katrine Sison",
             "role": "QA Developer",
             "avatarUrl": "https://api.dicebear.com/9.x/notionists/svg?seed=Ana"
+        },
+        {
+            "period": "2026",
+            "name": "Emelyn Pami",
+            "role": "Assessment Service Manager",
+            "avatarUrl": "https://api.dicebear.com/9.x/notionists/svg?seed=EPmi"
         }
     ]
 }
