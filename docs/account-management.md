@@ -168,7 +168,7 @@ From the View Account you can navigate to the followings:
 - [Other Account Settings](#other-account-settings)
 - [List of Users](#list-of-users)
 
-## View: Sections
+## View: Section
 ### Account Information
 Displays the basic account information of the user.
 
@@ -250,7 +250,7 @@ Allows to unblock account
 > - Access is controlled via `Admin` `RBAC policies`.
 > - For their own account they are not able to access this.
 
-## Update: Sections
+## Update: Section
 1. Account Information
 Allows updating of the following information:
 - Account Name
