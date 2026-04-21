@@ -60,7 +60,11 @@
                             {
                                 id: 'activate-ac-api-access-active',
                                 title: 'Activate AC-API Access',
-                                description: 'Currently blocked and not yet documented.'
+                                description: 'Currently not working and not yet documented.',
+                                warning: [
+                                    'Currently not working.',
+                                    'Not yet documented.'
+                                ]
                             },
                             {
                                 id: 'archive-active-user',
@@ -155,7 +159,11 @@
                             {
                                 id: 'activate-ac-api-access-archived',
                                 title: 'Activate AC-API Access',
-                                description: 'Currently blocked and not yet documented.'
+                                description: 'Currently not working and not yet documented.',
+                                warning: [
+                                    'Currently not working.',
+                                    'Not yet documented.'
+                                ]
                             },
                             {
                                 id: 'archive-archived-user',
@@ -289,6 +297,29 @@
             rulesWrap.appendChild(rulesHeading);
             rulesWrap.appendChild(createBulletList(section.rules));
             target.appendChild(rulesWrap);
+        }
+
+        if (section.warning && section.warning.length) {
+            const warningWrap = document.createElement('div');
+            warningWrap.className = 'mt-5 rounded-lg border border-rose-200 bg-rose-50 p-5';
+
+            const warningHeader = document.createElement('div');
+            warningHeader.className = 'mb-3 flex items-center gap-2';
+
+            const warningIcon = document.createElement('span');
+            warningIcon.className = 'inline-flex h-5 w-5 items-center justify-center text-rose-700';
+            warningIcon.setAttribute('aria-hidden', 'true');
+            warningIcon.innerHTML = '<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>';
+
+            const warningHeading = document.createElement('h3');
+            warningHeading.className = 'font-semibold text-rose-900';
+            warningHeading.textContent = 'Warning';
+
+            warningHeader.appendChild(warningIcon);
+            warningHeader.appendChild(warningHeading);
+            warningWrap.appendChild(warningHeader);
+            warningWrap.appendChild(createBulletList(section.warning));
+            target.appendChild(warningWrap);
         }
     }
 
@@ -468,3 +499,7 @@
 
     global.__usersContent = usersContent;
 })(window);
+
+
+
+

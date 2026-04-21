@@ -30,8 +30,9 @@ Able to update User Informations:
 > - 1 number
 
 #### Activate AC-API Access
-! Currently Blocked
-! Not yet documented
+> Warning:
+> - Currently not working.
+> - Not yet documented.
 
 #### Archive
 Able to archive user
@@ -85,8 +86,9 @@ Able to update archived User Information:
 > - Some Account Type has no parent: No Parents: Administrator (ASD), Super Admin (IT), API Access, Test Creator
 
 #### Activate AC-API Access
-! Currently Blocked
-! Not yet documented
+> Warning:
+> - Currently not working.
+> - Not yet documented.
 
 #### Archive
 Able to archive archived user
@@ -110,3 +112,5 @@ Retrieve selected archived user.
 2. Select `View Active Users`
 3. Select check boxes of user want to be retrieve
 4. In `Bulk Action` drop down select `Retrieve` 
+
+
