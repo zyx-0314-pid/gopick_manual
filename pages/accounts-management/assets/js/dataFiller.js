@@ -74,15 +74,14 @@
             'Super Admin (ASD)',
             '  Distributor',
             '    Administrator',
-            '    Self Registration',
             '    Sub Distributor',
             '      Administrator',
-            '      Self Registration',
-            '      Client',
+            '      Client Account',
             '        Administrator',
-            '        Sub Client',
+            '        Self Registered',
+            '        Sub-Account',
             '          Administrator',
-            '          Self Registration'
+            '          Self Registered'
         ],
         legends: [
             { sym: 'X', label: 'Hard-coded available', cls: 'rbac-x' },
