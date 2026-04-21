@@ -461,34 +461,29 @@
     }
 
     function setupSidebarVisibility() {
+        var sidebar = document.getElementById('docSidebarList');
+        if (!sidebar) return;
+
         function updateFromScroll() {
             var activeId = getVisibleSidebarTarget();
             if (activeId) setSidebarBranch(activeId);
         }
+
+        sidebar.querySelectorAll('a[data-target]').forEach(function (link) {
+            link.addEventListener('click', function () {
+                setSidebarBranch(this.dataset.target);
+            });
+        });
 
         updateFromScroll();
         window.addEventListener('hashchange', function () { setTimeout(updateFromScroll, 50); });
         window.addEventListener('scroll', updateFromScroll, { passive: true });
     }
 
-    function scrollToHash() {
-        var id = (location.hash || '').replace('#', '');
-        if (!id) return;
-        var el = document.getElementById(id);
-        if (el) {
-            setTimeout(function () {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                el.focus && el.focus();
-            }, 20);
-        }
-    }
-
     function renderAll() {
         renderSidebar();
         renderAllSections();
-        scrollToHash();
         setupSidebarVisibility();
-        window.addEventListener('hashchange', scrollToHash);
     }
 
     if (document.readyState === 'loading') {
