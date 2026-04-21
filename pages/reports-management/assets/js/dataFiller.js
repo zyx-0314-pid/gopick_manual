@@ -279,24 +279,10 @@
         window.addEventListener('scroll', updateFromScroll, { passive: true });
     }
 
-    function scrollToHash() {
-        var id = (location.hash || '').replace('#', '');
-        if (!id) return;
-        var el = document.getElementById(id);
-        if (el) {
-            setTimeout(function () {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                el.focus && el.focus();
-            }, 20);
-        }
-    }
-
     function renderAll() {
         renderSidebar();
         renderAllSections();
-        scrollToHash();
         setupSidebarVisibility();
-        window.addEventListener('hashchange', scrollToHash);
     }
 
     if (document.readyState === 'loading') {
