@@ -12,22 +12,16 @@
             "target": "accounts-management"
         },
         {
-            "title": "Assessment Management",
-            "description": "Easily navigate your assessment roster and quickly organize assessments by category.​",
-            "icon": "clipboard",
-            "target": "assessment-management"
-        },
-        {
             "title": "Candidate Management",
             "description": "Register candidates individually or in bulk, manage profiles, assign credentials, and track login history.​",
             "icon": "user-check",
             "target": "candidate-management"
         },
         {
-            "title": "Roles/Permissions Management",
-            "description": "Review RBAC permissions, account hierarchy, and role capabilities for GoPick users and account types.",
-            "icon": "shield",
-            "target": "roles-premission-management"
+            "title": "Assessment Management",
+            "description": "Easily navigate your assessment roster and quickly organize assessments by category.​",
+            "icon": "clipboard",
+            "target": "assessment-management"
         },
         {
             "title": "Meters Management",
@@ -46,6 +40,12 @@
             "description": "Search, update, archive, delete, export, and retrieve user account records.",
             "icon": "users",
             "target": "users-management"
+        },
+        {
+            "title": "Roles/Permissions Management",
+            "description": "Review RBAC permissions, account hierarchy, and role capabilities for GoPick users and account types.",
+            "icon": "shield",
+            "target": "roles-premission-management"
         }
     ],
     "guides": [
