@@ -68,6 +68,10 @@
                                     'Set Assessment Invitation Email. This is required and autofilled; options include Candidate Email, Report Recipient, and Custom Email.',
                                     'If Custom Email is selected, fill in the Custom Assessment Invitation Email entry.',
                                     'Fill in Backup Email. This is required and autofilled.'
+                                ],
+                                rules: [
+                                    'Assessment Report Recipient uses email checking on server side.',
+                                    'Assessment Report Recipient can enter multiple emails using commas as separator.'
                                 ]
                             },
                             {
