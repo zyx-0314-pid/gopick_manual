@@ -123,6 +123,10 @@ Able to add more Assessment to candidate
 > - When a `test battery` is selected, `all single assessments` included in that battery are locked.
 > - When a `test battery` is selected, `all other test batteries` that share at least one common `single assessment` are also locked.
 
+> System:
+> - Scheduling new assessment will check what type of scheduling used in the candidates: 
+>   - `Data Encoding` - Option to encode answer open
+
 #### Download/View Reports of Assessments
 Able to download/view Assessments Reports
 
@@ -156,6 +160,22 @@ Other Functionalities available
 
 ##### View Response
 View the Responses of the Candidate
+
+##### Encode Answer
+Can Input the answer of candidates via excel
+
+1. Candidates Section > View Candidate Page
+2. Selecting Candidate
+  - (Admins) Select Distributor Account > Select Candidate to View
+  - (Accounts) Select Candidate to View
+3. Actions > View Assessment
+5. Select the `Cog/Settings` icon from Actions column
+6. Select `Encode Answer`
+
+> Rules:
+> - Allowed Users only: Super Admin IT and ASD (need Verification)
+> - Assessment is not: and video interview
+> - Schedule Type is `Data Encoding`
 
 ##### Change Norm
 Able to update the norm used to create the report of the assessment

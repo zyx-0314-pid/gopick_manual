@@ -11,8 +11,62 @@
         document.body.classList.toggle('overflow-hidden', isLocked);
     }
 
+    function highlightVerificationNeeded(root) {
+        if (!root) return;
+
+        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+            acceptNode: function (node) {
+                if (!node.nodeValue || node.nodeValue.indexOf('Verification is needed') === -1) {
+                    return NodeFilter.FILTER_REJECT;
+                }
+
+                var parent = node.parentNode;
+                if (!parent || !parent.parentNode) return NodeFilter.FILTER_REJECT;
+                if (parent.nodeName === 'SCRIPT' || parent.nodeName === 'STYLE') return NodeFilter.FILTER_REJECT;
+                if (parent.classList && parent.classList.contains('manual-verification-highlight')) return NodeFilter.FILTER_REJECT;
+
+                return NodeFilter.FILTER_ACCEPT;
+            }
+        });
+
+        var textNodes = [];
+        var currentNode;
+        while ((currentNode = walker.nextNode())) {
+            textNodes.push(currentNode);
+        }
+
+        textNodes.forEach(function (textNode) {
+            var fragment = document.createDocumentFragment();
+            var value = textNode.nodeValue;
+            var phrase = 'Verification is needed';
+            var startIndex = 0;
+            var matchIndex = value.indexOf(phrase, startIndex);
+
+            while (matchIndex !== -1) {
+                if (matchIndex > startIndex) {
+                    fragment.appendChild(document.createTextNode(value.slice(startIndex, matchIndex)));
+                }
+
+                var emphasis = document.createElement('strong');
+                emphasis.className = 'manual-verification-highlight font-bold text-red-600';
+                emphasis.textContent = phrase;
+                fragment.appendChild(emphasis);
+
+                startIndex = matchIndex + phrase.length;
+                matchIndex = value.indexOf(phrase, startIndex);
+            }
+
+            if (startIndex < value.length) {
+                fragment.appendChild(document.createTextNode(value.slice(startIndex)));
+            }
+
+            textNode.parentNode.replaceChild(fragment, textNode);
+        });
+    }
+
     function initManualNav() {
         var sidebarList = document.getElementById('docSidebarList');
+        highlightVerificationNeeded(document.getElementById('docsContent') || document.getElementById('section-render-root'));
         if (!sidebarList) return;
 
         var aside = sidebarList.closest('aside');
