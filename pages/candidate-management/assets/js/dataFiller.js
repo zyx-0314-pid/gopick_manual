@@ -76,12 +76,109 @@
                             },
                             {
                                 title: '3. Assign Products',
-                                items: ['Select Assessment.'],
-                                rules: ['Select at least one assessment.']
+                                items: [
+                                    'Select Assessment.',
+                                    'Select Assessments that Company or Organization can use.',
+                                    'Assessment categories include Cognitive or Knowledge-based Assessment, Competency-based Assessment, Survey, Behavioral or Personality-Based Assessment, and Test Battery.'
+                                ],
+                                rules: [
+                                    'Select at least one assessment.',
+                                    'When a single assessment is selected, all test batteries containing that assessment are locked.',
+                                    'When a test battery is selected, all single assessments included in that battery are locked.',
+                                    'When a test battery is selected, all other test batteries that share at least one common single assessment are also locked.'
+                                ]
                             },
                             {
                                 title: '4. Review Candidate Details',
                                 items: ['Review the candidate entry information before saving.']
+                            }
+                        ],
+                        children: [
+                            {
+                                id: 'candidate-schedule-details',
+                                title: 'Candidate Schedule Details',
+                                description: 'Additional fields used when the schedule type is Candidate Schedule.',
+                                groups: [
+                                    {
+                                        title: 'Test Requirements',
+                                        items: [
+                                            'Camera Requirements is required.',
+                                            'Mic Requirements is required.'
+                                        ]
+                                    },
+                                    {
+                                        title: 'Link Validity',
+                                        items: [
+                                            'Start Date is required.',
+                                            'Time Start is required and autofill.',
+                                            'Expiration Date is required and autofill.',
+                                            'Time Expiration is required and autofill.'
+                                        ]
+                                    },
+                                    {
+                                        title: 'Assessment Reminder',
+                                        items: [
+                                            'Assessment Reminder is required.',
+                                            'Reminder Frequency can be set using Every S, M, T, W, Th, F, or S checkboxes.',
+                                            'Every number of days interval can be set using 2, 3, 4, 5, or 6 day checkbox options.',
+                                            'Reminder Time is required and autofill.'
+                                        ]
+                                    },
+                                    {
+                                        title: 'Assessment Report Recipient',
+                                        items: [
+                                            'Use Candidate Email as Report Recipient.',
+                                            'Or use Report Recipient Email.',
+                                            'Report Recipient Email can have multiple recipients using commas as separator.'
+                                        ]
+                                    },
+                                    {
+                                        title: 'Assessment Invitation',
+                                        items: [
+                                            'Assessment Invitation Email is checkbox-based, required, and autofill.',
+                                            'Available options are Candidate Email, Report Recipient, and Custom Email.',
+                                            'If Custom Email is selected, fill in the Custom Assessment Invitation Email entry.'
+                                        ]
+                                    },
+                                    {
+                                        title: 'Backup Email',
+                                        items: [
+                                            'Email Entry is required and autofill.'
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                id: 'data-encoding-details',
+                                title: 'Data Encoding Details',
+                                description: 'Additional fields used when the schedule type is Data Encoding.',
+                                groups: [
+                                    {
+                                        title: 'Link Validity',
+                                        items: [
+                                            'Start Date is required.',
+                                            'Time Start is required and autofill.'
+                                        ]
+                                    },
+                                    {
+                                        title: 'Assessment Report Recipient',
+                                        items: [
+                                            'Use Candidate Email as Report Recipient.',
+                                            'Or use Report Recipient Email.',
+                                            'Report Recipient Email can have multiple recipients using commas as separator.'
+                                        ]
+                                    },
+                                    {
+                                        title: 'Backup Email',
+                                        items: [
+                                            'Email Entry is required and autofill.'
+                                        ]
+                                    }
+                                ],
+                                rules: [
+                                    'Assessment Report Recipient uses email checking on server side.',
+                                    'Assessment Report Recipient can enter multiple emails using commas as separator.'
+                                ]
                             }
                         ]
                     }
@@ -122,6 +219,10 @@
                                     'When a single assessment is selected, all test batteries containing that assessment are locked.',
                                     'When a test battery is selected, all single assessments included in that battery are locked.',
                                     'When a test battery is selected, all other test batteries that share at least one common single assessment are also locked.'
+                                ],
+                                systems: [
+                                    'When scheduling a new assessment, the system checks which scheduling type was previously used for the candidate.',
+                                    'If the candidate uses Data Encoding scheduling, the Encode Answer option becomes available.'
                                 ]
                             },
                             {
@@ -164,6 +265,23 @@
                                         id: 'view-response',
                                         title: 'View Response',
                                         description: 'View the responses of the candidate.'
+                                    },
+                                    {
+                                        id: 'encode-answer',
+                                        title: 'Encode Answer',
+                                        description: 'Input the answer of candidates via excel.',
+                                        steps: [
+                                            'Go to Candidates Section, then open the View Candidate page.',
+                                            'Select the candidate: Admins select Distributor Account, then select the candidate to view. Accounts select the candidate to view directly.',
+                                            'Open Actions, then select View Assessment.',
+                                            'Select the Cog or Settings icon from the Actions column.',
+                                            'Select Encode Answer.'
+                                        ],
+                                        rules: [
+                                            'Allowed users only: Super Admin IT and ASD. Verification is needed.',
+                                            'Assessment must not be a video interview.',
+                                            'Schedule Type is Data Encoding.'
+                                        ]
                                     },
                                     {
                                         id: 'change-norm',
@@ -239,14 +357,7 @@
         content.appendChild(createBulletList(group.items || []));
 
         if (group.rules && group.rules.length) {
-            const rulesWrap = document.createElement('div');
-            rulesWrap.className = 'mt-4 rounded-lg border border-amber-100 bg-amber-50 p-4';
-            const rulesHeading = document.createElement('h4');
-            rulesHeading.className = 'font-semibold text-amber-900 mb-2';
-            rulesHeading.textContent = 'Rules';
-            rulesWrap.appendChild(rulesHeading);
-            rulesWrap.appendChild(createBulletList(group.rules));
-            content.appendChild(rulesWrap);
+            content.appendChild(createCallout('Rules', group.rules, 'rules'));
         }
 
         wrap.appendChild(badge);
@@ -271,6 +382,27 @@
         return list;
     }
 
+    function createCallout(title, items, variant) {
+        const wrap = document.createElement('div');
+        const isRules = variant === 'rules';
+        const isSystem = variant === 'system';
+        wrap.className = isRules
+            ? 'mt-5 rounded-lg border border-amber-100 bg-amber-50 p-5'
+            : (isSystem
+                ? 'mt-5 rounded-lg border border-violet-100 bg-violet-50 p-5'
+                : 'mt-5 rounded-lg border border-slate-100 bg-slate-50 p-5');
+
+        const heading = document.createElement('h3');
+        heading.className = isRules
+            ? 'font-semibold text-amber-900 mb-3'
+            : (isSystem ? 'font-semibold text-violet-900 mb-3' : 'font-semibold text-slate-900 mb-3');
+        heading.textContent = title;
+
+        wrap.appendChild(heading);
+        wrap.appendChild(createBulletList(items));
+        return wrap;
+    }
+
     function renderGroups(container, groups) {
         groups.forEach(function (group) {
             const wrap = document.createElement('div');
@@ -283,14 +415,7 @@
             wrap.appendChild(createBulletList(group.items || []));
 
             if (group.rules && group.rules.length) {
-                const rulesWrap = document.createElement('div');
-                rulesWrap.className = 'mt-4 rounded-lg border border-amber-100 bg-amber-50 p-4';
-                const rulesHeading = document.createElement('h4');
-                rulesHeading.className = 'font-semibold text-amber-900 mb-2';
-                rulesHeading.textContent = 'Rules';
-                rulesWrap.appendChild(rulesHeading);
-                rulesWrap.appendChild(createBulletList(group.rules));
-                wrap.appendChild(rulesWrap);
+                wrap.appendChild(createCallout('Rules', group.rules, 'rules'));
             }
 
             container.appendChild(wrap);
@@ -321,14 +446,11 @@
         }
 
         if (section.rules) {
-            const rulesWrap = document.createElement('div');
-            rulesWrap.className = 'mt-5 rounded-lg border border-amber-100 bg-amber-50 p-5';
-            const rulesHeading = document.createElement('h3');
-            rulesHeading.className = 'font-semibold text-amber-900 mb-3';
-            rulesHeading.textContent = 'Rules';
-            rulesWrap.appendChild(rulesHeading);
-            rulesWrap.appendChild(createBulletList(section.rules));
-            target.appendChild(rulesWrap);
+            target.appendChild(createCallout('Rules', section.rules, 'rules'));
+        }
+
+        if (section.systems) {
+            target.appendChild(createCallout('System', section.systems, 'system'));
         }
     }
 
