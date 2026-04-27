@@ -18,7 +18,11 @@
 
 .rbac-table th:nth-child(1),
 .rbac-table td:nth-child(1) {
-    min-width: 12rem;
+    width: 10rem;
+    min-width: 10rem;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .rbac-table th:nth-child(2),
@@ -45,6 +49,17 @@
     position: sticky;
     top: 0;
     z-index: 5;
+    background-color: rgb(248 250 252);
+}
+
+.rbac-table thead th:first-child {
+    z-index: 12;
+}
+
+.rbac-table tbody td:first-child {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 @media (max-width: 1024px) {
@@ -61,8 +76,8 @@
 
     .rbac-table th:nth-child(1),
     .rbac-table td:nth-child(1) {
-        width: 9rem;
-        min-width: 9rem;
+        width: 7.5rem;
+        min-width: 7.5rem;
     }
 
     .rbac-table th:nth-child(2),
