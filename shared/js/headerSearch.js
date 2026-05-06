@@ -373,6 +373,15 @@
     }
 
     function init() {
+        var homeLogoLink = document.querySelector('a[aria-label="GoPick home"]');
+        if (homeLogoLink) {
+            homeLogoLink.addEventListener('click', function (event) {
+                var targetHref = homeLogoLink.getAttribute('href');
+                if (!targetHref) return;
+                event.preventDefault();
+                window.location.assign(targetHref);
+            });
+        }
         attachSearch(document.querySelector('header'));
     }
 

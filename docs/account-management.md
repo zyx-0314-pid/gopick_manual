@@ -77,6 +77,7 @@ Super Admin (ASD)
 - Country (required)
 - Business Phone Number (required)
 - Business Address (required)
+- Billing Address (required) or Checkbox to make similar with Business Address
 - Expiry date & TIme (required)
 - Actual Account Expiration (required and autofill)
 - Status (autofill)
@@ -84,6 +85,7 @@ Super Admin (ASD)
 > Rules: 
 > - Account Type: You can only select lower than your account type
 > - `Password` and `Confirm Password` should match'
+> - `Billing Address` can be similar to `Business Address` using `checkbox toggled` or enter `manually via input` that shows up when checkbox is off
 
 ---
 
@@ -309,3 +311,21 @@ Allows updating additional account-related configurations, including but not lim
 
 5. Review Account Details
 Able to review Account Information before saving
+
+6. Update Assessment
+Adding or Removing Assessments from an Account
+
+1. Accounts Section > View Accounts
+2. 
+  - A. Full Update Page:
+    1. Select an Account > Select Update Button (Blue Pencil)
+    2. Next for second page of Update Wizard
+    3. Find `Update Assessment`
+  - B. Specified Update Page:
+    1. Select an Account > Select View (Green Eye)
+    2. Select the `Assigned Assessment` tab
+    3. Select `Update`
+    4. Find `Update Assessment`
+
+> Rules:
+> If you cant find `Update Assessment`, Double check `roles and permission`

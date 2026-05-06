@@ -63,6 +63,10 @@
                             { id: 'update-other-account-settings', title: 'Other Account Settings' },
                             { id: 'review-account-details', title: 'Review Account Details' }
                         ]
+                    },
+                    {
+                        id: 'update-update-assessment',
+                        title: 'Update: Update Assessment'
                     }
                 ]
             },
@@ -74,12 +78,13 @@
             'Super Admin (ASD)',
             '  Distributor',
             '    Administrator',
+            '    Self Registration',
             '    Sub Distributor',
             '      Administrator',
-            '      Client Account',
+            '      Self Registration',
+            '      Client',
             '        Administrator',
-            '        Self Registered',
-            '        Sub-Account',
+            '        Sub Client',
             '          Administrator',
             '          Self Registered'
         ],
@@ -122,13 +127,15 @@
                     'Country',
                     'Business Phone Number',
                     'Business Address',
+                    'Billing Address: required or set as same as Business Address',
                     'Expiry Date and Time',
                     'Actual Account Expiration: required and autofilled',
                     'Status: autofilled'
                 ],
                 rules: [
                     'Account Type can only be lower than your account type.',
-                    'Password and Confirm Password should match.'
+                    'Password and Confirm Password should match.',
+                    'Billing Address can be set to be similar with Business Address by checkbox, or entered manually when unchecked.'
                 ]
             },
             {
@@ -144,6 +151,7 @@
                     'Test Battery: a group of assessments bundled together'
                 ],
                 rules: [
+                    'At least one assessment must be selected.',
                     'When a single assessment is selected, all test batteries containing that assessment are locked.',
                     'When a test battery is selected, all single assessments included in that battery are locked.',
                     'When a test battery is selected, all other test batteries that share at least one common single assessment are also locked.'
@@ -361,7 +369,36 @@
                 title: 'Review Account Details',
                 detail: 'Allows reviewing account information before saving.'
             }
-        ]
+        ],
+        updateAssessmentSection: {
+            id: 'update-update-assessment',
+            title: 'Update: Update Assessment',
+            detail: 'Adding or removing assessments from an account.',
+            routeSteps: [
+                {
+                    title: 'A. Full Update Page (4 steps)',
+                    steps: [
+                        'Accounts Section > View Accounts',
+                        'Select an Account > Select Update Button (Blue Pencil)',
+                        'Proceed to second page of Update Wizard',
+                        'Find Update Assessment'
+                    ]
+                },
+                {
+                    title: 'B. Specified Update Page (5 steps)',
+                    steps: [
+                        'Accounts Section > View Accounts',
+                        'Select an Account > Select View (Green Eye)',
+                        'Select the Assigned Assessment tab',
+                        'Select Update',
+                        'Find Update Assessment'
+                    ]
+                }
+            ],
+            rules: [
+                'If you cannot find Update Assessment, double check Roles and Permission.'
+            ]
+        }
     };
 
     function createStepCard(index, step) {
@@ -739,6 +776,37 @@
         accountsContent.updateAccountSections.forEach(function (section, index) {
             container.appendChild(createInfoStepCard(index + 1, section));
         });
+
+        var updateAssessment = accountsContent.updateAssessmentSection;
+        if (updateAssessment) {
+            var standaloneWrap = document.createElement('div');
+            standaloneWrap.className = 'mt-6';
+            standaloneWrap.appendChild(createHeading(updateAssessment.title, updateAssessment.id, 'View Accounts'));
+
+            var detail = document.createElement('p');
+            detail.className = 'text-sm text-slate-600 leading-relaxed mb-4';
+            detail.textContent = updateAssessment.detail;
+            standaloneWrap.appendChild(detail);
+
+            if (updateAssessment.routeSteps && updateAssessment.routeSteps.length) {
+                updateAssessment.routeSteps.forEach(function (route) {
+                    var routeTitle = document.createElement('h4');
+                    routeTitle.className = 'text-sm font-bold text-slate-900 mt-5 mb-3';
+                    routeTitle.textContent = route.title;
+                    standaloneWrap.appendChild(routeTitle);
+
+                    route.steps.forEach(function (step, index) {
+                        standaloneWrap.appendChild(createStepCard(index + 1, { title: 'Step ' + (index + 1), detail: step }));
+                    });
+                });
+            }
+
+            if (updateAssessment.rules && updateAssessment.rules.length) {
+                standaloneWrap.appendChild(createRuleBox(updateAssessment.rules));
+            }
+
+            container.appendChild(standaloneWrap);
+        }
     }
 
     function setSidebarBranch(activeId) {
