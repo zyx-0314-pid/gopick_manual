@@ -224,7 +224,13 @@
       "period": "2025 - 2026",
       "name": "Ana Katrine Sison",
       "role": "QA Developer",
-      "avatarUrl": "https://api.dicebear.com/9.x/notionists/svg?seed=Ana"
+      "avatarUrl": "https://api.dicebear.com/9.x/notionists/svg?seed=Ana",
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://qaksison.wixsite.com/ana-katrine-sison"
+        }
+      ]
     },
     {
       "period": "2026",
