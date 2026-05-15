@@ -12,16 +12,17 @@
         hierarchyLines: [
             'Super Admin (IT)',
             'Super Admin (ASD)',
-            '  Distributor',
-            '    Administrator',
-            '    Sub Distributor',
-            '      Administrator',
-            '      Client Account',
-            '        Administrator',
-            '        Self Registered',
-            '        Sub-Account',
-            '          Administrator',
-            '          Self Registered'
+            '└─ Distributor',
+            '   ├─ Administrator',
+            '   ├─ Self Registration',
+            '   └─ Sub Distributor',
+            '      ├─ Administrator',
+            '      ├─ Self Registration',
+            '      └─ Client',
+            '         ├─ Administrator',
+            '         └─ Sub Client',
+            '            ├─ Administrator',
+            '            └─ Self Registration'
         ],
         legends: [
             { sym: 'X', label: 'Hard-coded available', cls: 'rbac-x' },

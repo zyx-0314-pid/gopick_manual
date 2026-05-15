@@ -76,17 +76,17 @@
         hierarchyLines: [
             'Super Admin (IT)',
             'Super Admin (ASD)',
-            '  Distributor',
-            '    Administrator',
-            '    Self Registration',
-            '    Sub Distributor',
-            '      Administrator',
-            '      Self Registration',
-            '      Client',
-            '        Administrator',
-            '        Sub Client',
-            '          Administrator',
-            '          Self Registered'
+            '└─ Distributor',
+            '   ├─ Administrator',
+            '   ├─ Self Registration',
+            '   └─ Sub Distributor',
+            '      ├─ Administrator',
+            '      ├─ Self Registration',
+            '      └─ Client',
+            '         ├─ Administrator',
+            '         └─ Sub Client',
+            '            ├─ Administrator',
+            '            └─ Self Registration'
         ],
         legends: [
             { sym: 'X', label: 'Hard-coded available', cls: 'rbac-x' },
@@ -104,6 +104,12 @@
         ],
         accountRules: [
             'Account-related updates can only be modified by Super Admin (IT/ASD), Distributor, and Sub-Distributor.'
+        ],
+        viewAccountsLegend: [
+            { label: 'Active', detail: 'Active and not yet expired' },
+            { label: 'Deactivated', detail: 'Deactivated' },
+            { label: 'Expiring', detail: 'Active and exceeded expiration date but not account expiration extension' },
+            { label: 'Expired', detail: 'Active, exceeded expiration date and exceeded account expiration extension' }
         ],
         viewAccountSteps: [
             { title: 'Open View Accounts', detail: 'Go to Accounts Section, then open View Accounts.' },
@@ -133,9 +139,23 @@
                     'Status: autofilled'
                 ],
                 rules: [
-                    'Account Type can only be lower than your account type.',
-                    'Password and Confirm Password should match.',
-                    'Billing Address can be set to be similar with Business Address by checkbox, or entered manually when unchecked.'
+                    {
+                        label: 'Validation Guard Rails',
+                        children: [
+                            'Account Type: You can only select lower than your account type (check Hierarchy).',
+                            'Password and Confirm Password should match.',
+                            'Billing Address can be set to be similar with Business Address by checkbox, or entered manually when unchecked.'
+                        ]
+                    },
+                    {
+                        label: 'Account Creation Limit Guard Rails',
+                        children: [
+                            'Admin: Bypasses the account creation limits found in Other Account Settings.',
+                            'Non-Admin: Limited to the accounts they are able to create per the limits in Other Account Settings.',
+                            'Active Accounts: not deactivated, not archived, not deleted, not expired.',
+                            'Expired: Determined by Expiry Date + Actual Account Expiration.'
+                        ]
+                    }
                 ]
             },
             {
@@ -151,10 +171,7 @@
                     'Test Battery: a group of assessments bundled together'
                 ],
                 rules: [
-                    'At least one assessment must be selected.',
-                    'When a single assessment is selected, all test batteries containing that assessment are locked.',
-                    'When a test battery is selected, all single assessments included in that battery are locked.',
-                    'When a test battery is selected, all other test batteries that share at least one common single assessment are also locked.'
+                    'At least one assessment must be selected.'
                 ]
             },
             {
@@ -167,9 +184,14 @@
                     'Parent: deduct usage from Distributor, Sub-Distributor, or Client.'
                 ],
                 rules: [
-                    'Distributor has only one Meter Management Type.',
-                    'Self: Meter cannot be 0.',
-                    'Parent: parent meter cannot be 0.'
+                    {
+                        label: 'Meter Management Guard Rails',
+                        children: [
+                            'Distributor has only one Meter Management Type.',
+                            'Self: Meter balance cannot be 0.',
+                            'Parent: Parent meter balance cannot be 0.'
+                        ]
+                    }
                 ]
             },
             {
@@ -189,16 +211,29 @@
                     'Assessment Specialist Name',
                     'Assessment Special Email',
                     'Client Contact Person Name',
-                    'Client Usage Recipient Email',
-                    'Site Billing Amount (PHP)',
+                    'Set Client Usage Recipient Email',
+                    'Set Site Billing Type (Included in Package or With Site Fee)',
+                    'Set Billing Amount (PHP)',
                     'Contact Type: Volume-based with Contracted Meters disabled and Addendum autofilled as 0',
                     'Contact Type: Per Usage with Base Meter autofilled as 0'
                 ],
                 rules: [
-                    'Sub-Distributor Limit appears only for Distributor.',
-                    'Client Limit appears only for Distributor and Sub-Distributor.',
-                    'Sub-Account Limit appears only for Distributor, Sub-Distributor, and Client.',
-                    'Contracted Meters values are prefilled from the Meter Management meter balance part of the form.'
+                    {
+                        label: 'Display & Visibility Guard Rails',
+                        children: [
+                            'Sub-Distributor Limit appears only for Distributor.',
+                            'Client Limit appears only for Distributor and Sub-Distributor.',
+                            'Sub-Account Limit appears only for Distributor, Sub-Distributor, and Client.',
+                            'Billing Amount: Appears only when Set Site Billing Type is With Site Fee.'
+                        ]
+                    },
+                    {
+                        label: 'Data Sync Guard Rails',
+                        children: [
+                            'Contracted Meters values are prefilled from the Meter Management meter balance part of the form.',
+                            'Addendum value is locked when the selected Meter Type is Parent.'
+                        ]
+                    }
                 ]
             },
             {
@@ -321,12 +356,29 @@
                     'Business Phone Number',
                     'Business Address',
                     {
-                        label: 'Checkbox for similar Business Address with Billing Address',
-                        children: ['Billing Address is optional if checked and required if unchecked.']
+                        label: 'Same Billing Address flag',
+                        children: ['Billing Address is required when Same Billing Address is unchecked.']
                     },
-                    'Expiry Date and Time',
-                    'Actual Account Expiration',
-                    'Status'
+                    'Expiry Date and Time (Locked for own account)',
+                    'Actual Account Expiration (Locked for own account)',
+                    'Status (Locked for own account)'
+                ],
+                rules: [
+                    {
+                        label: 'Validation Guard Rails',
+                        children: [
+                            'Billing Address is required when Same Billing Address is unchecked.',
+                            'Password and Confirm Password must match.',
+                            'Input contract must be validated before service persistence.'
+                        ]
+                    },
+                    {
+                        label: 'Access and Ownership Guard Rails',
+                        children: [
+                            'Updating own account must not allow changing: Status, Expiry Date and Time, Actual Account Expiration.',
+                            'Updating other accounts may allow those fields based on role/policy.'
+                        ]
+                    }
                 ]
             },
             {
@@ -336,24 +388,41 @@
                 detail: 'Allows updating assessment meters for each assessment.',
                 actions: ['Manage', 'Change Log', 'Update Assessment'],
                 rules: [
-                    'Access is controlled via Admin RBAC policies of Update Assessment.',
-                    'Manage and Change Log are only for Admin, Distributor, and Sub-Distributor.'
+                    {
+                        label: 'Access Guard Rails',
+                        children: [
+                            'Access to Update Assessment is restricted to Admin, Distributor, and Sub-Distributor only.',
+                            'Updating own account assessments is allowed for these roles.',
+                            'Manage and Change Log are only for Admin, Distributor, and Sub-Distributor.'
+                        ]
+                    },
+                    {
+                        label: 'Product Assignment Guard Rails',
+                        children: [
+                            'At least one assessment must be selected.'
+                        ]
+                    }
                 ]
             },
             {
                 id: 'update-meter-management',
                 stepTitle: 'Meter Management',
                 title: 'Meter Management',
-                detail: 'Allows updating assessment Meter Points for each account and changing Metering Management Type: Deduct from Self or Parent.',
+                detail: 'Allows updating account meter points and changing the Metering Management Type: Deduct from Self or Deduct from Parent. Provides access to View Meter Log.',
                 actions: ['View Meter Log'],
                 rules: [
-                    'Self: Meter cannot be 0.',
-                    'Parent: parent meter cannot be 0.',
-                    'Updating a child account meter balance must not exceed the parent account maximum or available meter balance.',
-                    'Super Admin accounts are exempt because their meter balance is treated as infinite.',
-                    'Adding meter balance to a child account deducts the same amount from the parent account.',
-                    'Changing a child account metering type from Self to Parent returns the child account balance to the parent account.',
-                    'Changing a child account metering type from Parent to Self deducts the balance from the parent account and adds it to the child account.'
+                    {
+                        label: 'Meter Rules Guard Rails',
+                        children: [
+                            'Self mode: meter cannot be 0.',
+                            'Parent mode: parent meter cannot be 0.',
+                            'Child meter updates must not exceed parent max/available meters.',
+                            'Super Admin is exempt (treated as infinite meter).',
+                            'Adding child meters deducts the same amount from parent.',
+                            'Changing child metering from Self -> Parent returns child balance to parent.',
+                            'Changing child metering from Parent -> Self deducts from parent and adds to child.'
+                        ]
+                    }
                 ]
             },
             {
@@ -361,7 +430,14 @@
                 stepTitle: 'Other Account Settings',
                 title: 'Other Account Settings',
                 detail: 'Allows updating additional account-related configurations, including but not limited to:',
-                items: ['Account limits', 'Account expiration', 'Usage settings', 'Contract settings']
+                items: ['Account limits', 'Account expiration', 'Usage settings', 'Contract settings'],
+                rules: [
+                    'Billing Amount is hidden when Billing Type is Included in Package; visible when With Site Fee.',
+                    'Default Billing Amount value is 0 when shown unless an existing stored value is valid.',
+                    'In account view, Site Billing Amount (PHP) displays Included in Package when value is 0 or empty.',
+                    'Contracted Meters and Addendum show only when metering type is Deduct from Self (metering_deduction_type = 0).',
+                    'Base Meter is hidden in review when Contract Type is Volume based.'
+                ]
             },
             {
                 id: 'review-account-details',
@@ -493,6 +569,29 @@
             lbl.textContent = item.label;
             d.appendChild(s);
             d.appendChild(lbl);
+            container.appendChild(d);
+        });
+    }
+
+    function renderViewAccountsLegend() {
+        var container = document.getElementById('viewAccountsStatusLegend');
+        if (!container || !accountsContent.viewAccountsLegend) return;
+        container.innerHTML = '';
+        
+        accountsContent.viewAccountsLegend.forEach(function (item) {
+            var d = document.createElement('div');
+            d.className = 'p-3 rounded-lg bg-slate-50 border border-slate-100 flex flex-col gap-1';
+            
+            var lbl = document.createElement('div');
+            lbl.className = 'text-sm font-bold text-slate-900';
+            lbl.textContent = item.label;
+            
+            var det = document.createElement('div');
+            det.className = 'text-xs text-slate-500 leading-relaxed';
+            det.textContent = item.detail;
+            
+            d.appendChild(lbl);
+            d.appendChild(det);
             container.appendChild(d);
         });
     }
@@ -891,6 +990,7 @@
         renderSidebar();
         renderHierarchy();
         renderLegend();
+        renderViewAccountsLegend();
         renderAccountRules();
         renderCreateAccountSections();
         renderViewAccounts();

@@ -12,19 +12,19 @@
         { func: 'Create Client Account', crud: 'Create', limit: 'Requires Sub Distributor as Parent', scope: '', perms: ['X', 'X', 'X', 'X', 'X', 'X', 'X', '-', '-', '-'] },
         { func: 'Create Sub Account', crud: 'Create', limit: 'Requires Client as Parent', scope: '', perms: ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '-', '-'] },
         { func: 'Create Self Registration', crud: 'Create', limit: 'Requires Distributor, Sub Distributor or Client as Parent', scope: '', perms: ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '-', '-'] },
-        { func: 'Update Personal Account', crud: 'Update', limit: '', scope: 'Name, contact, email, password, country, addresses', perms: ['N', 'N', 'N', 'N', 'N', 'X', 'X', 'X', 'X', '-'] },
-        { func: 'Update Personal User', crud: 'Update', limit: 'Exclude: Status, User Type', scope: 'Password, Username, Email', perms: ['X', '', '', '', '', 'N', 'N', 'N', 'N', 'N'] },
-        { func: 'Update Children Accounts', crud: 'Update', limit: 'Exclude: Username, Account Type, Parent', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
-        { func: 'Archive Children Accounts', crud: 'Update', limit: '', scope: '', perms: ['X', '', '', '', '', 'X', 'X', 'X', 'X', '-'] },
-        { func: 'Content Manager Module: Privacy Consent', crud: 'Update', limit: 'modContentManager-actionIndex', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
-        { func: 'Content Manager Module: Demographics', crud: 'Update', limit: 'modContentManager-actionDemographics', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
-        { func: 'Content Manager Module: Exam Finish Page', crud: 'Update', limit: 'modContentManager-actionFinishPage', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
-        { func: 'Content Manager Module: Upload Logo', crud: 'Update', limit: 'modContentManager-actionUploadLogoPage', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
-        { func: 'Content Manager Module: Unblock Account', crud: 'Update', limit: 'modUsers-actionUnblock', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
+        { func: 'Update Personal Account (Distributor, Sub-Distributor, Client, Sub Client, Self Registered)', crud: 'Update', limit: '', scope: 'Allowed Changes: name of organization, contact person, email, number, password, country, business address and billing address', perms: ['N', 'N', 'N', 'N', 'N', 'X', 'X', 'X', 'X', '-'] },
+        { func: 'Update Personal User (Super Admin, Admin, Test Creator, API Access)', crud: 'Update', limit: 'Exclude: Status, User Type', scope: 'Allowed Changes: Password, Username, Email', perms: ['X', '', '', '', '', 'N', 'N', 'N', 'N', 'N'] },
+        { func: 'Update Children Accounts (Parent: Account/User)', crud: 'Update', limit: 'Exclude: Username, Account Type, Parent Account', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
+        { func: 'Content Manager Module: Privacy Consent', crud: 'Update', limit: 'modContentManager-actionIndex > Privacy Consent', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
+        { func: 'Content Manager Module: Demographics', crud: 'Update', limit: 'modContentManager-actionDemographics > Demographics Page Setup', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
+        { func: 'Content Manager Module: Assessment Completion Page', crud: 'Update', limit: 'modContentManager-actionFinishPage > Exam Finish Page Setup', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
+        { func: 'Content Manager Module: Assessment Center Logo', crud: 'Update', limit: 'modContentManager-actionUploadLogoPage > Upload Logo Page', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
+        { func: 'Content Manager Module: Unblock Account', crud: 'Update', limit: 'modUsers-actionUnblock > Unblock Account', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] },
         { func: 'Assessment-Schedule Module: Update Assessment of Child Users', crud: 'Update', limit: 'modAssessmentSchedule-actionCreate', scope: '', perms: ['C', '', '', '', '', 'C', 'C', 'C', 'C', '-'] }
     ];
 
-    var ROLE_NAMES = ['Super Admin (IT)', 'Super Admin (ASD)', 'Test Creator', 'API Access', 'Administrator', 'Distributor', 'Sub Distrib.', 'Client', 'Sub Account', 'Self Reg.'];
+
+    var ROLE_NAMES = ['Super Admin (IT)', 'Super Admin (ASD)', 'Test Creator', 'API Access', 'Administrator', 'Distributor', 'Sub Distributor', 'Client Account', 'Sub Account', 'Self Registration'];
 
     function getPermClass(permValue) {
         var upperVal = (permValue || '').toUpperCase().trim();
