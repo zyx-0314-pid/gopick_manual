@@ -46,6 +46,12 @@
       "description": "Review RBAC permissions, account hierarchy, and role capabilities for GoPick users and account types.",
       "icon": "shield",
       "target": "roles-premission-management"
+    },
+    {
+      "title": "Dashboard",
+      "description": "Monitor key metrics including meter requests, account statuses, and expiring records in real-time.",
+      "icon": "bar-chart",
+      "target": "dashboard-management"
     }
   ],
   "guides": [
