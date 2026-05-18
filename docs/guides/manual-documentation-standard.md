@@ -1,284 +1,295 @@
-# Manual Documentation Standard
+# Manual Documentation Standard V2
 
-This guide defines how GoPick manual pages should be written and rendered. The manual is the shared source of truth for IT Developers, QA, and non-technical users, so every page should explain how to use the feature, what the system enforces, and what users should expect to see.
+This guide defines the updated documentation structure for GoPick manual pages.
 
-Candidate Management is the baseline pattern because it already separates workflows, steps, rules, and system behavior in a way that can be reused by other modules.
+The purpose of V2 is to ensure manuals:
+- follow actual website navigation and workflows
+- mirror real UI traversal and operational usage
+- reduce redundancy
+- separate workflow documentation from domain/governance analysis
+- avoid inferred or assumed system behavior
 
-## Audience
+---
 
-Each manual page must support three readers:
+# Core Documentation Principle
 
-- IT Developers: need module behavior, validations, dependencies, permissions, and edge cases.
-- QA: need repeatable test steps, expected outcomes, rules, and conditions to verify.
-- Non-technical users: need plain instructions, labels to click, and simple explanations of what should happen.
+Manual pages must always follow:
 
-Write one manual that works for all three. Avoid making separate truth for each audience unless the topic is purely technical.
+```text
+actual website behavior and navigation flow
+```
 
-## Page Structure
+Documentation must NOT:
+- invent workflows
+- invent page access paths
+- invent UI placement
+- flatten unrelated workflows together
+- infer hidden behavior not visible in the system
 
-Use this hierarchy for module pages:
+If behavior is not directly confirmed from:
+- UI
+- navigation
+- actual workflow
+- observed operation
+
+then it should not appear in the workflow manual.
+
+---
+
+# V2 Documentation Layers
+
+## 1. Workflow Manual Layer
+
+Purpose:
+- Document how users navigate and operate the website
+
+Audience:
+- QA
+- Support
+- Operations
+- Non-technical users
+- Developers needing workflow reference
+
+File Examples:
+```text
+docs/workflow/meters-management.md
+docs/workflow/reports-management.md
+docs/workflow/candidate-management.md
+```
+
+Structure follows:
+```text
+Module
+→ Page
+→ Row Action
+→ Nested Action
+→ Result
+```
+
+Workflow manuals must mirror:
+- actual pages
+- actual row actions
+- actual nested navigation
+- actual access paths
+
+---
+
+## 2. Domain Governance Layer
+
+Purpose:
+- Document confirmed operational/system behavior
+
+Audience:
+- Developers
+- Architects
+- QA Leads
+- System Analysts
+
+File Examples:
+```text
+docs/domain-governance/meters.md
+docs/domain-governance/reports.md
+```
+
+Contains:
+- hierarchy behavior
+- authority behavior
+- visibility behavior
+- balance behavior
+- audit behavior
+- operational constraints
+
+Does NOT describe:
+- UI traversal
+- user navigation flow
+
+---
+
+## 3. Gap Registry Layer
+
+Purpose:
+- Track unresolved behavior and discovered inconsistencies
+
+Audience:
+- Developers
+- QA
+- Product Owners
+- Architects
+
+File Examples:
+```text
+docs/known-gaps/meters-gap-registry.md
+```
+
+Contains:
+- undefined behavior
+- staging discoveries
+- operational ambiguities
+- unresolved validations
+- pending clarifications
+
+---
+
+# Workflow Manual Structure
+
+Workflow manuals should follow:
 
 ```md
 # Module Name
 
-> Legends:
-> (Admin) - Super Admin IT or Super Admin ASD
-> (Accounts) - Distributor, Sub Distributor, Client, Sub-Client
+## Main Page / Feature
 
-## Main Feature
-Short purpose of the feature.
+### Action / Workflow
 
-### Workflow or Subfeature
-Short explanation of when this is used.
+### Access Path
+- Actual page navigation path
 
-1. Step by step action.
-2. Step by step action.
-3. Step by step action.
+### How To Use
+
+1. Actual UI action.
+2. Actual UI action.
 
 > Rules:
-> - System rule, validation, permission rule, display rule, or lock behavior.
-> - Another system-enforced behavior.
+> - Confirmed validation or restriction.
 
 > Expected Result:
-> - What appears after completing the steps.
-> - What data changes, status changes, file downloads, email sends, or logs are created.
-
-> Notes:
-> - Plain explanation, caveat, or terminology help.
+> - Confirmed visible outcome.
 ```
 
-## Required Blocks
+---
 
-### Steps
+# Access Path Rules
 
-Steps describe what the user does in the UI.
-
-Use steps when there is an action flow:
-
-```md
-1. Open `Candidates` > `View Candidate`.
-2. Select the candidate.
-3. Open `Actions` > `View Assessment`.
-```
-
-Guidelines:
-
-- Use numbered steps for ordered actions.
-- Use the exact UI label in backticks when referring to a button, menu, tab, field, icon name, or dropdown value.
-- Keep one user action per step where possible.
-- Use nested bullets only when a step has role-specific choices or grouped fields.
-- Do not mix system rules into steps. Put rules in the Rules block.
-
-### Rules
-
-Rules are system behavior that IT Developers and QA must treat as truth.
-
-Use a Rules block for:
-
-- Required field validation.
-- Permission and RBAC behavior.
-- Locking or disabled states.
-- Display logic.
-- Data relationship behavior.
-- Server-side validation.
-- Meter deduction, transfer, and log rules.
-- Report availability and generation rules.
-
-Rules should render as the yellow callout used in the manual UI.
-
-```md
-> Rules:
-> - Account Type can only be lower than the current account type.
-> - Password and Confirm Password should match.
-```
-
-Rules should not become their own sidebar section unless the whole feature is about rules, such as RBAC Matrix or Account Hierarchy.
-
-### Expected Result
-
-Expected Result explains what QA and non-technical users should see after the steps.
-
-Use it for:
-
-- Screen changes.
-- Table rows appearing or updating.
-- File downloads.
-- Emails being sent.
-- Status changes.
-- Meter balance changes.
-- Log creation.
-- Disabled/enabled buttons or icons.
+Every workflow should follow actual:
+- menu navigation
+- page access
+- row action access
+- modal access
+- nested workflow access
 
 Example:
 
 ```md
-> Expected Result:
-> - The selected report downloads for candidates with generated reports.
-> - Candidates without available reports are skipped or remain unavailable based on the system behavior.
+### Access Paths
+- `Meters` > `Transfer Meters`
+- `Meters` > `Meter Records` > `View Meter` > `Transfer Meter`
 ```
 
-### Notes
+If multiple valid entry points exist:
+- document all confirmed access paths
+- avoid duplicating workflow explanations unnecessarily
 
-Notes explain context, terminology, or caveats. Use Notes for helpful explanations that are not strict system rules.
+---
 
-```md
-> Notes:
-> - Test Battery means a group of assessments bundled together.
-> - A single assessment appears as one standalone assessment item.
+# Layering Rules
+
+Workflow hierarchy should follow actual UI structure.
+
+Example:
+
+```text
+Meters Module
+├── Meter Request
+├── Order Meters
+├── Transfer Meters
+├── Meter Records
+│   ├── View Meter
+│   │   ├── Transfer Meter
+│   │   └── View Meter Log
+│   ├── View Meter Log
+│   └── Update Meter Balance
 ```
 
-## Candidate Management Baseline
+Do NOT flatten unrelated workflows into:
+- abstract capability groups
+- domain-only categories
 
-Candidate Management is the preferred model for current and future pages because it has:
+---
 
-- Legends for role shorthand.
-- Main workflows like Schedule Candidate and View Candidates.
-- Subsections for specific actions.
-- Ordered steps for repeatable flows.
-- Rules callouts for validations and locking behavior.
-- Plain descriptions before steps.
+# Redundancy Rules
 
-When updating other pages, align them to this pattern.
+Avoid repeating:
+- same workflow explanation
+- same validation explanation
+- same navigation explanation
 
-### Candidate Pattern Example
+If workflows share behavior:
+- reuse concise references
+- avoid copy-pasting entire sections
 
-```md
-## View Candidates
+---
 
-### View Assessments
-View the assessments assigned to a candidate.
+# Confirmed Behavior Rule
 
-1. Open `Candidates` > `View Candidate`.
-2. Select the candidate.
-   - (Admin) Select Distributor Account, then select the candidate.
-   - (Accounts) Select the candidate directly.
-3. Open `Actions` > `View Assessment`.
+Workflow manuals may only contain:
+- confirmed UI behavior
+- confirmed navigation
+- confirmed operational flow
+- confirmed validations visible to users
 
-> Rules:
-> - Each single assessment is rendered as a standalone row.
-> - Test batteries are represented by listing their associated single assessments with a tag.
+Do NOT include:
+- inferred behavior
+- assumed pages
+- assumed workflow locations
+- architecture analysis
+- unresolved domain investigation
 
-> Expected Result:
-> - The candidate assessment list opens.
-> - Single assessments and test battery assessments display according to the rules above.
+---
+
+# Domain vs Workflow Separation
+
+## Workflow Manual Answers
+
+```text
+How does the user navigate and use the website?
 ```
 
-## UI And Layout Alignment
+---
 
-Manual pages should use one consistent visual language.
+## Domain Governance Answers
 
-### Page Shell
-
-Each rendered manual page should have:
-
-- Same header and footer as existing manual pages.
-- Page title and short description at the top.
-- Left aside for page navigation on desktop.
-- Mobile aside drawer behavior through the shared manual navigation script.
-- Main content in one white content surface with the same spacing and typography.
-
-### Sidebar
-
-The aside should represent the document hierarchy:
-
-- `##` sections are top-level sidebar items.
-- `###` and deeper sections may appear nested under their parent.
-- Rules, Expected Result, and Notes should not normally appear as sidebar items.
-- The active branch should expand like Candidate Management and Meters Management.
-
-### Content Blocks
-
-Use consistent block styling:
-
-- Steps: numbered step cards or clearly spaced ordered lists.
-- Rules: yellow/amber callout with title `Rules` and bullet list.
-- Expected Result: separate callout or visually distinct block titled `Expected Result`.
-- Notes: lighter informational block or simple paragraph under `Notes`.
-
-## Writing Rules
-
-Use plain, stable wording:
-
-- Prefer `Select` or `Open` for UI actions.
-- Prefer `Click` only when the action is specifically a button press.
-- Use `required`, `autofill`, `disabled`, `locked`, and `available` consistently.
-- Use singular/plural carefully: `assessment`, `assessments`, `report`, `reports`.
-- Avoid vague text like `etc.` when QA needs to know what to verify.
-- Avoid only saying `able to`; explain the action and result.
-
-Preferred wording examples:
-
-- Instead of: `Able to Email Assessments Reports to Specific Users`
-- Use: `Send assessment reports to selected recipients.`
-
-- Instead of: `View Details of meters of the account`
-- Use: `View the meter balance and meter details for the selected account.`
-
-## When To Use Technical Names
-
-Technical names such as `modCandidates`, `modUsage`, or RBAC action names are useful for IT Developers, but they should be labeled clearly.
-
-Use this format:
-
-```md
-> Technical Reference:
-> - Module: `modCandidates`
-> - Related action: `modAssessmentSchedule-actionCreate`
+```text
+How does the system behave operationally?
 ```
 
-Do not place technical names in the user step unless the UI actually shows that technical name.
+---
 
-## Non-Technical Version
+## Gap Registry Answers
 
-For non-technical readers, the same feature should be understandable without module names or internal logic. Use this simplified pattern:
-
-```md
-## Feature Name
-What this feature is for in one sentence.
-
-### How To Use
-1. Go to the page.
-2. Choose the record or option.
-3. Click the action.
-
-> Important Rules:
-> - What must be true before this works.
-> - What the system will not allow.
-
-> What To Expect:
-> - What the user sees after the action.
-> - What changes after saving, sending, downloading, or approving.
+```text
+What is unresolved, unclear, inconsistent, or pending clarification?
 ```
 
-### Non-Technical Example
+---
 
-```md
-## Download Reports
-Download generated assessment reports from the Usage page.
+# Important V2 Principle
 
-### How To Use
-1. Open `Report` > `Search Usage`.
-2. Select the assessments or candidates.
-3. In `Bulk Action`, select `Download Report`.
-
-> Important Rules:
-> - Reports are available only after the assessment is completed and the report has been generated.
-> - Group assessments show the Test Battery name above the sub-assessment name.
-
-> What To Expect:
-> - Available reports download to your computer.
-> - Assessments without generated reports will not have a downloadable report yet.
+Workflow manuals should mirror:
+```text
+how the website is actually experienced by users
 ```
 
-## Review Checklist
+not:
+```text
+how developers conceptually group features internally
+```
 
-Before a page is considered aligned, check the following:
+because:
+- navigation hierarchy is part of operational workflow
+- row actions create nested workflows
+- multiple pages may connect into the same operation
+- users experience the system through traversal, not domain abstractions
 
-- The page has a clear module title and short purpose.
-- Major features use the same heading hierarchy as Candidate Management.
-- User actions are written as numbered steps.
-- Rules are in a Rules callout, not mixed into steps.
-- Expected results are documented for workflows that save, send, download, approve, reject, transfer, or update data.
-- Technical terms are explained or placed in a Technical Reference block.
-- The sidebar follows the content hierarchy and does not include callout-only blocks.
-- The page can be understood by QA and non-technical readers without asking a developer to explain the flow.
+---
+
+# Operational Benefits
+
+This structure improves:
+- onboarding
+- QA verification
+- workflow traceability
+- support debugging
+- navigation clarity
+- manual maintainability
+- reduction of hallucinated workflows
+- separation of UI documentation from domain analysis
