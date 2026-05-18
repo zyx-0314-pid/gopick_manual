@@ -6,37 +6,37 @@
     var docsManifest = [
         {
             pageTitle: 'Account Management',
-            pageUrl: '../../pages/accounts-management/index.html',
+            pageUrl: '../../pages/workflow/accounts-management/index.html',
             docUrl: '../../docs/account-management.md'
         },
         {
             pageTitle: 'Assessment Management',
-            pageUrl: '../../pages/assessment-management/index.html',
+            pageUrl: '../../pages/workflow/assessment-management/index.html',
             docUrl: '../../docs/assessment-management.md'
         },
         {
             pageTitle: 'Candidate Management',
-            pageUrl: '../../pages/candidate-management/index.html',
+            pageUrl: '../../pages/workflow/candidate-management/index.html',
             docUrl: '../../docs/candidate-management.md'
         },
         {
             pageTitle: 'Meters Management',
-            pageUrl: '../../pages/meters-management/index.html',
+            pageUrl: '../../pages/workflow/meters-management/index.html',
             docUrl: '../../docs/meters-management.md'
         },
         {
             pageTitle: 'Reports Management',
-            pageUrl: '../../pages/reports-management/index.html',
+            pageUrl: '../../pages/workflow/reports-management/index.html',
             docUrl: '../../docs/reports-management.md'
         },
         {
             pageTitle: 'Roles/Permissions Management',
-            pageUrl: '../../pages/roles-premission-management/index.html',
+            pageUrl: '../../pages/workflow/roles-premission-management/index.html',
             docUrl: '../../docs/roles-permission-management.md'
         },
         {
             pageTitle: 'Users Management',
-            pageUrl: '../../pages/users-management/index.html',
+            pageUrl: '../../pages/workflow/users-management/index.html',
             docUrl: '../../docs/users-management.md'
         },
         {

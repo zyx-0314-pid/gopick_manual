@@ -93,7 +93,7 @@
                                     '  <script src="https://cdn.tailwindcss.com"></script>',
                                     '</head>',
                                     '<body class="bg-slate-50 text-slate-800 antialiased">',
-                                    '  <header class="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100" role="banner">',
+                                    '  <header class="fixed top-0 inset-x-0 z-[100] bg-white/95 backdrop-blur border-b border-slate-100" role="banner">',
                                     '    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">',
                                     '      <a href="../../index.html" class="inline-flex items-center" aria-label="GoPick home">',
                                     '        <img src="../../shared/img/gopick-logo.svg" alt="GoPick Solutions" class="h-10 w-auto">',
