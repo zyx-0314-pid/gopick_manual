@@ -337,18 +337,19 @@
                                 ]
                             },
                             {
+                                title: 'Archived, Deactivated, Expired Account Meter Governance',
+                                items: [
+                                    'Meter behavior for Archived, Deactivated, and Expired accounts is not yet formally confirmed.',
+                                    'Unclear area: remaining meter balances.',
+                                    'Concern: historical audit consistency and balance ownership behavior may become inconsistent without formally defined lifecycle-state handling.'
+                                ]
+                            },
+                            {
                                 title: 'Multi-Report Meter Deduction Behavior',
                                 items: [
                                     'Current behavior deducts meters during initial report generation and generated reports remain reusable afterward.',
                                     'Additional deduction behavior for multiple reports under the same assessment is not yet formally confirmed.',
                                     'Unclear behavior: whether additional reports under the same assessment should trigger additional meter deduction.'
-                                ]
-                            },
-                            {
-                                title: 'Runtime-Observed Operational Behavior',
-                                items: [
-                                    'Some operational behaviors were identified through runtime observation and workflow traversal rather than formally documented specifications.',
-                                    'Concern: refactor or stabilization work may unintentionally change behavior if runtime-observed rules are not validated against implementation and business expectations.'
                                 ]
                             }
                         ]

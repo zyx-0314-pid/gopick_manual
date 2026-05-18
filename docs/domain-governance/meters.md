@@ -373,6 +373,18 @@ The system enforces:
 
 ---
 
+- **Archived, Deactivated, Expired Account Meter Governance**
+  
+  Meter behavior for `Archived, Deactivated, Expired` accounts is not yet formally confirmed.
+
+  Current unclear areas:
+  - Remaining meter balances
+
+  Current concern:
+  - Historical audit consistency and balance ownership behavior may become inconsistent without formally defined deletion handling.
+
+---
+
 - **Multi-Report Meter Deduction Behavior**
   
   Meter deduction currently occurs during the initial report generation event and generated reports remain reusable afterward.
@@ -381,12 +393,3 @@ The system enforces:
 
   Current unclear behavior:
   - Whether additional reports under the same assessment should trigger additional meter deduction.
-
----
-
-- **Runtime-Observed Operational Behavior**
-  
-  Some operational behaviors were identified through actual runtime observation and workflow traversal instead of formally documented specifications.
-
-  Current concern:
-  - Future refactor or stabilization work may unintentionally change existing operational behavior if runtime-observed rules are not validated against actual implementation and business expectations.
