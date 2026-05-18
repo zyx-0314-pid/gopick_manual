@@ -82,7 +82,7 @@
 
         var backdrop = document.createElement('button');
         backdrop.type = 'button';
-        backdrop.className = 'hidden lg:hidden fixed inset-0 z-[60] bg-slate-950/40 backdrop-blur-sm';
+        backdrop.className = 'hidden lg:hidden fixed inset-x-0 bottom-0 top-16 z-[60] bg-slate-950/40 backdrop-blur-sm';
         backdrop.setAttribute('aria-label', 'Close page navigation');
 
         var closeButton = document.createElement('button');
@@ -121,7 +121,7 @@
         function applyMobileClosedState() {
             aside.style.display = 'none';
             aside.style.position = 'fixed';
-            aside.style.inset = '0 auto 0 0';
+            aside.style.inset = '4rem auto 0 0';
             aside.style.width = '20rem';
             aside.style.maxWidth = '86vw';
             aside.style.padding = '1rem';

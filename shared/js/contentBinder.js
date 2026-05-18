@@ -24,7 +24,7 @@
         var hasTarget = item.target && item.target.length > 0;
         var tag = hasTarget ? 'a' : 'div';
 
-        var cardHtml = '<' + tag + (hasTarget ? ' href="pages/' + item.target + '/index.html"' : '') +
+        var cardHtml = '<' + tag + (hasTarget ? ' href="pages/workflow/' + item.target + '/index.html"' : '') +
             ' class="flex flex-col h-full' + (hasTarget ? ' cursor-pointer' : '') + '">' +
             '<div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 ' + iconClass + '">' +
             getIconSvg(item.icon) +
@@ -102,6 +102,7 @@
         if (titleNode) titleNode.textContent = data.hero.title;
         if (subtitleNode) subtitleNode.textContent = data.hero.subtitle;
         if (ctaNode) {
+            ctaNode.href = data.hero.ctaHref || '#features';
             ctaNode.firstChild.textContent = data.hero.ctaText;
         }
     }

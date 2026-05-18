@@ -154,7 +154,7 @@ DESIGN.md is the **single source of truth** for all visual decisions. It uses a 
 ### Every page shares this shell:
 ```html
 <body class="manual-page bg-slate-50 text-slate-800 antialiased">
-  <header class="manual-header fixed top-0 inset-x-0 z-50 ...">
+  <header class="manual-header fixed top-0 inset-x-0 z-[100] ...">
     <!-- Logo → GoPick home, slim breadcrumb nav -->
   </header>
   <main class="manual-main pt-20 pb-16">
