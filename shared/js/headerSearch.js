@@ -40,19 +40,14 @@
             docUrl: '../../docs/users-management.md'
         },
         {
-            pageTitle: 'Manual Authoring Guide',
-            pageUrl: '../../pages/guides/index.html',
-            docUrl: '../../docs/guides/manual-authoring-guide.md'
-        },
-        {
-            pageTitle: 'Documentation Standard',
+            pageTitle: 'Documentation Standard V2',
             pageUrl: '../../pages/guides/index.html',
             docUrl: '../../docs/guides/manual-documentation-standard.md'
         },
         {
-            pageTitle: 'Non-Technical Template',
-            pageUrl: '../../pages/guides/index.html',
-            docUrl: '../../docs/guides/manual-nontech-template.md'
+            pageTitle: 'Meters Governance',
+            pageUrl: '../../pages/domain-governance/meters/index.html',
+            docUrl: '../../docs/domain-governance/meters.md'
         }
     ];
 

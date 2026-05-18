@@ -1,4 +1,4 @@
-// manual guides data filler - rendered from docs/guides/*.md guidance
+// manual guides data filler - rendered from docs/guides/manual-documentation-standard.md
 (function (global) {
     'use strict';
 
@@ -6,366 +6,112 @@
         title: 'Manual Guides',
         sections: [
             {
-                id: 'manual-authoring-guide',
-                title: 'Manual Authoring Guide',
-                description: 'How to create and update GoPick manual pages while keeping content, UI, and code uniform.',
-                bullets: [
-                    'Content truth: steps, rules, expected results, and explanations must stay accurate.',
-                    'UI uniformity: manual pages must look and behave like the existing manuals.',
-                    'Code uniformity: rendered pages should follow the same HTML, CSS, and JS structure.'
-                ],
+                id: 'documentation-standard',
+                title: 'Documentation Standard V2',
+                description: 'Updated documentation standard aligned to actual website behavior, layered documentation ownership, and confirmed operational flow.',
                 children: [
                     {
-                        id: 'where-to-put-files',
-                        title: 'Where To Put Files',
-                        description: 'Keep source docs, rendered pages, and guide docs in their expected locations.',
-                        codeBlocks: [
-                            {
-                                label: 'Folder structure',
-                                language: 'text',
-                                code: [
-                                    'docs/reports-management.md',
-                                    'docs/guides/manual-authoring-guide.md',
-                                    '',
-                                    'pages/reports-management/index.html',
-                                    'pages/reports-management/assets/css/style.css',
-                                    'pages/reports-management/assets/css/layout.css',
-                                    'pages/reports-management/assets/js/dataFiller.js',
-                                    'pages/reports-management/assets/js/behavior.js'
-                                ].join('\n')
-                            }
+                        id: 'core-documentation-principle',
+                        title: 'Core Documentation Principle',
+                        bullets: [
+                            'Manual pages must follow actual website behavior and navigation flow.',
+                            'Do not invent workflows, access paths, UI placement, or hidden behavior.',
+                            'Document only behavior confirmed by UI, navigation, and observed operation.'
                         ]
                     },
                     {
-                        id: 'markdown-page-pattern',
-                        title: 'Markdown Page Pattern',
-                        description: 'Use Candidate Management as the baseline structure for manual source documents.',
-                        codeBlocks: [
+                        id: 'v2-documentation-layers',
+                        title: 'V2 Documentation Layers',
+                        groups: [
                             {
-                                label: 'Markdown structure',
-                                language: 'md',
-                                code: [
-                                    '# Module Name',
-                                    '',
-                                    '> Legends:',
-                                    '> (Admin) - Super Admin IT or Super Admin ASD',
-                                    '> (Accounts) - Distributor, Sub Distributor, Client, Sub-Client',
-                                    '',
-                                    '## Main Feature',
-                                    'Plain description of what this feature does.',
-                                    '',
-                                    '### Workflow Or Subfeature',
-                                    'Plain description of when this workflow is used.',
-                                    '',
-                                    '1. Open `Menu` > `Page`.',
-                                    '2. Select the record or option.',
-                                    '3. Click `Action`.',
-                                    '',
-                                    '> Rules:',
-                                    '> - System rule or validation.',
-                                    '> - Permission rule or display behavior.',
-                                    '',
-                                    '> Expected Result:',
-                                    '> - What appears on screen.',
-                                    '> - What data, report, status, email, or log changes.'
-                                ].join('\n')
-                            }
-                        ]
-                    },
-                    {
-                        id: 'html-page-layout',
-                        title: 'HTML Page Layout',
-                        description: 'Use this shell for new rendered manual pages. Change only the module title, label, description, and script paths as needed.',
-                        codeBlocks: [
-                            {
-                                label: 'pages/<module>/index.html',
-                                language: 'html',
-                                code: [
-                                    '<!doctype html>',
-                                    '<html lang="en">',
-                                    '<head>',
-                                    '  <meta charset="utf-8" />',
-                                    '  <meta name="viewport" content="width=device-width,initial-scale=1" />',
-                                    '  <title>Module Name - GoPick</title>',
-                                    '  <link rel="stylesheet" href="assets/css/style.css">',
-                                    '  <link rel="stylesheet" href="assets/css/layout.css">',
-                                    '  <link rel="icon" type="image/x-icon" href="../../favicon.ico">',
-                                    '  <script src="https://cdn.tailwindcss.com"></script>',
-                                    '</head>',
-                                    '<body class="bg-slate-50 text-slate-800 antialiased">',
-                                    '  <header class="fixed top-0 inset-x-0 z-[100] bg-white/95 backdrop-blur border-b border-slate-100" role="banner">',
-                                    '    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">',
-                                    '      <a href="../../index.html" class="inline-flex items-center" aria-label="GoPick home">',
-                                    '        <img src="../../shared/img/gopick-logo.svg" alt="GoPick Solutions" class="h-10 w-auto">',
-                                    '      </a>',
-                                    '      <nav aria-label="Main navigation">',
-                                    '        <ul class="flex items-center gap-6 text-sm font-medium text-slate-600">',
-                                    '          <li><a class="hover:text-brand transition-colors" href="../../index.html">Home</a></li>',
-                                    '          <li><a class="text-brand font-semibold" href="#" aria-current="page">Module Label</a></li>',
-                                    '        </ul>',
-                                    '      </nav>',
-                                    '    </div>',
-                                    '  </header>',
-                                    '',
-                                    '  <main class="pt-20 pb-16">',
-                                    '    <div class="max-w-6xl mx-auto px-4 sm:px-6">',
-                                    '      <div class="mb-10">',
-                                    '        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900">Module Name</h1>',
-                                    '        <p class="mt-3 text-lg text-slate-500 max-w-3xl">Short page purpose.</p>',
-                                    '      </div>',
-                                    '',
-                                    '      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">',
-                                    '        <aside class="hidden lg:block lg:col-span-1">',
-                                    '          <nav id="docSidebar" class="sticky top-24 bg-white rounded-xl border border-slate-100 p-5 shadow-sm">',
-                                    '            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">On this page</h4>',
-                                    '            <ul id="docSidebarList" class="space-y-2 text-sm"></ul>',
-                                    '          </nav>',
-                                    '        </aside>',
-                                    '',
-                                    '        <div class="lg:col-span-4 space-y-8">',
-                                    '          <section id="docsContent" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">',
-                                    '            <div id="section-render-root"></div>',
-                                    '          </section>',
-                                    '        </div>',
-                                    '      </div>',
-                                    '    </div>',
-                                    '  </main>',
-                                    '',
-                                    '  <script src="assets/js/dataFiller.js" defer></script>',
-                                    '  <script src="assets/js/behavior.js" defer></script>',
-                                    '  <script src="../../shared/js/manualNav.js" defer></script>',
-                                    '</body>',
-                                    '</html>'
-                                ].join('\n')
-                            }
-                        ]
-                    },
-                    {
-                        id: 'css-layout-files',
-                        title: 'CSS Layout Files',
-                        description: 'Keep CSS minimal and page-specific. Reuse Tailwind and existing layout classes first.',
-                        codeBlocks: [
-                            {
-                                label: 'assets/css/style.css',
-                                language: 'css',
-                                code: [
-                                    '/* Minimal base styles for Module Name page */',
-                                    ':root {',
-                                    '    --brand: #e50914;',
-                                    '}'
-                                ].join('\n')
+                                title: 'Workflow Manual Layer',
+                                items: [
+                                    'Purpose: document user navigation and operation flow.',
+                                    'Audience: QA, Support, Operations, Non-technical users, Developers needing workflow reference.',
+                                    'Structure: Module -> Page -> Row Action -> Nested Action -> Result.',
+                                    'Source path: docs/workflow/<module>.md'
+                                ]
                             },
                             {
-                                label: 'assets/css/layout.css',
-                                language: 'css',
-                                code: [
-                                    'html {',
-                                    '    scroll-behavior: smooth;',
-                                    '}',
-                                    '',
-                                    '[tabindex="-1"]:focus {',
-                                    '    outline: none;',
-                                    '}'
-                                ].join('\n')
+                                title: 'Domain Governance Layer',
+                                items: [
+                                    'Purpose: document confirmed operational/system behavior.',
+                                    'Audience: Developers, Architects, QA Leads, System Analysts.',
+                                    'Includes: hierarchy, authority, visibility, balance, audit, and constraints.',
+                                    'Excludes: UI traversal and user click-path workflows.',
+                                    'Source path: docs/domain-governance/<domain>.md'
+                                ]
+                            },
+                            {
+                                title: 'Gap Registry Layer',
+                                items: [
+                                    'Purpose: track unresolved behavior and discovered inconsistencies.',
+                                    'Audience: Developers, QA, Product Owners, Architects.',
+                                    'Includes: undefined behavior, ambiguities, unresolved validations, pending clarifications.',
+                                    'Source path: docs/known-gaps/<domain>-gap-registry.md'
+                                ]
                             }
                         ]
                     },
                     {
-                        id: 'behavior-js-layout',
-                        title: 'Behavior JS Layout',
-                        description: 'Keep behavior JS small. Shared sidebar behavior belongs to shared/js/manualNav.js.',
+                        id: 'workflow-manual-structure',
+                        title: 'Workflow Manual Structure',
+                        description: 'Workflow pages should mirror actual page traversal and action entry points.',
                         codeBlocks: [
                             {
-                                label: 'assets/js/behavior.js',
-                                language: 'js',
-                                code: [
-                                    '(function () {',
-                                    "    'use strict';",
-                                    '',
-                                    '    function setFooterYear() {',
-                                    "        var yearSpan = document.getElementById('footerYearSpan');",
-                                    '        if (yearSpan) yearSpan.textContent = new Date().getFullYear();',
-                                    '    }',
-                                    '',
-                                    '    function initPage() {',
-                                    '        setFooterYear();',
-                                    '    }',
-                                    '',
-                                    "    if (document.readyState === 'loading') {",
-                                    "        document.addEventListener('DOMContentLoaded', initPage);",
-                                    '    } else {',
-                                    '        initPage();',
-                                    '    }',
-                                    '})();'
-                                ].join('\n')
-                            }
-                        ]
-                    },
-                    {
-                        id: 'data-renderer-js-layout',
-                        title: 'Data Renderer JS Layout',
-                        description: 'The renderer should store structured content, render sections, and build the sidebar from the same content object.',
-                        bullets: [
-                            'Use rules for system behavior and render it as a yellow callout.',
-                            'Use expectedResults for what QA and non-technical users should see after actions.',
-                            'Do not add rules, expectedResults, notes, or technicalReference as sidebar items.'
-                        ],
-                        codeBlocks: [
-                            {
-                                label: 'assets/js/dataFiller.js pattern',
-                                language: 'js',
-                                code: [
-                                    '// module data filler - content derived from docs/module-name.md',
-                                    '(function (global) {',
-                                    "    'use strict';",
-                                    '',
-                                    '    const moduleContent = {',
-                                    "        title: 'Module Name',",
-                                    '        sections: [',
-                                    '            {',
-                                    "                id: 'main-feature',",
-                                    "                title: 'Main Feature',",
-                                    "                description: 'Plain explanation of what this feature does.',",
-                                    '                rules: [',
-                                    "                    'System rule or validation behavior.'",
-                                    '                ],',
-                                    '                expectedResults: [',
-                                    "                    'What appears after completing the steps.'",
-                                    '                ],',
-                                    '                steps: [',
-                                    "                    'Open Menu, then Page.',",
-                                    "                    'Select the record or option.',",
-                                    "                    'Click Save.'",
-                                    '                ]',
-                                    '            }',
-                                    '        ]',
-                                    '    };',
-                                    '',
-                                    '    function renderAll() {',
-                                    "        var root = document.getElementById('section-render-root');",
-                                    "        var sidebar = document.getElementById('docSidebarList');",
-                                    '        if (!root || !sidebar) return;',
-                                    '        // Render sections and sidebar from moduleContent.',
-                                    '    }',
-                                    '',
-                                    "    if (document.readyState === 'loading') {",
-                                    "        document.addEventListener('DOMContentLoaded', renderAll);",
-                                    '    } else {',
-                                    '        renderAll();',
-                                    '    }',
-                                    '',
-                                    '    global.__moduleContent = moduleContent;',
-                                    '})(window);'
-                                ].join('\n')
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: 'documentation-standard',
-                title: 'Documentation Standard',
-                description: 'The source-of-truth structure for steps, rules, expected results, notes, and technical references.',
-                children: [
-                    {
-                        id: 'audience',
-                        title: 'Audience',
-                        description: 'Each manual page must support IT Developers, QA, and non-technical users in the same source of truth.',
-                        bullets: [
-                            'IT Developers need behavior, validations, dependencies, permissions, and edge cases.',
-                            'QA needs repeatable test steps, rules, expected outcomes, and conditions to verify.',
-                            'Non-technical users need plain instructions, labels to click, and simple explanations.'
-                        ]
-                    },
-                    {
-                        id: 'required-blocks',
-                        title: 'Required Blocks',
-                        description: 'Use these blocks consistently across manual pages.',
-                        bullets: [
-                            'Steps: what the user does in the UI.',
-                            'Rules: system-enforced behavior that IT and QA should treat as truth.',
-                            'Expected Result: what should appear or change after the action.',
-                            'Notes: context, terminology, caveats, or non-rule explanation.',
-                            'Technical Reference: internal modules or action names for developers.'
-                        ]
-                    },
-                    {
-                        id: 'review-checklist',
-                        title: 'Review Checklist',
-                        description: 'Check this before considering a manual page aligned.',
-                        bullets: [
-                            'The page has a clear module title and short purpose.',
-                            'Major features use the same heading hierarchy as Candidate Management.',
-                            'User actions are written as numbered steps.',
-                            'Rules are in a Rules callout, not mixed into steps.',
-                            'Expected results are documented for workflows that save, send, download, approve, reject, transfer, or update data.',
-                            'The sidebar follows the content hierarchy and does not include callout-only blocks.'
-                        ]
-                    }
-                ]
-            },
-            {
-                id: 'non-technical-template',
-                title: 'Non-Technical Template',
-                description: 'A simpler template for clear instructions, important rules, and what to expect.',
-                children: [
-                    {
-                        id: 'nontech-template',
-                        title: 'Copy Template',
-                        description: 'Use this when documenting a feature for readers who do not need internal module names.',
-                        codeBlocks: [
-                            {
-                                label: 'Non-technical feature template',
+                                label: 'Workflow structure template',
                                 language: 'md',
                                 code: [
                                     '# Module Name',
                                     '',
-                                    '## Feature Name',
-                                    'Short explanation of what this feature is for.',
+                                    '## Main Page / Feature',
+                                    '',
+                                    '### Action / Workflow',
+                                    '',
+                                    '### Access Path',
+                                    '- Actual page navigation path',
                                     '',
                                     '### How To Use',
-                                    '1. Open `Menu` > `Page`.',
-                                    '2. Select the record, account, candidate, assessment, or report.',
-                                    '3. Fill in the required fields.',
-                                    '4. Click `Save`, `Send`, `Download`, `Approve`, or the correct action.',
+                                    '1. Actual UI action.',
+                                    '2. Actual UI action.',
                                     '',
-                                    '> Important Rules:',
-                                    '> - Rule that the user must follow.',
-                                    '> - Rule that the system enforces.',
-                                    '> - Condition that makes an action unavailable.',
+                                    '> Rules:',
+                                    '> - Confirmed validation or restriction.',
                                     '',
-                                    '> What To Expect:',
-                                    '> - What appears on screen.',
-                                    '> - What changes after the action.',
-                                    '> - What file, email, report, status, or log is created.'
+                                    '> Expected Result:',
+                                    '> - Confirmed visible outcome.'
                                 ].join('\n')
                             }
                         ]
                     },
                     {
-                        id: 'nontech-reports-example',
-                        title: 'Example: Reports',
-                        description: 'Example wording for non-technical report documentation.',
-                        codeBlocks: [
-                            {
-                                label: 'Reports example',
-                                language: 'md',
-                                code: [
-                                    '## Download Reports',
-                                    'Download available assessment reports for selected candidates and assessments.',
-                                    '',
-                                    '1. Open `Report` > `Search Usage`.',
-                                    '2. Select the assessments or candidates.',
-                                    '3. In `Bulk Action`, select `Download Report`.',
-                                    '',
-                                    '> Important Rules:',
-                                    '> - Reports are available only when a generated report exists.',
-                                    '',
-                                    '> What To Expect:',
-                                    '> - Available reports download to your computer.',
-                                    '> - If a report is not generated yet, it will not be available for download.'
-                                ].join('\n')
-                            }
+                        id: 'access-and-layering-rules',
+                        title: 'Access Path and Layering Rules',
+                        bullets: [
+                            'Document actual menu, page, row-action, modal, and nested-entry access paths.',
+                            'If multiple valid entry points exist, list all confirmed paths.',
+                            'Do not flatten unrelated workflows into abstract capability groups.',
+                            'Workflow hierarchy must mirror real UI structure and traversal.'
+                        ]
+                    },
+                    {
+                        id: 'separation-and-confirmation-rules',
+                        title: 'Separation and Confirmation Rules',
+                        bullets: [
+                            'Workflow docs answer: how users navigate and use the website.',
+                            'Domain governance docs answer: how system behavior operates.',
+                            'Gap registry answers: what is unresolved or inconsistent.',
+                            'Avoid inferred behavior not directly confirmed from real usage.'
+                        ]
+                    },
+                    {
+                        id: 'operational-benefits',
+                        title: 'Operational Benefits',
+                        bullets: [
+                            'Improves onboarding, QA verification, and workflow traceability.',
+                            'Improves support debugging and navigation clarity.',
+                            'Improves manual maintainability and reduces hallucinated workflows.',
+                            'Enforces clean separation of UI documentation from domain analysis.'
                         ]
                     }
                 ]
@@ -393,26 +139,40 @@
     function createCodeBlock(block) {
         const wrap = document.createElement('div');
         wrap.className = 'mt-5 overflow-hidden rounded-lg border border-slate-200 bg-slate-950 code-block';
-
         const label = document.createElement('div');
         label.className = 'border-b border-white/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-300';
         label.textContent = block.label || block.language || 'Example';
-
         const pre = document.createElement('pre');
         pre.className = 'overflow-x-auto p-4 text-xs leading-relaxed text-slate-100';
-
         const code = document.createElement('code');
         code.textContent = block.code || '';
-
         pre.appendChild(code);
         wrap.appendChild(label);
         wrap.appendChild(pre);
         return wrap;
     }
 
+    function renderGroups(container, groups) {
+        groups.forEach(function (group) {
+            const wrap = document.createElement('div');
+            wrap.className = 'rounded-lg border border-slate-100 bg-slate-50 p-5';
+            const heading = document.createElement('h3');
+            heading.className = 'font-semibold text-slate-900 mb-3';
+            heading.textContent = group.title;
+            wrap.appendChild(heading);
+            wrap.appendChild(createBulletList(group.items || []));
+            container.appendChild(wrap);
+        });
+    }
+
     function renderSectionBody(section, target) {
-        if (section.bullets && section.bullets.length) {
-            target.appendChild(createBulletList(section.bullets));
+        if (section.bullets && section.bullets.length) target.appendChild(createBulletList(section.bullets));
+
+        if (section.groups && section.groups.length) {
+            const groupsWrap = document.createElement('div');
+            groupsWrap.className = 'space-y-4';
+            renderGroups(groupsWrap, section.groups);
+            target.appendChild(groupsWrap);
         }
 
         if (section.codeBlocks && section.codeBlocks.length) {
