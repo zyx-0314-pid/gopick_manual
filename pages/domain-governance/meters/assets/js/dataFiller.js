@@ -5,8 +5,8 @@
     const governanceContent = {
         title: 'Meters Governance',
         tldr: [
-            'Meter is a hierarchy-governed operational credit used at report generation time.',
-            'Deduction happens once per candidate per assessment on initial report generation only.',
+            'Meter is a hierarchy-governed operational credit used at assessment completion time.',
+            'Deduction happens once per candidate per assessment on initial assessment completion only.',
             'Requests require approval; transfers are immediate and do not require approval.',
             'Negative balances are not allowed; operations are blocked when result is < 0.',
             'Standard accounts are hierarchy-scoped; cross-branch operations are Super Admin-only.',
@@ -21,7 +21,7 @@
                     {
                         id: 'overview',
                         title: 'Overview',
-                        description: 'The Meter system manages operational credit balances used for assessment-related report generation and behaves as a hierarchy-governed operational credit and audit system.',
+                        description: 'The Meter system manages operational credit balances used for assessment-related assessment completion and behaves as a hierarchy-governed operational credit and audit system.',
                         rules: [
                             'Visibility is hierarchy-based.',
                             'Transfer authority is hierarchy-based.',
@@ -108,7 +108,7 @@
                                 id: 'consumption-trigger',
                                 title: 'Consumption Trigger',
                                 rules: [
-                                    'Meter deduction occurs during initial report generation.',
+                                    'Meter deduction occurs during initial assessment completion.',
                                     'Consumption occurs once per candidate per assessment.'
                                 ]
                             },
@@ -259,7 +259,7 @@
                         rules: [
                             'Negative balances are not allowed.',
                             'Operations are blocked if resulting balance becomes < 0.',
-                            'Applies to transfers, deductions, account creation, meter updates, consumption type changes, and report generation consumption.'
+                            'Applies to transfers, deductions, account creation, meter updates, consumption type changes, and assessment completion consumption.'
                         ]
                     },
                     {
@@ -347,7 +347,7 @@
                             {
                                 title: 'Multi-Report Meter Deduction Behavior',
                                 items: [
-                                    'Current behavior deducts meters during initial report generation and generated reports remain reusable afterward.',
+                                    'Current behavior deducts meters during initial assessment completion and generated reports remain reusable afterward.',
                                     'Additional deduction behavior for multiple reports under the same assessment is not yet formally confirmed.',
                                     'Unclear behavior: whether additional reports under the same assessment should trigger additional meter deduction.'
                                 ]

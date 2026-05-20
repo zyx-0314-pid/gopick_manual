@@ -45,7 +45,7 @@ Higher hierarchy accounts have wider:
 A Meter is a consumable operational credit.
 
 Meters are consumed during:
-- report generation
+- assessment completion
 
 Meters are not consumed during:
 - report viewing
@@ -62,7 +62,7 @@ Generated reports remain permanently accessible after creation.
 ## Consumption Trigger
 
 Meter deduction occurs during:
-- initial report generation
+- assessment completion
 
 Consumption occurs:
 - once per candidate
@@ -258,7 +258,7 @@ Applies to:
 - account creation
 - meter updates
 - consumption type changes
-- report generation consumption
+- assessment completion consumption
 
 ---
 
@@ -387,7 +387,7 @@ The system enforces:
 
 - **Multi-Report Meter Deduction Behavior**
   
-  Meter deduction currently occurs during the initial report generation event and generated reports remain reusable afterward.
+  Meter deduction currently occurs during the initial assessment completion event and generated reports remain reusable afterward.
 
   However, assessments containing multiple reports do not yet have formally confirmed additional deduction behavior.
 

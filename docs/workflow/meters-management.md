@@ -205,7 +205,7 @@ Add or deduct meter balances for the selected account.
 
 # Meter Consumption
 
-Meters are consumed during report generation.
+Meters are consumed during assessment completion.
 
 Generated reports may later be:
 - Viewed
@@ -221,7 +221,7 @@ without additional meter deduction.
 > - Higher hierarchy accounts may view descendant reports.
 
 > Expected Result:
-> - Meter balances decrease after report generation.
+> - Meter balances decrease after assessment completion.
 > - Generated reports become available for viewing and download.
 
 ---
