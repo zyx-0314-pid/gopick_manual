@@ -109,7 +109,9 @@
     {
       "index": 18,
       "title": "Resource Center",
-      "description": "This feature has not been recorded yet. Document details will be added later."
+      "description": "Manuals, video tutorials, assessment content, and supporting resource sections for the GoPick platform.",
+      "icon": "book",
+      "target": "resource-center"
     }
   ],
   "guides": [
