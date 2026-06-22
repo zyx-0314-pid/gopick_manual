@@ -17,19 +17,55 @@
                         groups: [
                             { title: 'Access Path', items: ['Resource Center > Get Started > Manuals'] }
                         ],
-                        steps: [
-                            'Open Resource Center.',
-                            'Select Get Started.',
-                            'Select Manuals.',
-                            'Choose the manual or guide you want to view.'
-                        ],
                         children: [
                             {
-                                id: 'search-manuals',
-                                title: 'Search Manuals',
-                                description: 'Search applies to the manuals list only.',
+                                id: 'upload-manual',
+                                title: 'Upload Manual',
+                                description: 'Can upload Technical Manual, User Guide, and Executive Summary.',
+                                steps: [
+                                    'Open Resource Center.',
+                                    'Select Get Started.',
+                                    'Select Manuals.',
+                                    'Click Upload.',
+                                    'Select the manual type.',
+                                    'Upload the file.'
+                                ],
+                                rules: [
+                                    'Existing manual files prompt for overwrite before upload continues.'
+                                ],
                                 expectedResults: [
-                                    'Matching manuals are shown.'
+                                    'The selected manual type is uploaded.',
+                                    'An overwrite prompt appears when a file already exists.'
+                                ]
+                            },
+                            {
+                                id: 'preview-manual',
+                                title: 'Preview Manual',
+                                description: 'Can preview Technical Manual, User Guide, and Executive Summary.',
+                                steps: [
+                                    'Open Resource Center.',
+                                    'Select Get Started.',
+                                    'Select Manuals.',
+                                    'Click Preview.',
+                                    'Select the manual type.',
+                                    'Open the preview page.'
+                                ],
+                                expectedResults: [
+                                    'A new preview page opens for the selected manual type.'
+                                ]
+                            },
+                            {
+                                id: 'check-manual-information',
+                                title: 'Check Manual Information',
+                                description: 'Check information for Technical Manual, User Guide, and Executive Summary.',
+                                steps: [
+                                    'Open Resource Center.',
+                                    'Select Get Started.',
+                                    'Select Manuals.',
+                                    'Select the item to check.'
+                                ],
+                                expectedResults: [
+                                    'The selected manual information is shown.'
                                 ]
                             }
                         ]
@@ -41,19 +77,34 @@
                         groups: [
                             { title: 'Access Path', items: ['Resource Center > Get Started > Video Tutorials'] }
                         ],
-                        steps: [
-                            'Open Resource Center.',
-                            'Select Get Started.',
-                            'Select Video Tutorials.',
-                            'Choose the video tutorial you want to view.'
-                        ],
                         children: [
                             {
-                                id: 'search-video-tutorials',
-                                title: 'Search Video Tutorials',
-                                description: 'Search applies to the video tutorials list only.',
+                                id: 'upload-video',
+                                title: 'Upload Video',
+                                description: 'Upload video tutorials.',
+                                steps: [
+                                    'Open Resource Center.',
+                                    'Select Get Started.',
+                                    'Select Video Tutorials.',
+                                    'Click Upload.',
+                                    'Upload the video file.'
+                                ],
                                 expectedResults: [
-                                    'Matching video tutorials are shown.'
+                                    'The video file is uploaded.'
+                                ]
+                            },
+                            {
+                                id: 'check-video-information',
+                                title: 'Check Video Information',
+                                description: 'Check information for video tutorials.',
+                                steps: [
+                                    'Open Resource Center.',
+                                    'Select Get Started.',
+                                    'Select Video Tutorials.',
+                                    'Select the item to check.'
+                                ],
+                                expectedResults: [
+                                    'The selected video information is shown.'
                                 ]
                             }
                         ]
@@ -70,15 +121,8 @@
                             'Select Get Started.',
                             'Select Assessments.'
                         ],
-                        children: [
-                            {
-                                id: 'search-assessment-content',
-                                title: 'Search Assessment Content',
-                                description: 'Search behavior applies to the selected assessment type only.',
-                                expectedResults: [
-                                    'Matching assessment content for the selected type is shown.'
-                                ]
-                            }
+                        expectedResults: [
+                            'Assessment-related content is displayed.'
                         ]
                     },
                     {
@@ -247,7 +291,7 @@
         }
 
         if (section.steps && section.steps.length) {
-            const stepsTitle = document.createElement('h3');
+            const stepsTitle = document.createElement('h4');
             stepsTitle.className = 'mt-5 mb-3 font-semibold text-slate-900';
             stepsTitle.textContent = 'How To Use';
             target.appendChild(stepsTitle);
