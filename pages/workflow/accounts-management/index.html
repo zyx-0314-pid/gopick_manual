@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="../../../shared/css/site-shell.css?v=20260429-gradient">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/table.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -47,7 +46,7 @@
       <div class="manual-page-hero mb-10">
         <span class="manual-page-hero__eyebrow">Manual Page</span>
         <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900">Accounts Management</h1>
-        <p class="mt-3 text-lg text-slate-500 max-w-3xl">Role-Based Access Control (RBAC) matrix, account hierarchy, and configuration steps for managing the GoPick user and account system.</p>
+        <p class="mt-3 text-lg text-slate-500 max-w-3xl">Configuration steps for managing the GoPick user and account system.</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -67,43 +66,6 @@
           <section id="legend" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
             <h2 class="text-xl font-bold text-slate-900 mb-4">Legend</h2>
             <div id="legendContent" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm"></div>
-          </section>
-
-          <!-- RBAC Matrix -->
-          <section id="rbac-matrix" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
-            <h2 class="text-xl font-bold text-slate-900 mb-4">RBAC Matrix</h2>
-            <p class="text-sm text-slate-500 mb-4">Permissions for each role across all account functions. Scroll horizontally on smaller screens.</p>
-            <div class="table-scroll rounded-lg border border-slate-100">
-              <table class="rbac-table min-w-full divide-y divide-slate-100 text-sm">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="px-3 py-3 text-left font-semibold text-slate-700 sticky left-0 z-10">Function</th>
-                    <th class="px-3 py-3 text-left font-semibold text-slate-700">CRUD</th>
-                    <th class="px-3 py-3 text-left font-semibold text-slate-700">Limitations</th>
-                    <th class="px-3 py-3 text-left font-semibold text-slate-700">Scope</th>
-                    <th class="px-3 py-3 text-center font-semibold text-slate-700">Super Admin (IT)</th>
-                    <th class="px-3 py-3 text-center font-semibold text-slate-700">Super Admin (ASD)</th>
-                    <th class="px-3 py-3 text-center font-semibold text-slate-700">Test Creator</th>
-                    <th class="px-3 py-3 text-center font-semibold text-slate-700">API Access</th>
-                    <th class="px-3 py-3 text-center font-semibold text-slate-700">Administrator</th>
-                    <th class="px-3 py-3 text-center font-semibold text-slate-700">Distributor</th>
-                    <th class="px-3 py-3 text-center font-semibold text-slate-700">Sub Distributor</th>
-                    <th class="px-3 py-3 text-center font-semibold text-slate-700">Client Account</th>
-                    <th class="px-3 py-3 text-center font-semibold text-slate-700">Sub Account</th>
-                    <th class="px-3 py-3 text-center font-semibold text-slate-700">Self Registration</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-50" id="rbacTableBody">
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <!-- Hierarchy -->
-          <section id="hierarchy" class="bg-white rounded-xl border border-slate-100 p-6 shadow-sm">
-            <h2 class="text-xl font-bold text-slate-900 mb-4">Account Hierarchy</h2>
-            <p class="text-sm text-slate-500 mb-5">GoPick uses a nested account structure. Each level inherits access downward.</p>
-            <div id="hierarchyContent" class="bg-slate-50 rounded-lg p-6 font-mono text-sm text-slate-700 leading-relaxed"></div>
           </section>
 
           <!-- Account Rules -->
@@ -161,7 +123,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/rbac-enhance.js" defer></script>
   <script src="assets/js/dataFiller.js" defer></script>
   <script src="assets/js/behavior.js" defer></script>
   <script src="../../../shared/js/headerSearch.js" defer></script>

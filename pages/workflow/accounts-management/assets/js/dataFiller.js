@@ -6,8 +6,6 @@
         title: 'Accounts Management',
         sections: [
             { id: 'legend', title: 'Legend' },
-            { id: 'rbac-matrix', title: 'RBAC Matrix' },
-            { id: 'hierarchy', title: 'Account Hierarchy' },
             { id: 'account-rules', title: 'Account Rules' },
             {
                 id: 'create-account',
@@ -72,21 +70,6 @@
             },
             { id: 'roles', title: 'Role Capabilities' },
             { id: 'access', title: 'Configuration Steps' }
-        ],
-        hierarchyLines: [
-            'Super Admin (IT)',
-            'Super Admin (ASD)',
-            '└─ Distributor',
-            '   ├─ Administrator',
-            '   ├─ Self Registration',
-            '   └─ Sub Distributor',
-            '      ├─ Administrator',
-            '      ├─ Self Registration',
-            '      └─ Client',
-            '         ├─ Administrator',
-            '         └─ Sub Client',
-            '            ├─ Administrator',
-            '            └─ Self Registration'
         ],
         legends: [
             { sym: 'X', label: 'Hard-coded available', cls: 'rbac-x' },
@@ -547,16 +530,6 @@
         setTimeout(function () { window.dispatchEvent(new Event('hashchange')); }, 10);
     }
 
-    function renderHierarchy() {
-        var container = document.getElementById('hierarchyContent');
-        if (!container) return;
-        container.innerHTML = '';
-        var pre = document.createElement('pre');
-        pre.className = 'whitespace-pre-wrap';
-        pre.textContent = accountsContent.hierarchyLines.join('\n');
-        container.appendChild(pre);
-    }
-
     function renderLegend() {
         var container = document.getElementById('legendContent');
         if (!container) return;
@@ -991,7 +964,6 @@
 
     function renderAll() {
         renderSidebar();
-        renderHierarchy();
         renderLegend();
         renderViewAccountsLegend();
         renderAccountRules();
