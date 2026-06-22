@@ -41,7 +41,7 @@
         },
         {
             pageTitle: 'Documentation Standard V2',
-            pageUrl: '../../pages/guides/index.html',
+            pageUrl: '../../pages/guides/manual-guides/index.html',
             docUrl: '../../docs/guides/manual-documentation-standard.md'
         },
         {
