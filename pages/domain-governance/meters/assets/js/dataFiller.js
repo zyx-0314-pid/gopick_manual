@@ -46,25 +46,6 @@
                             { name: 'Administrator', level: 5, dotColor: 'bg-sky-300' },
                             { name: 'Self Registered', level: 5, dotColor: 'bg-sky-300' }
                         ],
-                        groups: [
-                            {
-                                title: 'Hierarchy',
-                                items: [
-                                    'Super Admin (IT)',
-                                    'Super Admin (ASD)',
-                                    'Distributor',
-                                    'Administrator',
-                                    'Sub Distributor',
-                                    'Administrator',
-                                    'Client Account',
-                                    'Administrator',
-                                    'Self Registered',
-                                    'Sub-Account',
-                                    'Administrator',
-                                    'Self Registered'
-                                ]
-                            }
-                        ],
                         rules: [
                             'Higher hierarchy accounts have wider visibility and operational authority.',
                             'Higher hierarchy accounts have wider request approval and transfer scope.',
@@ -287,6 +268,38 @@
                         ]
                     },
                     {
+                        id: 'newly-discovered-actor-target-governance',
+                        title: 'Newly Discovered Actor and Target Governance',
+                        rules: [
+                            'Actor must be the logged-in user at action time.',
+                            'Actor must not be inferred from parent account relationship.',
+                            'Logging must use explicit actor username from authenticated session context.',
+                            'No hidden fallback actor resolution is allowed.'
+                        ],
+                        groups: [
+                            {
+                                title: 'Settings-Changed Behavior Expectations',
+                                items: [
+                                    'Account creation logs: (Target View) Initial Meters; (Actor View) Moved to Newly Created Account: <target_user_name>.',
+                                    'Meter type update logs: (Target View) Meter Type Update (switched to self/parent deduction) by: <actor_user_name>; (Actor/Parent View) Meter Type Update (switched to self/parent deduction): <target_user_name>.',
+                                    'Meter balance update logs: (Target View) Meter Balance Update by: <actor_user_name>; (Parent View) Meter Balance Updated: <target_user_name>.',
+                                    'Request-approved logs: (Target View) Received from <actor_user_name>; (Actor View) Sent to <target_user_name>.'
+                                ]
+                            },
+                            {
+                                title: 'Balance Movement Expectations',
+                                items: [
+                                    'Create account: Parent deduction with allocated 0 -> Addition=0, Deduction=0.',
+                                    'Create account: Self deduction with allocated n > 0 -> Addition=n, Deduction=0.',
+                                    'Meter type switched to self deduction -> Target Addition=n, Actor Deduction=n.',
+                                    'Meter type switched to parent deduction -> Target Deduction=n, Actor Addition=n.',
+                                    'Manual meter balance deduction -> Actor Addition=n, Target Deduction=n.',
+                                    'Manual meter balance addition -> Actor Deduction=n, Target Addition=n.'
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         id: 'confirmed-operational-characteristics',
                         title: 'Confirmed Operational Characteristics',
                         groups: [
@@ -350,6 +363,15 @@
                                     'Current behavior deducts meters during initial assessment completion and generated reports remain reusable afterward.',
                                     'Additional deduction behavior for multiple reports under the same assessment is not yet formally confirmed.',
                                     'Unclear behavior: whether additional reports under the same assessment should trigger additional meter deduction.'
+                                ]
+                            },
+                            {
+                                title: 'Actor Attribution In Meter Logs',
+                                items: [
+                                    'Actor attribution can be misread as parent attribution when reviewing meter logs unless actor resolution is explicitly based on logged-in user context.',
+                                    'Expected rule: Actor must be the logged-in user at action time, not inferred from hierarchy parent.',
+                                    'Expected impact: remark strings for type updates, balance updates, and request approval must consistently render actor username from session context.',
+                                    'Risk if not enforced: incorrect audit interpretation between actor and parent views during meter operations.'
                                 ]
                             }
                         ]

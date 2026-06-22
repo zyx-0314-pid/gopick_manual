@@ -151,7 +151,7 @@
                     {
                         id: 'view-meter-log',
                         title: 'View Meter Log',
-                        description: 'View meter history and meter-related activities for the selected account.',
+                        description: 'View meter history, meter-related activities, and what each remark means for the selected account.',
                         groups: [
                             {
                                 title: 'Access Paths',
@@ -170,10 +170,96 @@
                             'Meter log visibility follows hierarchy authority.',
                             'Higher hierarchy accounts may view descendant logs.',
                             'Accounts may view their own logs.',
-                            'Archived and deactivated account logs remain visible in history.'
+                            'Archived and deactivated account logs remain visible in history.',
+                            'Each transaction type resolves to one predictable remark format.',
+                            'Account names appear in remarks only when source or target account resolution is available.',
+                            'Unresolved type=0 and type=3 events return a diagnostic failure instead of silent fallback text.',
+                            'Type=4 unresolved display may appear as (not set).'
                         ],
                         expectedResults: [
-                            'Meter activity history is displayed.'
+                            'Meter activity history is displayed.',
+                            'Remark text clearly indicates what happened to meters.',
+                            'Rendered remarks follow service-owned mapping and resolution rules.'
+                        ],
+                        children: [
+                            {
+                                id: 'meter-log-remark-meaning',
+                                title: 'Remark Meaning Guide',
+                                description: 'Use this guide to interpret the remark column in View Meter Log.',
+                                groups: [
+                                    {
+                                        title: 'Expected Remark Meanings',
+                                        items: [
+                                            'Used to Score Assessment: Meter was consumed by assessment completion.',
+                                            'Used to Score Assessment: <account_name>: Assessment consumption is attributed to the shown account.',
+                                            'Sent to <account_name>: Meters were deducted from the current account and transferred to the shown account.',
+                                            'Received from <account_name>: Meters were added to the current account from the shown account.',
+                                            'Initial Meters: Starting meter balance was initialized.',
+                                            'Meter Balance Update: Manual add or deduct adjustment was applied from Update Meter Balance.',
+                                            'Moved to Newly Created Account: <account_name>: Meters were moved to a newly created account.',
+                                            '<type-change-specific-message>: <actor_account_name>: Consumption type-change event showing the action message and actor account.',
+                                            '(not set): Reserved unresolved output for applicable type=4 resolution path.'
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                id: 'new-discovery-settings-changed',
+                                title: 'New Discovery And Settings-Changed Notes',
+                                description: 'Actor is the logged-in user at action time. Actor is not always the parent account.',
+                                groups: [
+                                    {
+                                        title: 'Create New Account',
+                                        items: [
+                                            'Remarks (Target View): Initial Meters',
+                                            'Remarks (Actor View): Moved to Newly Created Account: <target_user_name>',
+                                            'Target Account (Both View): <target_user_name>',
+                                            'Parent deduction with allocated 0: Addition = 0, Deduction = 0',
+                                            'Self deduction with allocated n where n > 0: Addition = n, Deduction = 0'
+                                        ]
+                                    },
+                                    {
+                                        title: 'Update Meter Type',
+                                        items: [
+                                            'Remarks (Target View): Meter Type Update (switched to self/parent deduction) by: <actor_user_name>',
+                                            'Remarks (Actor or Parent View): Meter Type Update (switched to self/parent deduction): <target_user_name>',
+                                            'If switched to self deduction: Target Account (Both View) = <target_user_name>',
+                                            'If switched to parent deduction: Target Account (Both View) = <parent_user_name>',
+                                            'If switched to self deduction: Target Addition = n, Actor Deduction = n',
+                                            'If switched to parent deduction: Target Deduction = n, Actor Addition = n'
+                                        ]
+                                    },
+                                    {
+                                        title: 'Update Meter Balance',
+                                        items: [
+                                            'Remarks (Target View): Meter Balance Update by: <actor_user_name>',
+                                            'Remarks (Parent View): Meter Balance Updated: <target_user_name>',
+                                            'If deduction: Target Account (Both View) = <parent_user_name>',
+                                            'If addition: Target Account (Both View) = <target_user_name>',
+                                            'If deduction: Actor Addition = n, Target Deduction = n',
+                                            'If addition: Actor Deduction = n, Target Addition = n'
+                                        ]
+                                    },
+                                    {
+                                        title: 'Use Meter Balance',
+                                        items: [
+                                            'If own candidate: Remark = Used to Score Assessment',
+                                            'If lower-hierarchy candidate: Remark = Used to Score Assessment: <consumer_user_name>',
+                                            'If own candidate: Target Account = <own_user_name>',
+                                            'If lower-hierarchy candidate: Target Account = <consumer_user_name>'
+                                        ]
+                                    },
+                                    {
+                                        title: 'Request Meter Approved',
+                                        items: [
+                                            'Remarks (Target View): Received from <actor_user_name>',
+                                            'Remarks (Actor View): Sent to <target_user_name>',
+                                            'Target Account: <target_user_name>',
+                                            'Actor Deduction = n, Target Addition = n'
+                                        ]
+                                    }
+                                ]
+                            }
                         ]
                     },
                     {
