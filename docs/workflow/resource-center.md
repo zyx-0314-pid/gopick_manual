@@ -15,23 +15,55 @@ Open manuals and guides for the selected assessment or topic.
 ### Access Path
 - `Resource Center` > `Get Started` > `Manuals`
 
-### Upload and Preview
+### Upload Manual
 
-Upload and preview manuals.
+Can upload `Technical Manual`, `User Guide`, and `Executive Summary`.
 
-### How To Use
+#### How To Use
 
 1. Open `Resource Center`.
 2. Select `Get Started`.
 3. Select `Manuals`.
-4. Choose the manual or guide you want to view.
+4. Click `Upload`.
+5. Select the manual type.
+6. Upload the file.
+
+> Rules:
+> - Existing manual files prompt for overwrite before upload continues.
 
 > Expected Result:
-> - The selected manual or guide opens for viewing.
+> - The selected manual type is uploaded.
+> - An overwrite prompt appears when a file already exists.
 
-### Search Manuals
+### Preview Manual
 
-Search applies to the manuals list only.
+Can preview `Technical Manual`, `User Guide`, and `Executive Summary`.
+
+#### How To Use
+
+1. Open `Resource Center`.
+2. Select `Get Started`.
+3. Select `Manuals`.
+4. Click `Preview`.
+5. Select the manual type.
+6. Open the preview page.
+
+> Expected Result:
+> - A new preview page opens for the selected manual type.
+
+### Check Manual Information
+
+Check information for `Technical Manual`, `User Guide`, and `Executive Summary`.
+
+#### How To Use
+
+1. Open `Resource Center`.
+2. Select `Get Started`.
+3. Select `Manuals`.
+4. Select the item to check.
+
+> Expected Result:
+> - The selected manual information is shown.
 
 ## Video Tutorials
 
@@ -44,32 +76,43 @@ Open short videos that explain how to use the system.
 
 Upload video tutorials.
 
-### How To Use
+#### How To Use
 
 1. Open `Resource Center`.
 2. Select `Get Started`.
 3. Select `Video Tutorials`.
-4. Choose the video tutorial you want to view.
+4. Click `Upload`.
+5. Upload the video file.
 
 > Expected Result:
-> - The selected video tutorial opens for viewing.
+> - The video file is uploaded.
 
-### Search Video Tutorials
+### Check Video Information
 
-Search applies to the video tutorials list only.
+Check information for video tutorials.
+
+#### How To Use
+
+1. Open `Resource Center`.
+2. Select `Get Started`.
+3. Select `Video Tutorials`.
+4. Select the item to check.
+
+> Expected Result:
+> - The selected video information is shown.
 
 ## Assessment Content
 
 Link users to assessment categories and related content.
 
 ### Access Path
-- `Resource Center` > `Get Started` > `Assessments`
+- `Resource Center` > `Get Started` > `Assessments` List
 
-### How To Use
+#### How To Use
 
 1. Open `Resource Center`.
 2. Select `Get Started`.
-3. Select `Assessments`.
+3. Select `Assessments` from List.
 
 > Expected Result:
 > - Assessment-related content is displayed.
@@ -109,10 +152,10 @@ Guides and tutorial content grouped by topic.
 
 Assessment-related guides and tutorials.
 
-### Access Path
+#### Access Path
 - `Resource Center` > `Guides & Tutorials` > `Assessments`
 
-### How To Use
+#### How To Use
 
 1. Open `Resource Center`.
 2. Select `Guides & Tutorials`.
@@ -121,21 +164,21 @@ Assessment-related guides and tutorials.
 > Expected Result:
 > - Assessment guides or tutorials are displayed.
 
-## Overview
+### Overview
 
 Overview content under the assessment guide group.
 
-### Access Path
+#### Access Path
 - `Resource Center` > `Guides & Tutorials` > `Assessments` > `Overview`
 
 > Expected Result:
 > - Overview content is displayed.
 
-## Video Demo
+### Video Demo
 
 Video demo content under the assessment guide group.
 
-### Access Path
+#### Access Path
 - `Resource Center` > `Guides & Tutorials` > `Assessments` > `Video Demo`
 
 > Expected Result:
@@ -151,9 +194,7 @@ Main assessment hub for browsing assessment-related pages.
 > Status:
 > - No contents yet
 
----
-
-# Training Materials (Soon)
+## Training Materials (Soon)
 
 Training materials section.
 
