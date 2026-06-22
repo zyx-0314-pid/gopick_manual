@@ -15,6 +15,10 @@ Open manuals and guides for the selected assessment or topic.
 ### Access Path
 - `Resource Center` > `Get Started` > `Manuals`
 
+### Upload and Preview
+
+Upload and preview manuals.
+
 ### How To Use
 
 1. Open `Resource Center`.
@@ -22,12 +26,12 @@ Open manuals and guides for the selected assessment or topic.
 3. Select `Manuals`.
 4. Choose the manual or guide you want to view.
 
-> Rules:
-> - Manuals support upload and preview behavior.
-> - Manuals support search, filter, and order behavior.
-
 > Expected Result:
 > - The selected manual or guide opens for viewing.
+
+### Search Manuals
+
+Search applies to the manuals list only.
 
 ## Video Tutorials
 
@@ -36,6 +40,10 @@ Open short videos that explain how to use the system.
 ### Access Path
 - `Resource Center` > `Get Started` > `Video Tutorials`
 
+### Upload Video
+
+Upload video tutorials.
+
 ### How To Use
 
 1. Open `Resource Center`.
@@ -43,14 +51,14 @@ Open short videos that explain how to use the system.
 3. Select `Video Tutorials`.
 4. Choose the video tutorial you want to view.
 
-> Rules:
-> - Video tutorials support upload behavior.
-> - Video tutorials support search, filter, and order behavior.
-
 > Expected Result:
 > - The selected video tutorial opens for viewing.
 
-## Assessments
+### Search Video Tutorials
+
+Search applies to the video tutorials list only.
+
+## Assessment Content
 
 Link users to assessment categories and related content.
 
@@ -65,6 +73,10 @@ Link users to assessment categories and related content.
 
 > Expected Result:
 > - Assessment-related content is displayed.
+
+### Search Assessment Content
+
+Search behavior applies to the selected assessment type only.
 
 ## Feedback Survey (Soon)
 
@@ -89,24 +101,6 @@ Pending Resource Center content for message inbox access.
 
 ---
 
-# Search Feature
-
-Search manuals or video content inside the Resource Center.
-
-### Access Path
-- `Resource Center` > `Search Feature`
-
-### How To Use
-
-1. Open `Resource Center`.
-2. Use the `Search Feature`.
-3. Search for a manual or video.
-
-> Expected Result:
-> - Matching manuals or videos are shown.
-
----
-
 # Guides & Tutorials
 
 Guides and tutorial content grouped by topic.
@@ -123,9 +117,6 @@ Assessment-related guides and tutorials.
 1. Open `Resource Center`.
 2. Select `Guides & Tutorials`.
 3. Select `Assessments`.
-
-> Rules:
-> - Content can be searched per specific type.
 
 > Expected Result:
 > - Assessment guides or tutorials are displayed.
@@ -173,4 +164,4 @@ Training materials section.
 FAQ and troubleshooting section.
 
 > Status:
-> - Content not yet provided: no FAQ or troubleshooting items were supplied yet
+> - Content not yet provided
