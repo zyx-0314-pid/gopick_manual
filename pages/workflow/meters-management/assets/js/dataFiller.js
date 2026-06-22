@@ -205,14 +205,14 @@
             {
                 id: 'meter-consumption',
                 title: 'Meter Consumption',
-                description: 'Meters are consumed during report generation. Generated reports may later be viewed, downloaded, emailed, or revisited without additional meter deduction.',
+                description: 'Meters are consumed during assessment completion. Generated reports may later be viewed, downloaded, emailed, or revisited without additional meter deduction.',
                 rules: [
                     'Meter deduction occurs once per candidate per assessment.',
                     'Generated reports remain accessible after creation.',
                     'Higher hierarchy accounts may view descendant reports.'
                 ],
                 expectedResults: [
-                    'Meter balances decrease after report generation.',
+                    'Meter balances decrease after assessment completion.',
                     'Generated reports become available for viewing and download.'
                 ]
             }
