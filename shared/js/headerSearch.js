@@ -45,6 +45,11 @@
             docUrl: '../../docs/guides/manual-documentation-standard.md'
         },
         {
+            pageTitle: 'Resource Center',
+            pageUrl: '../../pages/workflow/resource-center/index.html',
+            docUrl: '../../docs/workflow/resource-center.md'
+        },
+        {
             pageTitle: 'Meters Governance',
             pageUrl: '../../pages/domain-governance/meters/index.html',
             docUrl: '../../docs/domain-governance/meters.md'
