@@ -285,6 +285,12 @@
       "name": "Emelyn Pami",
       "role": "Assessment Service Manager",
       "avatarUrl": "https://api.dicebear.com/9.x/notionists/svg?seed=EPmi"
+    },
+    {
+      "period": "2026",
+      "name": "Shai Saloza",
+      "role": "Project Manager Head",
+      "avatarUrl": "https://api.dicebear.com/9.x/notionists/svg?seed=Shais"
     }
   ]
 }
