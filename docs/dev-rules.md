@@ -122,3 +122,24 @@ We must follow these principles and practices in areas we code. Since this is a 
 - Confirm no fallback to old logic occurs
 - Re-test after cleanup
 - Validate again in staging before UAT
+
+## AI Assisted Development
+### Capabilities
+- Fast Write up
+
+### Restrictions
+- Lack of architectural intent
+- Lack of context what is business failure
+- All Theoretical without practical and experience based knowledge
+- Semantic Features
+
+### Bad Behaviors
+- Duplication of codes
+- Silent fallbacks
+
+### Issues with human
+- They make the AI check it self on security vulnerability, code architecture code coverage, failure test
+
+### Human responsibility
+- Manage, Restrict and govern the code
+

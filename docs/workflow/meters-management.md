@@ -171,6 +171,117 @@ View meter history and meter-related activities for the selected account.
 > - Higher hierarchy accounts may view descendant logs.
 > - Accounts may view their own logs.
 > - Archived and deactivated account logs remain visible in history.
+> - Remark rendering in `modMeterlog` is owned only by `MeterLogRemarkService`.
+> - Controller and View must not implement business decisions for remark text.
+> - Meter log remark lookups are handled by `MeterLogRemarkRepository` and `ApprovedMeterRequestRemarkRepository`.
+> - No undeclared fallback behavior is allowed for remark resolution.
+
+### Meter Log Remark Mapping
+
+- `0`: `Used to Score Assessment` or `Used to Score Assessment: <account_name>`
+- `1`: `Sent to <account_name>`
+- `2`: `Initial Meters`
+- `3`: `Received from <account_name>`
+- `4`: `Received from <account_name>`
+- `5`: `Sent to <account_name>`
+- `6`: `Meter Balance Update`
+- `7`: `Moved to Newly Created Account: <account_name>`
+- `8`: `<type-change-specific-message>: <actor_account_name>`
+
+### New Discovery And Settings-Changed Notes
+
+Actor is the logged-in user at action time. Actor is not always the parent account.
+
+#### Create New Account
+
+- Remarks:
+- `(Target View)`: `Initial Meters`
+- `(Actor View)`: `Moved to Newly Created Account: <target_user_name>`
+- Target Account:
+- `(Both View)`: `<target_user_name>`
+- Addition and Deduction:
+- If meter type is parent deduction and allocated value is `0`: `Addition = 0`, `Deduction = 0`
+- If meter type is self deduction and allocated value is `n` where `n > 0`: `Addition = n`, `Deduction = 0`
+
+#### Update Meter Type
+
+- Remarks:
+- `(Target View)`: `Meter Type Update (switched to self/parent deduction) by: <actor_user_name>`
+- `(Actor or Parent View)`: `Meter Type Update (switched to self/parent deduction): <target_user_name>`
+- Target Account:
+- If switched to self deduction: `(Both View) <target_user_name>`
+- If switched to parent deduction: `(Both View) <parent_user_name>`
+- Addition and Deduction:
+- If switched to self deduction:
+- `(Target View)`: `Addition = n` (target meter balance value)
+- `(Actor View)`: `Deduction = n` (actor meter balance value)
+- If switched to parent deduction:
+- `(Target View)`: `Deduction = n` (target meter balance value)
+- `(Actor View)`: `Addition = n` (actor meter balance value)
+
+#### Update Meter Balance
+
+- Remarks:
+- `(Target View)`: `Meter Balance Update by: <actor_user_name>`
+- `(Parent View)`: `Meter Balance Updated: <target_user_name>`
+- Target Account:
+- If deduction: `(Both View) <parent_user_name>`
+- If addition: `(Both View) <target_user_name>`
+- Addition and Deduction:
+- If deduction:
+- `(Actor View)`: `Addition = n`
+- `(Target View)`: `Deduction = n`
+- If addition:
+- `(Actor View)`: `Deduction = n`
+- `(Target View)`: `Addition = n`
+
+#### Use Meter Balance
+
+- Remarks:
+- If own candidate: `Used to Score Assessment`
+- If lower-hierarchy candidate: `Used to Score Assessment: <consumer_user_name>`
+- Target Account:
+- If own candidate: `<own_user_name>`
+- If lower-hierarchy candidate: `<consumer_user_name>`
+
+#### Request Meter Approved
+
+- Remarks:
+- `(Target View)`: `Received from <actor_user_name>`
+- `(Actor View)`: `Sent to <target_user_name>`
+- Target Account:
+- `<target_user_name>`
+- Addition and Deduction:
+- `(Actor View)`: `Deduction = n`
+- `(Target View)`: `Addition = n`
+
+### What To Expect In Remarks
+
+- `Used to Score Assessment`: Meter was consumed by assessment completion.
+- `Used to Score Assessment: <account_name>`: Assessment consumption is attributed to the shown account.
+- `Sent to <account_name>`: Meters were deducted from the current account and transferred to the shown account.
+- `Received from <account_name>`: Meters were added to the current account from the shown account.
+- `Initial Meters`: Starting meter balance set during account meter initialization.
+- `Meter Balance Update`: Manual add/deduct adjustment from `Update Meter Balance`.
+- `Moved to Newly Created Account: <account_name>`: Meters were moved to a newly created child account.
+- `<type-change-specific-message>: <actor_account_name>`: Consumption-type change event; message identifies the specific type-change action and actor account.
+- `(not set)`: Applicable only to unresolved `type=4` fallback output from stored/paired/parent resolution path.
+
+### Site Behavior Expectations
+
+- The same transaction input always resolves to one predictable remark format.
+- Account names appear only when the source event can resolve a target/source account.
+- For unresolved `type=0` and `type=3`, the system returns a diagnostic failure instead of silent fallback text.
+- Remarks are rendered by service-owned rules; View and Controller do not alter remark meaning.
+
+### Meter Log Remark Resolution Rules
+
+- `type=0`: resolve consuming account from schedule linkage (`candidate_id` + `assessment_id`); unresolved returns diagnostic failure.
+- `type=3`: use notes when present; else resolve paired transfer source; unresolved returns diagnostic failure.
+- `type=4`: source from stored remark, paired deduction, immediate parent; unresolved returns `(not set)`.
+- `type=6`: reserved for normal meter balance update only.
+- `type=7`: requires explicit new-account target marker in notes and resolvable target account.
+- `type=8`: requires explicit message marker in notes and resolvable actor.
 
 > Expected Result:
 > - Meter activity history is displayed.

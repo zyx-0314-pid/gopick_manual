@@ -20,22 +20,25 @@
         var li = document.createElement('li');
         li.className = 'group bg-white rounded-xl border border-slate-100 p-6 hover:shadow-lg hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-200 opacity-0 translate-y-4';
 
-        var iconClass = 'feature-icon--' + (item.icon || 'default');
         var hasTarget = item.target && item.target.length > 0;
+        var hasDescription = item.description && item.description.length > 0;
+        var hasIcon = item.icon && item.icon.length > 0;
         var tag = hasTarget ? 'a' : 'div';
+        var titleText = item.title || 'Feature';
+        var contentHtml = '';
+
+        contentHtml += '<h3 class="text-lg font-bold text-slate-900 mb-2' + (hasTarget ? ' group-hover:text-brand' : '') + ' transition-colors">' + titleText + '</h3>';
+        if (hasDescription) {
+            contentHtml += '<p class="text-sm text-slate-500 leading-relaxed flex-1">' + item.description + '</p>';
+        }
+        if (hasTarget) {
+            contentHtml += '<span class="mt-4 text-sm font-semibold text-brand flex items-center gap-1">View docs <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>';
+        }
 
         var cardHtml = '<' + tag + (hasTarget ? ' href="pages/workflow/' + item.target + '/index.html"' : '') +
             ' class="flex flex-col h-full' + (hasTarget ? ' cursor-pointer' : '') + '">' +
-            '<div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 ' + iconClass + '">' +
-            getIconSvg(item.icon) +
-            '</div>' +
-            '<h3 class="text-lg font-bold text-slate-900 mb-2' + (hasTarget ? ' group-hover:text-brand' : '') + ' transition-colors">' +
-            (item.title || 'Feature') +
-            '</h3>' +
-            '<p class="text-sm text-slate-500 leading-relaxed flex-1">' +
-            (item.description || '') +
-            '</p>' +
-            (hasTarget ? '<span class="mt-4 text-sm font-semibold text-brand flex items-center gap-1">View docs <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>' : '') +
+            (hasIcon ? '<div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 feature-icon--' + (item.icon || 'default') + '">' + getIconSvg(item.icon) + '</div>' : '') +
+            contentHtml +
             '</' + tag + '>';
 
         li.innerHTML = cardHtml;

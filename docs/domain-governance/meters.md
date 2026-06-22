@@ -304,6 +304,84 @@ Archived and deactivated account logs:
 
 ---
 
+# Meter Log Remark Governance (`modMeterlog`)
+
+Single source of truth for remark rendering is owned by `MeterLogRemarkService`.
+
+## Ownership and Flow
+
+- Controller and View must not implement business decisions for remark text.
+- `MeterLogRemarkService` fully owns remark behavior.
+- Data lookups are owned by:
+- `MeterLogRemarkRepository`
+- `ApprovedMeterRequestRemarkRepository`
+
+## Transaction Type Remark Mapping
+
+- `0`: `Used to Score Assessment` or `Used to Score Assessment: <account_name>`
+- `1`: `Sent to <account_name>`
+- `2`: `Initial Meters`
+- `3`: `Received from <account_name>`
+- `4`: `Received from <account_name>`
+- `5`: `Sent to <account_name>`
+- `6`: `Meter Balance Update`
+- `7`: `Moved to Newly Created Account: <account_name>`
+- `8`: `<type-change-specific-message>: <actor_account_name>`
+
+## Resolution Rules
+
+- `type=0`: resolve consuming account from schedule linkage (`candidate_id` + `assessment_id`); unresolved returns diagnostic failure.
+- `type=3`: use notes when present; else resolve paired transfer source; unresolved returns diagnostic failure.
+- `type=4`: source from stored remark, paired deduction, immediate parent; unresolved returns `(not set)`.
+- `type=6`: reserved for normal meter balance update only.
+- `type=7`: requires explicit new-account target marker in notes and resolvable target account.
+- `type=8`: requires explicit message marker in notes and resolvable actor.
+
+## Constraints
+
+- No business decisions in View or Controller.
+- No undeclared fallback behavior.
+- No dual-path old/new logic for the same behavior.
+- Keep return values explicit and predictable.
+
+## Newly Discovered Actor/Target Governance
+
+- Actor must be the logged-in user at action time.
+- Actor must not be inferred from parent account relationship.
+- Logging must use explicit actor username from authenticated session context.
+- No hidden fallback actor resolution is allowed.
+
+### Settings-Changed Behavior Expectations
+
+- Account creation logs:
+- `(Target View)`: `Initial Meters`
+- `(Actor View)`: `Moved to Newly Created Account: <target_user_name>`
+- Meter type update logs:
+- `(Target View)`: `Meter Type Update (switched to self/parent deduction) by: <actor_user_name>`
+- `(Actor/Parent View)`: `Meter Type Update (switched to self/parent deduction): <target_user_name>`
+- Meter balance update logs:
+- `(Target View)`: `Meter Balance Update by: <actor_user_name>`
+- `(Parent View)`: `Meter Balance Updated: <target_user_name>`
+- Request-approved logs:
+- `(Target View)`: `Received from <actor_user_name>`
+- `(Actor View)`: `Sent to <target_user_name>`
+
+### Balance Movement Expectations
+
+- Create account:
+- Parent deduction with allocated `0`: `Addition=0`, `Deduction=0`
+- Self deduction with allocated `n > 0`: `Addition=n`, `Deduction=0`
+- Meter type switched to self deduction:
+- Target side `Addition=n`, Actor side `Deduction=n`
+- Meter type switched to parent deduction:
+- Target side `Deduction=n`, Actor side `Addition=n`
+- Manual meter balance deduction:
+- Actor side `Addition=n`, Target side `Deduction=n`
+- Manual meter balance addition:
+- Actor side `Deduction=n`, Target side `Addition=n`
+
+---
+
 # Lifecycle States
 
 Accounts may become:
@@ -393,3 +471,25 @@ The system enforces:
 
   Current unclear behavior:
   - Whether additional reports under the same assessment should trigger additional meter deduction.
+
+
+---
+
+- **What will happen when if Account will be Archived, Deactivated, Expired or Deleted to its child Accounts**
+
+  Behavior for child accounts is not yet formally confirmed when their parent account becomes Archived, Deactivated, Expired, or Deleted.
+
+  Current unclear areas:
+
+  Whether child accounts remain active
+  Whether child accounts can still log in
+  Whether child accounts can still consume meters
+  Whether child accounts can still create candidates
+  Whether child accounts can still generate reports
+  Whether child accounts inherit the parent account status
+  Whether child accounts become restricted, suspended, or detached
+  Whether child account meter balances remain usable
+  Whether child account visibility remains available to admins and parent users
+
+  Current concern:
+  - Parent account lifecycle changes may cause inconsistent behavior across child accounts if inheritance, access, meter usage, and visibility rules are not formally defined.

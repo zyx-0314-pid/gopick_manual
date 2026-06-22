@@ -6,52 +6,110 @@
   },
   "features": [
     {
-      "title": "Account Management",
+      "index": 1,
+      "title": "Dashboard",
+      "description": "Monitor key metrics including meter requests, account statuses, and expiring records in real-time.",
+      "icon": "bar-chart",
+      "target": "dashboard-management"
+    },
+    {
+      "index": 2,
+      "title": "Account",
       "description": "Create and manage a full hierarchy of organizational accounts — distributors, clients, sub-accounts — with role-based access control.",
       "icon": "users",
       "target": "accounts-management"
     },
     {
-      "title": "Candidate Management",
-      "description": "Register candidates individually or in bulk, manage profiles, assign credentials, and track login history.​",
+      "index": 3,
+      "title": "Candidate",
+      "description": "Register candidates individually or in bulk, manage profiles, assign credentials, and track login history.",
       "icon": "user-check",
       "target": "candidate-management"
     },
     {
-      "title": "Assessment Management",
-      "description": "Easily navigate your assessment roster and quickly organize assessments by category.​",
+      "index": 4,
+      "title": "Assessment",
+      "description": "Easily navigate your assessment roster and quickly organize assessments by category.",
       "icon": "clipboard",
       "target": "assessment-management"
     },
     {
-      "title": "Meters Management",
+      "index": 5,
+      "title": "Test Norms",
+      "description": "This feature has not been recorded yet. Document details will be added later."
+    },
+    {
+      "index": 6,
+      "title": "Meters",
       "description": "Manage meter requests, orders, transfers, balances, and meter logs across account hierarchies.",
       "icon": "meter",
       "target": "meters-management"
     },
     {
-      "title": "Reports Management",
+      "index": 7,
+      "title": "Reports",
       "description": "Search usage records, download available reports, send generated reports, and export assessment data.",
       "icon": "bar-chart",
       "target": "reports-management"
     },
     {
-      "title": "Users Management",
+      "index": 8,
+      "title": "Users",
       "description": "Search, update, archive, delete, export, and retrieve user account records.",
       "icon": "users",
       "target": "users-management"
     },
     {
-      "title": "Roles/Permissions Management",
+      "index": 9,
+      "title": "Role/Permission",
       "description": "Review RBAC permissions, account hierarchy, and role capabilities for GoPick users and account types.",
       "icon": "shield",
       "target": "roles-premission-management"
     },
     {
-      "title": "Dashboard",
-      "description": "Monitor key metrics including meter requests, account statuses, and expiring records in real-time.",
-      "icon": "bar-chart",
-      "target": "dashboard-management"
+      "index": 10,
+      "title": "Activity Log",
+      "description": "This feature has not been recorded yet. Document details will be added later."
+    },
+    {
+      "index": 11,
+      "title": "Assessment-Account Schedule",
+      "description": "This feature has not been recorded yet. Document details will be added later."
+    },
+    {
+      "index": 12,
+      "title": "Email Templates",
+      "description": "This feature has not been recorded yet. Document details will be added later."
+    },
+    {
+      "index": 13,
+      "title": "Emails",
+      "description": "This feature has not been recorded yet. Document details will be added later."
+    },
+    {
+      "index": 14,
+      "title": "Advisory",
+      "description": "This feature has not been recorded yet. Document details will be added later."
+    },
+    {
+      "index": 15,
+      "title": "Help Desk",
+      "description": "This feature has not been recorded yet. Document details will be added later."
+    },
+    {
+      "index": 16,
+      "title": "Test Settings",
+      "description": "This feature has not been recorded yet. Document details will be added later."
+    },
+    {
+      "index": 17,
+      "title": "Report Templates",
+      "description": "This feature has not been recorded yet. Document details will be added later."
+    },
+    {
+      "index": 18,
+      "title": "Resource Center",
+      "description": "This feature has not been recorded yet. Document details will be added later."
     }
   ],
   "guides": [
