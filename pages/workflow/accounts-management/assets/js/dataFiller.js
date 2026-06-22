@@ -6,8 +6,6 @@
         title: 'Accounts Management',
         sections: [
             { id: 'legend', title: 'Legend' },
-            { id: 'rbac-matrix', title: 'RBAC Matrix' },
-            { id: 'hierarchy', title: 'Account Hierarchy' },
             { id: 'account-rules', title: 'Account Rules' },
             {
                 id: 'create-account',
@@ -72,21 +70,6 @@
             },
             { id: 'roles', title: 'Role Capabilities' },
             { id: 'access', title: 'Configuration Steps' }
-        ],
-        hierarchyLines: [
-            'Super Admin (IT)',
-            'Super Admin (ASD)',
-            '└─ Distributor',
-            '   ├─ Administrator',
-            '   ├─ Self Registration',
-            '   └─ Sub Distributor',
-            '      ├─ Administrator',
-            '      ├─ Self Registration',
-            '      └─ Client',
-            '         ├─ Administrator',
-            '         └─ Sub Client',
-            '            ├─ Administrator',
-            '            └─ Self Registration'
         ],
         legends: [
             { sym: 'X', label: 'Hard-coded available', cls: 'rbac-x' },
@@ -187,9 +170,10 @@
                     {
                         label: 'Meter Management Guard Rails',
                         children: [
-                            'Distributor has only one Meter Management Type.',
+                            'Sub-Account has 2 Meter Management Type while the rest are 1 Meter Management Type.',
                             'Self: Meter balance cannot be 0.',
-                            'Parent: Parent meter balance cannot be 0.'
+                            'Parent: Parent meter balance cannot be 0.',
+                            'Max Meter: 99,999'
                         ]
                     }
                 ]
@@ -231,7 +215,9 @@
                         label: 'Data Sync Guard Rails',
                         children: [
                             'Contracted Meters values are prefilled from the Meter Management meter balance part of the form.',
-                            'Addendum value is locked when the selected Meter Type is Parent.'
+                            'Addendum value is locked when the selected Meter Type is Parent.',
+                            'Max Limit of Account Limits: 999',
+                            'Max Value of Addendum, Base Meter and Billing Amount: 999'
                         ]
                     }
                 ]
@@ -542,16 +528,6 @@
         });
         // Trigger a hashchange to allow other scripts to pick up the active link
         setTimeout(function () { window.dispatchEvent(new Event('hashchange')); }, 10);
-    }
-
-    function renderHierarchy() {
-        var container = document.getElementById('hierarchyContent');
-        if (!container) return;
-        container.innerHTML = '';
-        var pre = document.createElement('pre');
-        pre.className = 'whitespace-pre-wrap';
-        pre.textContent = accountsContent.hierarchyLines.join('\n');
-        container.appendChild(pre);
     }
 
     function renderLegend() {
@@ -988,7 +964,6 @@
 
     function renderAll() {
         renderSidebar();
-        renderHierarchy();
         renderLegend();
         renderViewAccountsLegend();
         renderAccountRules();

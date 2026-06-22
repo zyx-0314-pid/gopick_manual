@@ -1,21 +1,4 @@
 # Account management
-## Hierarchy:
-```
-Super Admin (IT)
-Super Admin (ASD)
-└─ Distributor
-   ├─ Administrator
-   ├─ Self Registration
-   └─ Sub Distributor
-      ├─ Administrator
-      ├─ Self Registration
-      └─ Client
-         ├─ Administrator
-         └─ Sub Client
-            ├─ Administrator
-            └─ Self Registration
-```
-
 > Rules
 > - Account Related Updates can only be modified by `Super Admin (IT/ASD)`, `Distributor` and `Sub-Distributor`
 
@@ -38,7 +21,7 @@ Super Admin (ASD)
 - Status (autofill)
 
 > Validation Guard Rails:
-> - Account Type: You can only select lower than your account type (Check [Hierarchy](#hierarchy))
+> - Account Type: You can only select lower than your account type
 > - `Password` and `Confirm Password` should match
 > - `Billing Address` can be similar to `Business Address` using `checkbox toggled` or enter `manually via input` that shows up when checkbox is off
 
@@ -73,9 +56,10 @@ Self = Deduct usage from this account
 Parent = Deduct usage from Distributor/Sub-Distributor/Client
 
 > Meter Management Guard Rails:
-> - Distributor has only 1 Meter Management Type.
+> - Sub-Account has 2 Meter Management Type while the rest are 1 Meter Management Type.
 > - Self Mode: Meter balance cannot be 0.
 > - Parent Mode: Parent meter balance cannot be 0.
+> - Max Meter: 99,999
 
 ---
 
@@ -112,6 +96,8 @@ Set additional account-related configurations:
 > Data Sync Guard Rails:
 > - Contracted Meters: Values are prefilled from the Meter Management section.
 > - Addendum: Value is locked when the selected Meter Type is Parent.
+> - Max Limit of Account Limits: 999
+> - Max Value of Addendum, Base Meter and Billing Amount: 999
 
 ---
 
@@ -178,7 +164,7 @@ Contains additional account-related configurations, including but not limited to
 - Contract settings
 
 #### List of Users
-Displays users that can be managed or are under the hierarchy of the selected account.
+Displays users that can be managed under the selected account.
 
 Provides access to:
 - View
@@ -190,33 +176,33 @@ Provides access to:
 Allows updating of displayed `consent data`, including optional checkboxes for `data collection` and `photo capture`.
 
 > Rule: 
-> - Access is controlled via `Admin` `RBAC policies`.
+> - Access is controlled by account permissions.
 > - For `Distributor` own account they are not able to access this.
 
 ##### Demographics
 Allows configuration of the demographic form, including setting fields as optional or required.
 
 > Rule: 
-> - Access is controlled via `Admin` `RBAC policies`.
+> - Access is controlled by account permissions.
 > - For `Distributor` own account they are not able to access this.
 
 ##### Assessment Completion Page
 Allows updating of displayed `completion` of the assessment.
 
 > Rule: 
-> - Access is controlled via `Admin` `RBAC policies`.
+> - Access is controlled by account permissions.
 > - For `Distributor` own account they are not able to access this.
 
 ##### Assessment Center Logo
 Allows updating of displayed `Logo` of the account.
 
-> Rule: Access is controlled via `Admin` `RBAC policies`, limited to specific user groups.
+> Rule: Access is controlled by account permissions, limited to specific user groups.
 
 ##### Unblock Account
 Allows to unblock account
 
 > Rule: 
-> - Access is controlled via `Admin` `RBAC policies`.
+> - Access is controlled by account permissions.
 > - For their own account they are not able to access this.
 
 ### Update: Section
@@ -258,7 +244,7 @@ Capabilities:
 - Access to `Update Assessment`
 
 > Access Guard Rails:
-> - `Update Assessment` must be enforced by Admin RBAC policy.
+> - `Update Assessment` must be enforced by account permissions.
 > - `Manage` and `Change Log` are for: Admin, Distributor, and Sub-Distributor only.
 
 > Product Assignment Guard Rails:

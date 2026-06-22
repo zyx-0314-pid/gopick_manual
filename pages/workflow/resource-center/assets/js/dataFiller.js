@@ -202,13 +202,13 @@
                             { title: 'Access Path', items: ['Resource Center > Guides & Tutorials > Assessment Center Site'] }
                         ],
                         status: 'No contents yet'
-                    }
+                    },
+                    {
+                        id: 'training-materials',
+                        title: 'Training Materials (Soon)',
+                        description: 'Training materials section.'
+                    },
                 ]
-            },
-            {
-                id: 'training-materials',
-                title: 'Training Materials (Soon)',
-                description: 'Training materials section.'
             },
             {
                 id: 'faqs-troubleshooting',
