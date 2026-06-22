@@ -73,9 +73,10 @@ Self = Deduct usage from this account
 Parent = Deduct usage from Distributor/Sub-Distributor/Client
 
 > Meter Management Guard Rails:
-> - Distributor has only 1 Meter Management Type.
+> - Sub-Account has 2 Meter Management Type while the rest are 1 Meter Management Type.
 > - Self Mode: Meter balance cannot be 0.
 > - Parent Mode: Parent meter balance cannot be 0.
+> - Max Meter: 99,999
 
 ---
 
@@ -112,6 +113,8 @@ Set additional account-related configurations:
 > Data Sync Guard Rails:
 > - Contracted Meters: Values are prefilled from the Meter Management section.
 > - Addendum: Value is locked when the selected Meter Type is Parent.
+> - Max Limit of Account Limits: 999
+> - Max Value of Addendum, Base Meter and Billing Amount: 999
 
 ---
 

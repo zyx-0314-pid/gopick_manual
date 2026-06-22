@@ -187,9 +187,10 @@
                     {
                         label: 'Meter Management Guard Rails',
                         children: [
-                            'Distributor has only one Meter Management Type.',
+                            'Sub-Account has 2 Meter Management Type while the rest are 1 Meter Management Type.',
                             'Self: Meter balance cannot be 0.',
-                            'Parent: Parent meter balance cannot be 0.'
+                            'Parent: Parent meter balance cannot be 0.',
+                            'Max Meter: 99,999'
                         ]
                     }
                 ]
@@ -231,7 +232,9 @@
                         label: 'Data Sync Guard Rails',
                         children: [
                             'Contracted Meters values are prefilled from the Meter Management meter balance part of the form.',
-                            'Addendum value is locked when the selected Meter Type is Parent.'
+                            'Addendum value is locked when the selected Meter Type is Parent.',
+                            'Max Limit of Account Limits: 999',
+                            'Max Value of Addendum, Base Meter and Billing Amount: 999'
                         ]
                     }
                 ]
